@@ -23,6 +23,8 @@ class Creator {
         this.#params = paramsElem
         this.#element = this.#creatorOfElement()
         this.#setText()
+        this.#setClass()
+        this.#setAttr()
     }
 
     #creatorOfElement(): HTMLElement {
@@ -38,6 +40,22 @@ class Creator {
             throw new Error('text is not definded');
         }
         this.#element.innerText = String(this.#params.text)
+    }
+
+    #setClass() {
+        if (!this.#params.classList && !this.#element) {
+            throw new Error('class is not definded');
+        }
+        this.#element.className = String(this.#params.classList)
+    }
+
+    #setAttr() {
+        if (!this.#params.attributes && !this.#element) {
+            throw new Error('attributes is not definded');
+        }
+        for (const key in this.#params.attributes) {
+             this.#element.setAttribute(key, this.#params.attributes[key])
+        }
     }
 
     getElement() {
