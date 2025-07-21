@@ -1,3 +1,3 @@
-import { header } from "./core/creator";
+import { Controller } from "./controller/controller";
 
-console.log(header.getElement());
+new Controller()

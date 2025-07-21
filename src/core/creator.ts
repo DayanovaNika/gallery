@@ -7,14 +7,6 @@ interface ParamsTypes {
     attributes? : attributesMap
 }
 
-const headerParams = {
-    tagName: 'header',
-    text: 'jfvlfdkvjlkv',
-    classList:
-        "testClass",
-    attributes: {},
-};
-
 class Creator { 
     #params 
     #element: HTMLElement
@@ -39,22 +31,28 @@ class Creator {
         if (!this.#params.text && !this.#element) {
             throw new Error('text is not definded');
         }
-        this.#element.innerText = String(this.#params.text)
+        if (this.#params.text) {
+            this.#element.innerText = String(this.#params.text)
+        }
     }
 
     #setClass() {
         if (!this.#params.classList && !this.#element) {
             throw new Error('class is not definded');
         }
-        this.#element.className = String(this.#params.classList)
+        if (this.#params.classList) {
+            this.#element.className = String(this.#params.classList)
+        }
     }
 
     #setAttr() {
         if (!this.#params.attributes && !this.#element) {
             throw new Error('attributes is not definded');
         }
-        for (const key in this.#params.attributes) {
-             this.#element.setAttribute(key, this.#params.attributes[key])
+        if (this.#params.attributes) {
+            for (const key in this.#params.attributes) {
+            this.#element.setAttribute(key, this.#params.attributes[key])
+        }
         }
     }
 
@@ -66,4 +64,4 @@ class Creator {
     }
 }
 
-export const header = new Creator(headerParams)
+export default Creator 
