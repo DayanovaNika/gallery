@@ -1,16 +1,15 @@
 import { HeaderView } from "./components/header";
 
 export class View {
-    headerView = new HeaderView().element
+    headerView = new HeaderView()
     appContainer 
     // mainView = new MainView()
     constructor(){
         this.appContainer = document.querySelector('#app')
         this.buildInterface()
-        console.log(new HeaderView());
     }
     buildInterface() {
-        this.appContainer?.append(this.headerView as HTMLElement)
+        this.appContainer?.append(this.headerView.element as HTMLElement)
     }
 }
 

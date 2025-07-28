@@ -20,7 +20,8 @@ const inputSearchParams = {
     // text: "",
     // classList: [],
     attributes: {
-        type: "search"
+        type: "search",
+        name: "search"
     },
 };
 
@@ -39,9 +40,10 @@ const wrapperButtonParams = {
 
 export class HeaderView {
     element = new Creator(headerParams).getElement()
+    form
     constructor() {
         this.creatorOfButtons()
-        this.formCreator()
+        this.form = this.formCreator()
     }
     creatorOfButtons() {
         const dataButtons = [
@@ -102,6 +104,7 @@ export class HeaderView {
         const inputSubmit = new Creator(inputSubmitParams).getElement()
         formElem.append(inputSearch, inputSubmit)
         this.element.append(formElem)
+        return formElem
     }
 
 }
