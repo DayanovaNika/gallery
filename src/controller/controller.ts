@@ -9,21 +9,17 @@ export class Controller {
     }
     setFormListener() {
     console.log(this.view.headerView.form);
-    // вызвать правильно formSubmit
     this.view.headerView.form.addEventListener("submit", (event) => this.formSubmit(event))
     }
 
-    formSubmit(event: Event) {
+    async formSubmit(event: SubmitEvent) {
         event.preventDefault()
-        if (event.target) {
-            const formData = new FormData(event.target)
-        }
+        const formData = new FormData(event.target as HTMLFormElement)
+        const query = formData.get("search");
+        const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=4jmoKzKcB0CftDxEyOY4dvzdW2-iliOIf3Oza8ERicc&query=${query}&per_page=10&page=1`)
+        const data = await response.json()
+        console.log(data);
         
-        // console.log(formData.get("search"));
+        
     }
 }
-
-// 1. сделать форму частью обьекта header +
-// 2. повесить на форму прослушку
-// 3. получить данные с формы
-// 4. создать запрос с полученными данными
