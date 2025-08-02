@@ -18,8 +18,7 @@ export class Controller {
         const query = formData.get("search");
         const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=4jmoKzKcB0CftDxEyOY4dvzdW2-iliOIf3Oza8ERicc&query=${query}&per_page=10&page=1`)
         const data = await response.json()
-        console.log(data);
         
-        
+        this.view.mainView.createImageList(data)
     }
 }
