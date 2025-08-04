@@ -26,6 +26,7 @@ export class MainView {
 
         data.results.forEach((imageInfo)=> {
             const li = new Creator(liParams).getElement()
+            this.clear()
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             image.src = imageInfo.urls.regular
             li.append(image)
@@ -33,5 +34,8 @@ export class MainView {
         })
         listElement.append(template)
         this.element.append(listElement)
+    }
+    clear() {
+        this.element.innerHTML = ''
     }
 }

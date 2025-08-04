@@ -11,7 +11,7 @@ export class Controller {
     console.log(this.view.headerView.form);
     this.view.headerView.form.addEventListener("submit", (event) => this.formSubmit(event))
     }
-
+// вынести в модель
     async formSubmit(event: SubmitEvent) {
         event.preventDefault()
         const formData = new FormData(event.target as HTMLFormElement)
