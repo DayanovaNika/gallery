@@ -1,49 +1,62 @@
 import Creator from "../../core/creator";
+import style from "./styles/style.module.css";
 
 const headerParams = {
     tagName: "header",
     attributes: {
         id: "header",
         "data-action": "header",
-    }
+    },
+    classList: style.header
 }
 
 const formParams = {
     tagName: "form",
-    // classList: [],
+    classList: style.form,
     // attributes: {
     // },
 };
 
 const inputSearchParams = {
     tagName: "input",
-    // text: "",
-    // classList: [],
+    classList: style.inputSearch,
     attributes: {
         type: "search",
-        name: "search"
+        name: "search",
     },
 };
 
 const inputSubmitParams = {
     tagName: "input",
-    // text: "",
-    // classList: [],
+    classList: style.inputSubmit,
     attributes: {
-        type: "submit"
+        type: "submit",
+        value: ""
     },
 };
 
 const wrapperButtonParams = {
     tagName: "div",
+    classList: style.wrapperButtons
 }
+
+const containerParams = {
+    tagName: "div",
+    classList: style.container
+};
 
 export class HeaderView {
     element = new Creator(headerParams).getElement()
     form
+    container
     constructor() {
+        this.container = new Creator(containerParams).getElement()
         this.creatorOfButtons()
         this.form = this.formCreator()
+        this.element.append(this.container)
+        // создать с помощью креатора контейнер (div)
+        // выставить контейнер в header
+        // кнлпки и кнопки вставлять в контейнер а не в header
     }
     creatorOfButtons() {
         const dataButtons = [
@@ -52,42 +65,48 @@ export class HeaderView {
                 text: "dog",
                 attributes: {
                     "data-value": "dog"
-                }
+                },
+                classList: style.button
             },
             {
                 tagName: "button",
                 text: "cat",
                 attributes: {
                     "data-value": "cat"
-                }
+                },
+                classList: style.button
             },
             {
                 tagName: "button",
                 text: "horse",
                 attributes: {
                     "data-value": "horse"
-                }
+                },
+                classList: style.button
             },
             {
                 tagName: "button",
                 text: "lion",
                 attributes: {
                     "data-value": "lion"
-                }
+                },
+                classList: style.button
             },
             {
                 tagName: "button",
                 text: "monkey",
                 attributes: {
                     "data-value": "monkey"
-                }
+                },
+                classList: style.button
             },
             {
                 tagName: "button",
                 text: "bear",
                 attributes: {
                     "data-value": "bear"
-                }
+                },
+                classList: style.button
             },
         ]
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
@@ -96,14 +115,14 @@ export class HeaderView {
             const currentBtn = new Creator(btnParams).getElement()
             wrapperButtons.append(currentBtn)
         });
-        this.element.append(wrapperButtons)
+        this.container.append(wrapperButtons)
     }
     formCreator() {
         const formElem = new Creator(formParams).getElement()
         const inputSearch = new Creator(inputSearchParams).getElement()
         const inputSubmit = new Creator(inputSubmitParams).getElement()
         formElem.append(inputSearch, inputSubmit)
-        this.element.append(formElem)
+        this.container.append(formElem)
         return formElem
     }
 
