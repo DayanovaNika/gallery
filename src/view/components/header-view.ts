@@ -23,6 +23,7 @@ const inputSearchParams = {
     attributes: {
         type: "search",
         name: "search",
+        
     },
 };
 
@@ -54,9 +55,6 @@ export class HeaderView {
         this.creatorOfButtons()
         this.form = this.formCreator()
         this.element.append(this.container)
-        // создать с помощью креатора контейнер (div)
-        // выставить контейнер в header
-        // кнлпки и кнопки вставлять в контейнер а не в header
     }
     creatorOfButtons() {
         const dataButtons = [
@@ -125,5 +123,4 @@ export class HeaderView {
         this.container.append(formElem)
         return formElem
     }
-
 }
