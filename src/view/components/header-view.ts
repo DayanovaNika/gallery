@@ -54,6 +54,7 @@ export class HeaderView {
         this.container = new Creator(containerParams).getElement()
         this.creatorOfButtons()
         this.form = this.formCreator()
+        console.log(this.form);
         this.element.append(this.container)
     }
     creatorOfButtons() {
@@ -108,12 +109,22 @@ export class HeaderView {
             },
         ]
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
-
+        wrapperButtons.addEventListener("click", (event) => this.buttonsAction(event))
         dataButtons.forEach(btnParams => {
             const currentBtn = new Creator(btnParams).getElement()
             wrapperButtons.append(currentBtn)
         });
         this.container.append(wrapperButtons)
+    }
+    buttonsAction(event) {
+        const isBtn = event.target.closest("[data-value]")
+        if (!isBtn) {
+            return 
+        }
+        if (isBtn) {
+            const btnData = isBtn.getAttribute("data-value")
+            console.log(btnData);
+        }
     }
     formCreator() {
         const formElem = new Creator(formParams).getElement()
