@@ -50,11 +50,11 @@ export class HeaderView {
     element = new Creator(headerParams).getElement()
     form
     container
+    buttonsContainer
     constructor() {
         this.container = new Creator(containerParams).getElement()
-        this.creatorOfButtons()
+        this.buttonsContainer = this.creatorOfButtons()
         this.form = this.formCreator()
-        console.log(this.form);
         this.element.append(this.container)
     }
     creatorOfButtons() {
@@ -109,21 +109,21 @@ export class HeaderView {
             },
         ]
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
-        wrapperButtons.addEventListener("click", (event) => this.buttonsAction(event))
         dataButtons.forEach(btnParams => {
             const currentBtn = new Creator(btnParams).getElement()
             wrapperButtons.append(currentBtn)
         });
         this.container.append(wrapperButtons)
+        return wrapperButtons
     }
-    buttonsAction(event) {
+    getBtnValue(event) {
         const isBtn = event.target.closest("[data-value]")
         if (!isBtn) {
             return 
         }
         if (isBtn) {
             const btnData = isBtn.getAttribute("data-value")
-            console.log(btnData);
+            return btnData
         }
     }
     formCreator() {

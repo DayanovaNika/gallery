@@ -71,10 +71,7 @@
 }
 
 .list { 
-    gap: 17px; 
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center; */
+    gap: 17px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     padding: 0;
