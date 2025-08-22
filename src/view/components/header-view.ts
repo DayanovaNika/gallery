@@ -13,8 +13,6 @@ const headerParams = {
 const formParams = {
     tagName: "form",
     classList: style.form,
-    // attributes: {
-    // },
 };
 
 const inputSearchParams = {
@@ -116,8 +114,10 @@ export class HeaderView {
         this.container.append(wrapperButtons)
         return wrapperButtons
     }
-    getBtnValue(event) {
-        const isBtn = event.target.closest("[data-value]")
+    getBtnValue(event: Event) {
+        const target = event.target as HTMLElement;
+        const isBtn = target.closest("[data-value]") as HTMLElement | null;
+        
         if (!isBtn) {
             return 
         }

@@ -1,4 +1,5 @@
 import Creator from "../../core/creator";
+import type { DataTypes } from "../../types/data-types";
 import style from "./styles/style.module.css";
 
 const mainParams = {
@@ -27,7 +28,9 @@ export class MainView {
     constructor() {
         
     }
-    createImageList(data) {
+    createImageList(data: DataTypes) {
+        console.log(data);
+        
         const listElement = new Creator(listParams).getElement()
         const template = new DocumentFragment()
         const container = new Creator(containerParams).getElement()
