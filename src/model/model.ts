@@ -1,6 +1,7 @@
 export class Model {
+    defaultValue
     constructor(){
-        
+        this.defaultValue = "puppy"
     }
     async getData(event: Event) {
         const formData = new FormData(event.target as HTMLFormElement)
