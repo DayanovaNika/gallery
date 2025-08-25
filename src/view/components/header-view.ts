@@ -23,8 +23,7 @@ const inputSearchParams = {
         name: "search",
         
     },
-};
-
+}
 const inputSubmitParams = {
     tagName: "input",
     classList: style.inputSubmit,
@@ -32,16 +31,22 @@ const inputSubmitParams = {
         type: "submit",
         value: ""
     },
-};
-
+}
 const wrapperButtonParams = {
     tagName: "div",
     classList: style.wrapperButtons
 }
-
 const containerParams = {
     tagName: "div",
     classList: style.container
+}
+const burgerParams = {
+    tagName: "button",
+    classList: style.burger
+}
+const menuContainerParams = {
+    tagName: "div",
+    classList: style.menuContainer
 };
 
 export class HeaderView {
@@ -54,6 +59,8 @@ export class HeaderView {
         this.buttonsContainer = this.creatorOfButtons()
         this.form = this.formCreator()
         this.element.append(this.container)
+        this.burgerButton()
+
     }
     creatorOfButtons() {
         const dataButtons = [
@@ -133,5 +140,17 @@ export class HeaderView {
         formElem.append(inputSearch, inputSubmit)
         this.container.append(formElem)
         return formElem
+    }
+    burgerButton() { 
+        const menuContainer = new Creator(menuContainerParams).getElement()
+        const burger = new Creator(burgerParams).getElement() 
+        const menu = this.buttonsContainer
+        this.container.prepend(menuContainer)
+        menuContainer.append(burger)
+        
+        burger.addEventListener("click", function() {
+            menu.classList.toggle("open")
+            burger.classList.toggle("active") 
+        })
     }
 }

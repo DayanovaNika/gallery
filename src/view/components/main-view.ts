@@ -29,8 +29,6 @@ export class MainView {
         
     }
     createImageList(data: DataTypes) {
-        console.log(data);
-        
         const listElement = new Creator(listParams).getElement()
         const template = new DocumentFragment()
         const container = new Creator(containerParams).getElement()
