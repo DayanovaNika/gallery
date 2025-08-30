@@ -2,171 +2,177 @@ import Creator from "../../core/creator";
 import style from "./styles/style.module.css";
 
 const headerParams = {
-    tagName: "header",
-    attributes: {
-        id: "header",
-        "data-action": "header",
-    },
-    classList: style.header
-}
+  tagName: "header",
+  attributes: {
+    id: "header",
+    "data-action": "header",
+  },
+  classList: style.header,
+};
 
 const formParams = {
-    tagName: "form",
-    classList: style.form,
+  tagName: "form",
+  classList: style.form,
 };
 
 const inputSearchParams = {
-    tagName: "input",
-    classList: style.inputSearch,
-    attributes: {
-        type: "search",
-        name: "search",
-        
-    },
-}
+  tagName: "input",
+  classList: style.inputSearch,
+  attributes: {
+    type: "search",
+    name: "search",
+  },
+};
 const inputSubmitParams = {
-    tagName: "input",
-    classList: style.inputSubmit,
-    attributes: {
-        type: "submit",
-        value: ""
-    },
-}
+  tagName: "input",
+  classList: style.inputSubmit,
+  attributes: {
+    type: "submit",
+    value: "",
+  },
+};
 const wrapperButtonParams = {
-    tagName: "div",
-    classList: style.wrapperButtons
-}
+  tagName: "div",
+  classList: style.wrapperButtons,
+};
 const containerParams = {
-    tagName: "div",
-    classList: style.container
-}
+  tagName: "div",
+  classList: style.container,
+};
 const burgerParams = {
-    tagName: "button",
-    classList: style.burger
-}
-const menuContainerParams = {
-    tagName: "div",
-    classList: style.menuContainer
+  tagName: "button",
+  classList: style.burger,
+};
+const fadeParams = {
+  tagName: "div",
+  classList: style.fade,
 };
 const burgerLineFirstParams = {
-    tagName: "span",
-    classList: style.burgerLineFirst
+  tagName: "span",
+  classList: style.burgerLineFirst,
 };
 const burgerLineSecParams = {
-    tagName: "span",
-    classList: style.burgerLineSec
+  tagName: "span",
+  classList: style.burgerLineSec,
 };
 const burgerLineThirdParams = {
-    tagName: "span",
-    classList: style.burgerLineThird
+  tagName: "span",
+  classList: style.burgerLineThird,
 };
 
 export class HeaderView {
-    element = new Creator(headerParams).getElement()
-    form
-    container
-    buttonsContainer
-    constructor() {
-        this.container = new Creator(containerParams).getElement()
-        this.buttonsContainer = this.creatorOfButtons()
-        this.form = this.formCreator()
-        this.element.append(this.container)
-        this.burgerButton()
+  element = new Creator(headerParams).getElement();
+  form;
+  container;
+  buttonsContainer;
 
-    }
-    creatorOfButtons() {
-        const dataButtons = [
-            {
-                tagName: "button",
-                text: "dog",
-                attributes: {
-                    "data-value": "dog"
-                },
-                classList: style.button
-            },
-            {
-                tagName: "button",
-                text: "cat",
-                attributes: {
-                    "data-value": "cat"
-                },
-                classList: style.button
-            },
-            {
-                tagName: "button",
-                text: "horse",
-                attributes: {
-                    "data-value": "horse"
-                },
-                classList: style.button
-            },
-            {
-                tagName: "button",
-                text: "lion",
-                attributes: {
-                    "data-value": "lion"
-                },
-                classList: style.button
-            },
-            {
-                tagName: "button",
-                text: "monkey",
-                attributes: {
-                    "data-value": "monkey"
-                },
-                classList: style.button
-            },
-            {
-                tagName: "button",
-                text: "bear",
-                attributes: {
-                    "data-value": "bear"
-                },
-                classList: style.button
-            },
-        ]
-        const wrapperButtons = new Creator(wrapperButtonParams).getElement()
-        dataButtons.forEach(btnParams => {
-            const currentBtn = new Creator(btnParams).getElement()
-            wrapperButtons.append(currentBtn)
-        });
-        this.container.append(wrapperButtons)
-        return wrapperButtons
-    }
-    getBtnValue(event: Event) {
-        const target = event.target as HTMLElement;
-        const isBtn = target.closest("[data-value]") as HTMLElement | null;
-        
-        if (!isBtn) {
-            return 
-        }
-        if (isBtn) {
-            const btnData = isBtn.getAttribute("data-value")
-            return btnData
-        }
-    }
-    formCreator() {
-        const formElem = new Creator(formParams).getElement()
-        const inputSearch = new Creator(inputSearchParams).getElement()
-        const inputSubmit = new Creator(inputSubmitParams).getElement()
-        formElem.append(inputSearch, inputSubmit)
-        this.container.append(formElem)
-        return formElem
-    }
-    burgerButton() { 
-        const menuContainer = new Creator(menuContainerParams).getElement()
-        const burger = new Creator(burgerParams).getElement() 
-        const burgerLineFirst = new Creator(burgerLineFirstParams).getElement()
-        const burgerLineSec = new Creator(burgerLineSecParams).getElement()
-        const burgerLineThird = new Creator(burgerLineThirdParams).getElement()
-        burger.append(burgerLineFirst, burgerLineSec, burgerLineThird)
-        const menu = this.buttonsContainer
-        this.container.prepend(menuContainer)
-        this.container.prepend(burger)
+  constructor() {
+    this.container = new Creator(containerParams).getElement();
+    this.buttonsContainer = this.creatorOfButtons();
+    this.form = this.formCreator();
+    this.element.append(this.container);
+    this.burgerButton();
+  }
 
-        burger.addEventListener("click", function() {
-            menuContainer.classList.toggle(style.fullMenu)
-            burger.classList.toggle("active") 
-        })
+  creatorOfButtons() {
+    const dataButtons = [
+      {
+        tagName: "button",
+        text: "dog",
+        attributes: {
+          "data-value": "dog",
+        },
+        classList: style.button,
+      },
+      {
+        tagName: "button",
+        text: "cat",
+        attributes: {
+          "data-value": "cat",
+        },
+        classList: style.button,
+      },
+      {
+        tagName: "button",
+        text: "horse",
+        attributes: {
+          "data-value": "horse",
+        },
+        classList: style.button,
+      },
+      {
+        tagName: "button",
+        text: "lion",
+        attributes: {
+          "data-value": "lion",
+        },
+        classList: style.button,
+      },
+      {
+        tagName: "button",
+        text: "monkey",
+        attributes: {
+          "data-value": "monkey",
+        },
+        classList: style.button,
+      },
+      {
+        tagName: "button",
+        text: "bear",
+        attributes: {
+          "data-value": "bear",
+        },
+        classList: style.button,
+      },
+    ];
+    const wrapperButtons = new Creator(wrapperButtonParams).getElement();
+    dataButtons.forEach((btnParams) => {
+      const currentBtn = new Creator(btnParams).getElement();
+      wrapperButtons.append(currentBtn);
+    });
+    this.container.append(wrapperButtons);
+    return wrapperButtons;
+  }
+
+  getBtnValue(event: Event) {
+    const target = event.target as HTMLElement;
+    const isBtn = target.closest("[data-value]") as HTMLElement | null;
+
+    if (!isBtn) {
+      return;
     }
+    if (isBtn) {
+      const btnData = isBtn.getAttribute("data-value");
+      return btnData;
+    }
+  }
+
+  formCreator() {
+    const formElem = new Creator(formParams).getElement();
+    const inputSearch = new Creator(inputSearchParams).getElement();
+    const inputSubmit = new Creator(inputSubmitParams).getElement();
+    formElem.append(inputSearch, inputSubmit);
+    this.container.append(formElem);
+    return formElem;
+  }
+
+  // TODO: ДЕКОМПОЗИРОВАТЬ/Прослушку вынести в контроллер/Использовать делегирование
+  burgerButton() {
+    const fade = new Creator(fadeParams).getElement();
+    // const menu = this.buttonsContainer
+
+    const burger = new Creator(burgerParams).getElement();
+    const burgerLineFirst = new Creator(burgerLineFirstParams).getElement();
+    const burgerLineSec = new Creator(burgerLineSecParams).getElement();
+    const burgerLineThird = new Creator(burgerLineThirdParams).getElement();
+    burger.append(burgerLineFirst, burgerLineSec, burgerLineThird);
+
+    this.container.prepend(fade);
+    this.container.prepend(burger);
+
+    burger.addEventListener("click", function () {
+      fade.classList.toggle(style.fadeOpen);
+      // burger.classList.toggle("active")
+    });
+  }
 }
