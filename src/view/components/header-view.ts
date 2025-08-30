@@ -48,6 +48,18 @@ const menuContainerParams = {
     tagName: "div",
     classList: style.menuContainer
 };
+const burgerLineFirstParams = {
+    tagName: "span",
+    classList: style.burgerLineFirst
+};
+const burgerLineSecParams = {
+    tagName: "span",
+    classList: style.burgerLineSec
+};
+const burgerLineThirdParams = {
+    tagName: "span",
+    classList: style.burgerLineThird
+};
 
 export class HeaderView {
     element = new Creator(headerParams).getElement()
@@ -144,12 +156,16 @@ export class HeaderView {
     burgerButton() { 
         const menuContainer = new Creator(menuContainerParams).getElement()
         const burger = new Creator(burgerParams).getElement() 
+        const burgerLineFirst = new Creator(burgerLineFirstParams).getElement()
+        const burgerLineSec = new Creator(burgerLineSecParams).getElement()
+        const burgerLineThird = new Creator(burgerLineThirdParams).getElement()
+        burger.append(burgerLineFirst, burgerLineSec, burgerLineThird)
         const menu = this.buttonsContainer
         this.container.prepend(menuContainer)
-        menuContainer.append(burger)
-        
+        this.container.prepend(burger)
+
         burger.addEventListener("click", function() {
-            menu.classList.toggle("open")
+            menuContainer.classList.toggle(style.fullMenu)
             burger.classList.toggle("active") 
         })
     }
