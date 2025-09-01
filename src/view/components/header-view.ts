@@ -44,9 +44,9 @@ const burgerParams = {
     tagName: "button",
     classList: style.burger
 }
-const menuContainerParams = {
+const fadeParams = {
     tagName: "div",
-    classList: style.menuContainer
+    classList: style.fade
 };
 const burgerLineFirstParams = {
     tagName: "span",
@@ -62,17 +62,16 @@ const burgerLineThirdParams = {
 };
 
 export class HeaderView {
-    element = new Creator(headerParams).getElement()
-    form
-    container
+    element = new Creator(headerParams).getElement() as HTMLElement
+    form : HTMLFormElement
+    container : HTMLElement
     buttonsContainer
     constructor() {
-        this.container = new Creator(containerParams).getElement()
+        this.container = new Creator(containerParams).getElement() 
         this.buttonsContainer = this.creatorOfButtons()
         this.form = this.formCreator()
         this.element.append(this.container)
         this.burgerButton()
-
     }
     creatorOfButtons() {
         const dataButtons = [
@@ -146,7 +145,7 @@ export class HeaderView {
         }
     }
     formCreator() {
-        const formElem = new Creator(formParams).getElement()
+        const formElem = new Creator(formParams).getElement() as HTMLFormElement
         const inputSearch = new Creator(inputSearchParams).getElement()
         const inputSubmit = new Creator(inputSubmitParams).getElement()
         formElem.append(inputSearch, inputSubmit)
@@ -154,19 +153,23 @@ export class HeaderView {
         return formElem
     }
     burgerButton() { 
-        const menuContainer = new Creator(menuContainerParams).getElement()
+        const fade = new Creator(fadeParams).getElement()
+
         const burger = new Creator(burgerParams).getElement() 
         const burgerLineFirst = new Creator(burgerLineFirstParams).getElement()
         const burgerLineSec = new Creator(burgerLineSecParams).getElement()
         const burgerLineThird = new Creator(burgerLineThirdParams).getElement()
         burger.append(burgerLineFirst, burgerLineSec, burgerLineThird)
+
         const menu = this.buttonsContainer
-        this.container.prepend(menuContainer)
+        this.container.prepend(fade)
         this.container.prepend(burger)
 
         burger.addEventListener("click", function() {
-            menuContainer.classList.toggle(style.fullMenu)
-            burger.classList.toggle("active") 
+            fade.classList.toggle(style.fadeOpen)
+            // burger.classList.toggle("active") 
+            menu.classList.toggle(style.wrapperButtonsOpen)
+            this.form.classList.toggle(style.formOpen)
         })
     }
 }

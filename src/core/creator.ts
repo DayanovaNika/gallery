@@ -9,7 +9,7 @@ interface ParamsTypes {
 
 class Creator { 
     #params 
-    #element: HTMLElement
+    #element: HTMLElement | HTMLFormElement
 
     constructor(paramsElem: ParamsTypes) {
         this.#params = paramsElem

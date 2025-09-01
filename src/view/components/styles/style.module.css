@@ -7,7 +7,8 @@
     border-radius: 15px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 800;
-    transition: box-shadow 0.5s
+    transition: box-shadow 0.5s;
+    text-transform: capitalize;
 }
 @media(max-width:1200px) {
     .button {
@@ -19,6 +20,9 @@
 @media(max-width:768px) {
     .button {
         color: #cb89b9;
+        min-width: 120px;
+        padding: 8px 0;
+        font-size: 20px;
     }
 }
 
@@ -47,11 +51,12 @@
     }
 }
 
+
 .wrapperButtons {
     display: flex;
     gap: 16px;
-
 }
+
 @media(max-width:1024px) {
     .wrapperButtons {
         gap: 8px;
@@ -67,6 +72,12 @@
         flex-direction: column;
         gap: 25px;
         transition: 0.4s;
+        opacity: 0;
+        transition: opacity 0 0.3s;
+    }
+    .wrapperButtonsOpen {
+        opacity: 1;
+        transition: opacity 0.3s 0.3s;
     }
 }
 
@@ -85,6 +96,11 @@
     font-weight: 800;
     padding-left: 10px;
 }
+
+.formOpen .inputSearch {
+    background-color: #cb89b9;
+}
+
 .inputSubmit {
     background-color: black;
     border: none;
@@ -144,26 +160,26 @@
         background-color: #fff;
     }
 }
-.menuContainer {
+.fade {
     background-color: #fff;
-    border-radius: 100%;
+    border-radius: 0% 100% 100% 100%;
     cursor: pointer;
     position: absolute;
     width: 230px;
     height: 230px;
     left: -107px;
     top: -107px;
-    transition: all 0.3s;
+    transition: all 0.3s 0.3s;
     display: none;
 }
 
 @media(max-width:768px) {
-    .menuContainer {
+    .fade {
         display: block;
     }
 }
 
-.fullMenu {
+.fadeOpen {
     border-radius: 0;
     padding: 0 !important;
     position: aboslute;
