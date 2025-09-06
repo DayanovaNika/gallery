@@ -10,7 +10,7 @@ export class View {
         this.buildInterface()
     }
     buildInterface() {
-        this.appContainer?.append(this.headerView.element as HTMLElement)
+        this.appContainer?.append(this.headerView.header as HTMLElement)
         this.appContainer?.append(this.mainView.element as HTMLElement)
     }
 }
