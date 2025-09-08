@@ -3,7 +3,7 @@ type attributesMap = Record<string, string>;
 interface ParamsTypes {
     tagName: string;
     text? : string | number;
-    classList? : string;
+    classList? : string[];
     attributes? : attributesMap
 }
 
@@ -41,7 +41,7 @@ class Creator {
             throw new Error('class is not definded');
         }
         if (this.#params.classList) {
-            this.#element.className = String(this.#params.classList)
+            this.#element.classList.add(...this.#params.classList)
         }
     }
 

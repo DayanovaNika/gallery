@@ -7,21 +7,19 @@ const mainParams = {
 };
 const listParams = {
     tagName: "ul",
-    classList: style.list
+    classList: [style.list]
 };
 const liParams = {
     tagName: "li",
 };
 const imageParams = {
     tagName: "img",
-    classList: style.image
+    classList: [style.image]
 };
 const containerParams = {
     tagName: "div",
-    classList: style.container
+    classList: [style.container]
 };
-
-
 
 export class MainView {
     element = new Creator(mainParams).getElement()

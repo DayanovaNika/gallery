@@ -7,26 +7,23 @@ const headerParams = {
         id: "header",
         "data-action": "header",
     },
-    classList: style.header
+    classList: [style.header]
 }
-
 const formParams = {
     tagName: "form",
-    classList: style.form,
+    classList: [style.form],
 };
-
 const inputSearchParams = {
     tagName: "input",
-    classList: style.inputSearch,
+    classList: [style.inputSearch],
     attributes: {
         type: "search",
         name: "search",
-        
     },
 }
 const inputSubmitParams = {
     tagName: "input",
-    classList: style.inputSubmit,
+    classList: [style.inputSubmit],
     attributes: {
         type: "submit",
         value: ""
@@ -34,32 +31,32 @@ const inputSubmitParams = {
 }
 const wrapperButtonParams = {
     tagName: "div",
-    classList: style.wrapperButtons
+    classList: [style.wrapperButtons]
 }
 const containerParams = {
     tagName: "div",
-    classList: style.container
+    classList: [style.container]
 }
 const burgerParams = {
     tagName: "button",
-    classList: style.burger
+    classList: [style.burger]
 }
 const fadeParams = {
     tagName: "div",
-    classList: style.fade
+    classList: [style.fade]
 };
-const burgerLineFirstParams = {
+const burgerLineParams = {
     tagName: "span",
-    classList: style.burgerLineFirst
+    classList: [style.burgerLineBase]
 };
-const burgerLineSecParams = {
-    tagName: "span",
-    classList: style.burgerLineSec
-};
-const burgerLineThirdParams = {
-    tagName: "span",
-    classList: style.burgerLineThird
-};
+// const burgerLineSecParams = {
+//     tagName: "span",
+//     classList: [style.burgerLineBase]
+// };
+// const burgerLineThirdParams = {
+//     tagName: "span",
+//     classList: [style.burgerLineBase]
+// };
 
 export class HeaderView {
     form : HTMLFormElement
@@ -82,7 +79,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "dog"
                 },
-                classList: style.button
+                classList: [style.button]
             },
             {
                 tagName: "button",
@@ -90,7 +87,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "cat"
                 },
-                classList: style.button
+                classList: [style.button]
             },
             {
                 tagName: "button",
@@ -98,7 +95,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "horse"
                 },
-                classList: style.button
+                classList: [style.button]
             },
             {
                 tagName: "button",
@@ -106,7 +103,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "lion"
                 },
-                classList: style.button
+                classList: [style.button]
             },
             {
                 tagName: "button",
@@ -114,7 +111,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "monkey"
                 },
-                classList: style.button
+                classList: [style.button]
             },
             {
                 tagName: "button",
@@ -122,7 +119,7 @@ export class HeaderView {
                 attributes: {
                     "data-value": "bear"
                 },
-                classList: style.button
+                classList: [style.button]
             },
         ]
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
@@ -155,10 +152,11 @@ export class HeaderView {
     }
     burgerButton() { 
         const burger = new Creator(burgerParams).getElement() 
-        const burgerLineFirst = new Creator(burgerLineFirstParams).getElement()
-        const burgerLineSec = new Creator(burgerLineSecParams).getElement()
-        const burgerLineThird = new Creator(burgerLineThirdParams).getElement()
-        burger.append(burgerLineFirst, burgerLineSec, burgerLineThird)
+        const burgerLine = new Creator(burgerLineParams).getElement()
+        burger.append(burgerLine)
+        // const burgerLineSec = new Creator(burgerLineSecParams).getElement()
+        // const burgerLineThird = new Creator(burgerLineThirdParams).getElement()
+        // burger.append(burgerLineFirst, burgerLineSec, burgerLineThird)
 
         return burger
     }
