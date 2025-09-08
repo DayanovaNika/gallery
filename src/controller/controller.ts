@@ -18,10 +18,7 @@ export class Controller {
         this.view.headerView.buttonsContainer.addEventListener("click", async (event) => {
             const btnValue = this.view.headerView.getBtnValue(event) as string
             this.render(btnValue)
-            this.view.headerView.fade.classList.toggle(style.fadeOpen)
-            this.view.headerView.burger.classList.toggle("active") 
-            this.view.headerView.buttonsContainer.classList.toggle(style.wrapperButtonsOpen)
-            this.view.headerView.form.classList.toggle(style.formOpen)
+            this.view.headerView.toggleClasses()
         })
     }
     async formSubmit(event: SubmitEvent) {
@@ -35,10 +32,7 @@ export class Controller {
     }
     setBurgerListener() {
         this.view.headerView.burger.addEventListener("click", () => {
-            this.view.headerView.fade.classList.toggle(style.fadeOpen)
-            this.view.headerView.burger.classList.toggle("active") 
-            this.view.headerView.buttonsContainer.classList.toggle(style.wrapperButtonsOpen)
-            this.view.headerView.form.classList.toggle(style.formOpen)
+            this.view.headerView.toggleClasses()
         })
     }
 }

@@ -173,4 +173,10 @@ export class HeaderView {
         const fade = new Creator(fadeParams).getElement()
         return fade
     }
+    toggleClasses() {
+        this.fade.classList.toggle(style.fadeOpen)
+        this.burger.classList.toggle("active")
+        this.buttonsContainer.classList.toggle(style.wrapperButtonsOpen)
+        this.form.classList.toggle(style.formOpen)
+    }
 }
