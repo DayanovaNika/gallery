@@ -20,29 +20,58 @@ const containerParams = {
     tagName: "div",
     classList: [style.container]
 };
+const loaderContainerParams = {
+    tagName: "div",
+    classList: [style.loader],
+};
+const gifParams = {
+    tagName: "img",
+    classList: [style.gif],
+    attributes: {
+        src: '/gif.gif'
+    }
+};
 
 export class MainView {
-    element = new Creator(mainParams).getElement()
+    element
+    listElement
+    container
+    loader
     constructor() {
-        
+        this.element = new Creator(mainParams).getElement()
+        this.listElement = new Creator(listParams).getElement()
+        this.container = new Creator(containerParams).getElement()
+        this.container.append(this.listElement)
+        this.element.append(this.container)
+        this.loader = this.createLoader()
     }
     createImageList(data: DataTypes) {
-        const listElement = new Creator(listParams).getElement()
         const template = new DocumentFragment()
-        const container = new Creator(containerParams).getElement()
+        this.clear()
         data.results.forEach((imageInfo)=> {
             const li = new Creator(liParams).getElement()
-            this.clear()
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             image.src = imageInfo.urls.regular
             li.append(image)
             template.append(li)
         })
-        listElement.append(template)
-        container.append(listElement)
-        this.element.append(container)
+        this.listElement.append(template)
     }
     clear() {
-        this.element.innerHTML = ''
+        this.listElement.innerHTML = ''
+    }
+    createLoader() {
+        const loaderContainer = new Creator(loaderContainerParams).getElement()
+        const gif = new Creator(gifParams).getElement()
+        loaderContainer.append(gif)
+        this.element.append(loaderContainer)
+        // лоадер изначально должен быть скрыт
+        return loaderContainer
+    }
+    removeLoader() {
+        // написать css стили для скрытия лоадера
+    }
+    showLoader() {
+        // написать css стили для показа лоадера
     }
 }

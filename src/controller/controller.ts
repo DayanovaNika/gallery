@@ -23,12 +23,16 @@ export class Controller {
     }
     async formSubmit(event: SubmitEvent) {
         event.preventDefault()
+        this.view.mainView.showLoader()
         const data = await this.model.getData(event)
         this.view.mainView.createImageList(data)
+        this.view.mainView.removeLoader()
     }
     async render(value: string) {
+        this.view.mainView.showLoader()
         const data = await this.model.query(value)
         this.view.mainView.createImageList(data)
+        this.view.mainView.removeLoader()
     }
     setBurgerListener() {
         this.view.headerView.burger.addEventListener("click", () => {
