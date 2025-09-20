@@ -11,6 +11,7 @@ const listParams = {
 };
 const liParams = {
     tagName: "li",
+    classList: [style.li]
 };
 const imageParams = {
     tagName: "img",
@@ -31,6 +32,10 @@ const gifParams = {
         src: '/gif.gif'
     }
 };
+const fadeParams = {
+    tagName: "div",
+    classList: [style.mainFade],
+};
 
 export class MainView {
     element
@@ -48,8 +53,11 @@ export class MainView {
     createImageList(data: DataTypes) {
         const template = new DocumentFragment()
         this.clear()
+        console.log(data);
+        
         data.results.forEach((imageInfo)=> {
             const li = new Creator(liParams).getElement()
+            li.style.backgroundColor = imageInfo.color;
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             image.src = imageInfo.urls.regular
             li.append(image)
@@ -63,15 +71,21 @@ export class MainView {
     createLoader() {
         const loaderContainer = new Creator(loaderContainerParams).getElement()
         const gif = new Creator(gifParams).getElement()
+        const fade = new Creator(fadeParams).getElement()
         loaderContainer.append(gif)
-        this.element.append(loaderContainer)
+        fade.append(loaderContainer)
+        this.element.append(fade)
+        // loaderContainer.style.display = 'none'
         // лоадер изначально должен быть скрыт
-        return loaderContainer
+        return fade
     }
     removeLoader() {
-        // написать css стили для скрытия лоадера
+        setTimeout(() => {
+            console.log("Delayed for 1 second.");
+            this.loader.classList.add(style.loaderHidden);
+        },"1000");
     }
     showLoader() {
-        // написать css стили для показа лоадера
+        this.loader.classList.remove(style.loaderHidden)
     }
 }
