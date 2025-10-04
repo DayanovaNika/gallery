@@ -1,7 +1,59 @@
 import { Model } from "../model/model";
 import { View } from "../view/view";
-import style from "../view/components/styles/style.module.css";
-
+const mokkImages = {
+    results: [
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+        {
+            urls: {
+                regular: "/chihua.jpg"
+            }
+        },
+    ],
+}
 export class Controller {
     model = new Model()
     view = new View()
@@ -9,7 +61,8 @@ export class Controller {
         this.setFormListener()
         this.setButtonsListener()
         this.setBurgerListener()
-        this.render(this.model.defaultValue)
+        // this.render(this.model.defaultValue)
+        this.render(mokkImages)
     }
     setFormListener() {
         this.view.headerView.form.addEventListener("submit", (event) => this.formSubmit(event))
@@ -28,11 +81,11 @@ export class Controller {
         this.view.mainView.createImageList(data)
         this.view.mainView.removeLoader()
     }
-    async render(value: string) {
-        this.view.mainView.showLoader()
-        const data = await this.model.query(value)
-        this.view.mainView.createImageList(data)
-        this.view.mainView.removeLoader()
+    async render(value: any) {
+        // this.view.mainView.showLoader()
+        // const data = await this.model.query(value)
+        this.view.mainView.createImageList(value)
+        // this.view.mainView.removeLoader()
     }
     setBurgerListener() {
         this.view.headerView.burger.addEventListener("click", () => {

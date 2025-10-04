@@ -63,14 +63,14 @@ export class MainView {
     element
     listElement
     container
-    loader
+    // loader
     constructor() {
         this.element = new Creator(mainParams).getElement()
         this.listElement = new Creator(listParams).getElement()
         this.container = new Creator(containerParams).getElement()
         this.container.append(this.listElement)
         this.element.append(this.container)
-        this.loader = this.createLoader()
+        // this.loader = this.createLoader()
     }
     createImageList(data: DataTypes) {
         const template = new DocumentFragment()
@@ -112,11 +112,10 @@ export class MainView {
     }
     removeLoader() {
         setTimeout(() => {
-            console.log("Delayed for 1 second.");
-            this.loader.classList.add(style.loaderHidden);
+            // this.loader.classList.add(style.loaderHidden);
         },1000);
     }
     showLoader() {
-        this.loader.classList.remove(style.loaderHidden)
+        // this.loader.classList.remove(style.loaderHidden)
     }
 }
