@@ -1,33 +1,59 @@
 export class Model {
-    defaultValue
-    constructor(){
-        this.defaultValue = "puppy"
-        this.getData("1.4", undefined, "genres", "genres.name", "movie")
+  constructor() {
+    // вот пример вызова
+    this.getData({
+      version: "1",
+      chapter: "movie",
+      path: "possible-values-by-field",
+      params: { field: "genres.name" },
+    });
+  }
+
+  // async getData(event: Event) {
+  //     const formData = new FormData(event.target as HTMLFormElement)
+  //     const query = formData.get("search") as string
+  //     const dataFromServer = await this.query(query)
+  //     return dataFromServer
+  // }
+
+  async getData({
+    version = "", // версия
+    chapter = "", // например "movie"
+    path = "", // например "search" или "possible-values-by-field"
+    params = {}, // страницы, количество items и д.р.
+  } = {}) {
+    const baseURL = "https://api.kinopoisk.dev";
+
+    const url = new URL(
+      `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
+    );
+
+    for (const [key, value] of Object.entries(params)) {
+      if (value !== undefined && value !== null && value !== "") {
+        url.searchParams.set(key, String(value));
+      }
     }
-    // async getData(event: Event) {
-    //     const formData = new FormData(event.target as HTMLFormElement)
-    //     const query = formData.get("search") as string
-    //     const dataFromServer = await this.query(query)
-    //     return dataFromServer
-    // }
-    // придумать способ различать энд поинты 
-    async getData(versionAPIParams=1, limitItemsParams=10, selectFieldsParams="", endPointParams="", chapterParams="", queryParams="") {
-        const options = {
-            method: 'GET',
-            headers: {accept: 'application/json', 'X-API-KEY': 'S31WEXH-H65M0YV-K1VT142-0Y4QAMT'}
-        };
-        const baseURL = "https://api.kinopoisk.dev"
-        const numberOfPage = "1"
-        const versionAPI = versionAPIParams
-        const limitItems = limitItemsParams
-        const endPoint = endPointParams
-        const chapter = chapterParams
-        const query = queryParams
-        const selectFields = selectFieldsParams
-        const response = await fetch(`${baseURL}/v${versionAPI}/${chapter}?page=${numberOfPage}&limit=${limitItems}&${selectFields}=&${endPoint}=${query}`, options) 
-        const data = await response.json()
-        console.log(`${baseURL}/v${versionAPI}/${chapter}?page=${numberOfPage}&limit=${limitItems}&${selectFields}=&${endPoint}=${query}`);
-        console.log(data);
-        return data
+
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "X-API-KEY": "S31WEXH-H65M0YV-K1VT142-0Y4QAMT",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Ответ:", data);
+      return data;
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+      return null;
     }
-} 
+  }
+}
