@@ -5,7 +5,8 @@ export class View {
     appContainer 
     headerView = new HeaderView()
     mainView = new MainView()
-    constructor(){
+    constructor(genresList){
+        console.log(genresList);
         this.appContainer = document.querySelector('#app')
         this.buildInterface()
     }

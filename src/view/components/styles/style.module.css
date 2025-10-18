@@ -1,5 +1,5 @@
 .button {
-    background-color: black;
+    background-color: #422222;
     color: white;
     border: none;
     min-width: 120px;
@@ -60,7 +60,7 @@
 }
 
 .formOpen .inputSearch {
-    background-color: #cb89b9;
+    background-color:#F9C6D4;
 }
 
 .inputSubmit {
@@ -82,7 +82,7 @@
 }
 
 .header {
-    background-color: #f2aadf;
+    background-color: #F9C6D4;
     position: fixed;
     top: 0;
     left: 0;

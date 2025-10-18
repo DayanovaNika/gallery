@@ -1,59 +1,53 @@
 export class Model {
-  constructor() {
-    // вот пример вызова
-    this.getData({
-      version: "1",
-      chapter: "movie",
-      path: "possible-values-by-field",
-      params: { field: "genres.name" },
-    });
-  }
-
-  // async getData(event: Event) {
-  //     const formData = new FormData(event.target as HTMLFormElement)
-  //     const query = formData.get("search") as string
-  //     const dataFromServer = await this.query(query)
-  //     return dataFromServer
-  // }
-
-  async getData({
-    version = "", // версия
-    chapter = "", // например "movie"
-    path = "", // например "search" или "possible-values-by-field"
-    params = {}, // страницы, количество items и д.р.
-  } = {}) {
-    const baseURL = "https://api.kinopoisk.dev";
-
-    const url = new URL(
-      `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
-    );
-
-    for (const [key, value] of Object.entries(params)) {
-      if (value !== undefined && value !== null && value !== "") {
-        url.searchParams.set(key, String(value));
-      }
+    genresList
+    constructor() {
+        // вот пример вызова
+        this.genresList = this.getData({
+        version: "1",
+        chapter: "movie",
+        path: "possible-values-by-field",
+        params: { field: "genres.name" },
+        });
     }
 
-    const options = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        "X-API-KEY": "S31WEXH-H65M0YV-K1VT142-0Y4QAMT",
-      },
-    };
+    async getData({
+        version = "", // версия
+        chapter = "", // например "movie"
+        path = "", // например "search" или "possible-values-by-field"
+        params = {}, // страницы, количество items и д.р.
+    } = {}) {
+        const baseURL = "https://api.kinopoisk.dev";
 
-    try {
-      const response = await fetch(url, options);
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+        const url = new URL(
+        `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
+        );
 
-      const data = await response.json();
-      console.log("Ответ:", data);
-      return data;
-    } catch (error) {
-      console.error("Ошибка при получении данных:", error);
-      return null;
+        for (const [key, value] of Object.entries(params)) {
+            if (value !== undefined && value !== null && value !== "") {
+                url.searchParams.set(key, String(value));
+            }
+        }
+
+        const options = {
+            method: "GET",
+            headers: {
+                accept: "application/json",
+                "X-API-KEY": "S31WEXH-H65M0YV-K1VT142-0Y4QAMT",
+            },
+        };
+
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log("Ответ:", data);
+            return data;
+        } catch (error) {
+            console.error("Ошибка при получении данных:", error);
+            return null;
+        }
     }
-  }
-}
+    }
