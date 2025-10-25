@@ -23,7 +23,9 @@ export class Controller {
         "click",
         async (event) => {
             const btnValue = this.view.headerView.getBtnValue(event) as string;
-            this.render(btnValue);
+            // this.render(btnValue);
+            // дз тут
+            const buttonInfo = 
             this.view.headerView.toggleClasses();
         },
         );

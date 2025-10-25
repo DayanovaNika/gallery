@@ -3,10 +3,11 @@ import { MainView } from "./components/main-view";
 
 export class View {
     appContainer 
-    headerView = new HeaderView()
+    headerView 
     mainView = new MainView()
     constructor(genresList){
         console.log(genresList);
+        this.headerView = new HeaderView(genresList)
         this.appContainer = document.querySelector('#app')
         this.buildInterface()
     }

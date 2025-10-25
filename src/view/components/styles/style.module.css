@@ -3,12 +3,33 @@
     color: white;
     border: none;
     min-width: 120px;
-    padding: 8px 0;
+    padding: 8px ;
     border-radius: 15px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 800;
     transition: box-shadow 0.5s;
     text-transform: capitalize;
+    flex-shrink: 0;
+}
+.btnContainer {
+    position: relative;
+    height: 35px;
+}
+.btnContainer::before, .btnContainer::after{
+    content: "";
+    display: block;
+    width: 40px;
+    height: 35px;
+    position: absolute;
+    top: 0;
+}
+.btnContainer::before {
+    left: 0;
+    background: linear-gradient(90deg,rgba(249, 198, 212, 1) 72%, rgba(169, 148, 233, 0) 100%);
+}
+.btnContainer::after {
+    right: 0;
+    background: linear-gradient(270deg,rgba(249, 198, 212, 1) 72%, rgba(169, 148, 233, 0) 100%);
 }
 
 @media(hover:hover) {
@@ -41,6 +62,9 @@
 .wrapperButtons {
     display: flex;
     gap: 16px;
+    max-width: 950px;
+    overflow: auto;
+    padding: 0 50px;
 }
 
 .inputSearch {
@@ -265,7 +289,7 @@
 @media(max-width:1200px) {
     .button {
         min-width: 80px;
-        padding: 4px;
+        /* : 4px;padding */
     }
 }
 

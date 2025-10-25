@@ -45,6 +45,11 @@ const fadeParams = {
     tagName: "div",
     classList: [style.fade]
 };
+const btnContainerParams = {
+    tagName: "div",
+    text: "",
+    classList: [style.btnContainer],
+};
 const burgerLineParams = {
     tagName: "span",
     classList: [style.burgerLineBase]
@@ -64,71 +69,32 @@ export class HeaderView {
     buttonsContainer
     header
     fade
-    constructor() {
-        this.buttonsContainer = this.creatorOfButtons()
+    constructor(genresList) {
+        this.buttonsContainer = this.creatorOfButtons(genresList)
         this.form = this.formCreator()
         this.burger = this.burgerButton()
         this.fade = this.createFade()
         this.header = this.createHeader()
     }
-    creatorOfButtons() {
-        const dataButtons = [
-            {
+    creatorOfButtons(genresList) {
+        const btnParams = {
                 tagName: "button",
-                text: "dog",
+                text: "",
                 attributes: {
-                    "data-value": "dog"
+                    "data-value": ""
                 },
                 classList: [style.button]
-            },
-            {
-                tagName: "button",
-                text: "cat",
-                attributes: {
-                    "data-value": "cat"
-                },
-                classList: [style.button]
-            },
-            {
-                tagName: "button",
-                text: "horse",
-                attributes: {
-                    "data-value": "horse"
-                },
-                classList: [style.button]
-            },
-            {
-                tagName: "button",
-                text: "lion",
-                attributes: {
-                    "data-value": "lion"
-                },
-                classList: [style.button]
-            },
-            {
-                tagName: "button",
-                text: "monkey",
-                attributes: {
-                    "data-value": "monkey"
-                },
-                classList: [style.button]
-            },
-            {
-                tagName: "button",
-                text: "bear",
-                attributes: {
-                    "data-value": "bear"
-                },
-                classList: [style.button]
-            },
-        ]
+        }
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
-        dataButtons.forEach(btnParams => {
+        const btnContainer = new Creator(btnContainerParams).getElement()
+        genresList.forEach(genres => {
+            btnParams.text = genres.name
+            btnParams.attributes["data-value"] = genres.name
             const currentBtn = new Creator(btnParams).getElement()
             wrapperButtons.append(currentBtn)
         });
-        // this.container.append(wrapperButtons)
-        return wrapperButtons
+        btnContainer.append(wrapperButtons)
+        return btnContainer
     }
     getBtnValue(event: Event) {
         const target = event.target as HTMLElement;
