@@ -19,13 +19,22 @@ export class Controller {
         );
     }
     setButtonsListener() {
+        // /movie?page=1&limit=10&genres.name=%D1%83%D0%B6%D0%B0%D1%81%D1%8B', options
         this.view.headerView.buttonsContainer.addEventListener(
-        "click",
-        async (event) => {
-            const btnValue = this.view.headerView.getBtnValue(event) as string;
-            // this.render(btnValue);
-            // дз тут
-            const buttonInfo = 
+            "click",
+            async (event) => {
+                const btnValue = this.view.headerView.getBtnValue(event) as string;
+                const responseData = await this.model.getData({
+                    version: "1.4",
+                    chapter: "movie", 
+                    path: "", 
+                    params: {
+                        "genres.name": `${btnValue}`
+                    },
+                })
+                console.log(responseData);
+                // 1. вызвать из маинвью createimagelist и передать туда responseData
+                // 2. отредактировать createimagelist что бы он мог рисовать картинки из новых данных
             this.view.headerView.toggleClasses();
         },
         );

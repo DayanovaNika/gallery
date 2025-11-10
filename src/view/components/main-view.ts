@@ -80,6 +80,7 @@ export class MainView {
             const li = new Creator(liParams).getElement()
             li.style.backgroundColor = imageInfo.color;
             const image = new Creator(imageParams).getElement() as HTMLImageElement
+            // прописать условие если нету картинки (poster) сделать заглушку
             image.src = imageInfo.urls.regular
             const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
             const likesWrapper = new Creator(likesWrapperParams).getElement() as HTMLElement
