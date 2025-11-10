@@ -33,8 +33,7 @@ export class Controller {
                     },
                 })
                 console.log(responseData);
-                // 1. вызвать из маинвью createimagelist и передать туда responseData
-                // 2. отредактировать createimagelist что бы он мог рисовать картинки из новых данных
+                this.view.mainView.createImageList(responseData)
             this.view.headerView.toggleClasses();
         },
         );

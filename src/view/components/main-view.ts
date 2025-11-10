@@ -75,13 +75,14 @@ export class MainView {
     createImageList(data: DataTypes) {
         const template = new DocumentFragment()
         this.clear()
+        console.log(data);
         
-        data.results.forEach((imageInfo)=> {
+        data.docs.forEach((imageInfo)=> {
             const li = new Creator(liParams).getElement()
             li.style.backgroundColor = imageInfo.color;
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             // прописать условие если нету картинки (poster) сделать заглушку
-            image.src = imageInfo.urls.regular
+            image.src = imageInfo.poster.previewUrl
             const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
             const likesWrapper = new Creator(likesWrapperParams).getElement() as HTMLElement
             const likeElement = new Creator(likeElementParams).getElement() as HTMLElement
