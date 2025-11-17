@@ -80,19 +80,26 @@ export class MainView {
         data.docs.forEach((imageInfo)=> {
             const li = new Creator(liParams).getElement()
             li.style.backgroundColor = imageInfo.color;
-            const image = new Creator(imageParams).getElement() as HTMLImageElement
-            // прописать условие если нету картинки (poster) сделать заглушку
-            image.src = imageInfo.poster.previewUrl
-            const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
-            const likesWrapper = new Creator(likesWrapperParams).getElement() as HTMLElement
-            const likeElement = new Creator(likeElementParams).getElement() as HTMLElement
-            counterParams.text = imageInfo.likes // проверить позже
-            const counter = new Creator(counterParams).getElement() as HTMLElement
-            photoDescParams.text = imageInfo.alt_description
-            const photoDesc = new Creator(photoDescParams).getElement() as HTMLElement
 
-            wrapperInfo.append(likesWrapper, photoDesc)
-            likesWrapper.append(likeElement, counter)
+            const image = new Creator(imageParams).getElement() as HTMLImageElement
+            if (imageInfo.poster.previewUrl) {
+                image.src = imageInfo.poster.previewUrl
+            }
+            else {
+                image.src = "/zaglushka.jpg"
+            }
+
+            const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
+            // const likesWrapper = new Creator(likesWrapperParams).getElement() as HTMLElement
+            // const likeElement = new Creator(likeElementParams).getElement() as HTMLElement
+            // counterParams.text = imageInfo.likes // проверить позже
+            // const counter = new Creator(counterParams).getElement() as HTMLElement
+            // photoDescParams.text = imageInfo.alt_description
+            // const photoDesc = new Creator(photoDescParams).getElement() as HTMLElement
+
+            
+            // wrapperInfo.append(likesWrapper, photoDesc)
+            // likesWrapper.append(likeElement, counter)
             li.append(wrapperInfo)
             li.append(image)
             template.append(li)

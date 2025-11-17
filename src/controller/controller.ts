@@ -29,9 +29,12 @@ export class Controller {
                     chapter: "movie", 
                     path: "", 
                     params: {
-                        "genres.name": `${btnValue}`
+                        "genres.name": `${btnValue}`,
+                        "limit": 12,
+                        "rating.kp": ["10"],
                     },
                 })
+
                 console.log(responseData);
                 this.view.mainView.createImageList(responseData)
             this.view.headerView.toggleClasses();

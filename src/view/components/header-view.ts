@@ -85,9 +85,13 @@ export class HeaderView {
                 },
                 classList: [style.button]
         }
+
         const wrapperButtons = new Creator(wrapperButtonParams).getElement()
         const btnContainer = new Creator(btnContainerParams).getElement()
         genresList.forEach(genres => {
+            if (genres.name.toLowerCase() === "для взрослых") {
+                return
+            }
             btnParams.text = genres.name
             btnParams.attributes["data-value"] = genres.name
             const currentBtn = new Creator(btnParams).getElement()
