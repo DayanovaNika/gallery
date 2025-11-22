@@ -40,23 +40,33 @@ const wrapperInfoParams = {
     tagName: "div",
     classList: [style.wrapperInfo],
 };
-const likesWrapperParams = {
+const ratingWrapperParams = {
     tagName: "div",
-    classList: [style.likesWrapper],
+    classList: [style.ratingWrapper],
 };
-const likeElementParams = {
+const ratingElementParams = {
     tagName: "div",
-    classList: [style.likeElement],
+    classList: [style.ratingElement],
 };
-const counterParams = {
+const counterRatingParams = {
     tagName: "div",
     text: "",
-    classList: [style.counter],
+    classList: [style.counterrating],
 };
-const photoDescParams = {
-    tagName: "p",
+const iconRatingParams = {
+    tagName: "div",
     text: "",
-    classList: [style.photoDesc],
+    classList: [style.iconRating],
+};
+const nameParams = {
+    tagName: "div",
+    text: "",
+    classList: [style.name],
+};
+const yearParams = {
+    tagName: "div",
+    text: "",
+    classList: [style.year],
 };
 
 export class MainView {
@@ -82,25 +92,49 @@ export class MainView {
             li.style.backgroundColor = imageInfo.color;
 
             const image = new Creator(imageParams).getElement() as HTMLImageElement
-            if (imageInfo.poster.previewUrl) {
+            if (imageInfo.poster && imageInfo.poster.previewUrl) {
                 image.src = imageInfo.poster.previewUrl
             }
             else {
                 image.src = "/zaglushka.jpg"
             }
 
-            const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
-            // const likesWrapper = new Creator(likesWrapperParams).getElement() as HTMLElement
-            // const likeElement = new Creator(likeElementParams).getElement() as HTMLElement
-            // counterParams.text = imageInfo.likes // проверить позже
-            // const counter = new Creator(counterParams).getElement() as HTMLElement
-            // photoDescParams.text = imageInfo.alt_description
-            // const photoDesc = new Creator(photoDescParams).getElement() as HTMLElement
+            const name = new Creator(nameParams).getElement() 
+            if (imageInfo.name) {
+                name.innerText = imageInfo.name
+            } else {
+                name.innerText = "no name"
+            }
 
+            const year = new Creator(yearParams).getElement()
+            if (imageInfo.year) {
+                year.innerText = imageInfo.year
+            } else {
+                year.innerText= "no year"
+            }
+
+            const ratingWrapper = new Creator(ratingWrapperParams).getElement()
             
-            // wrapperInfo.append(likesWrapper, photoDesc)
-            // likesWrapper.append(likeElement, counter)
+            for (const key in imageInfo.rating) {
+                if () {
+                    const ratingElement = new Creator(ratingElementParams).getElement()
+                    const counterRating = new Creator(counterRatingParams).getElement()
+                    const iconRating = new Creator(iconRatingParams).getElement()
+                    
+                    
+                }
+            }
+            // 1 дописать проверку
+            // 2 если ключ это кп или imdb тогда создать оболочки и наполнить данными,инчае пропустить итерацию
+            // 3 доп проверка если рейтинг 0 тогда серая звезда
+
+
+            const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
+
             li.append(wrapperInfo)
+            wrapperInfo.append(name, year, ratingWrapper)
+            // ratingWrapper.append(ratingElement)
+            // ratingElement.append(counterRating, iconRating)
             li.append(image)
             template.append(li)
         })

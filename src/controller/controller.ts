@@ -31,7 +31,7 @@ export class Controller {
                     params: {
                         "genres.name": `${btnValue}`,
                         "limit": 12,
-                        "rating.kp": ["10"],
+                        // "rating.kp": ["10"],
                     },
                 })
 

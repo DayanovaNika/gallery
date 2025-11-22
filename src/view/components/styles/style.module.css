@@ -240,13 +240,17 @@
 .wrapperInfo {
     padding: 7px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    min-height: 120px;
+    min-height: 100px;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.452);
     font-weight: 600;
     position: absolute;
     left: 0;
     bottom: 0;
+    backdrop-filter: blur(7px);
+}
+.name{
+    color: #cb89b9;
 }
 
 @media(max-width:1200px) {
