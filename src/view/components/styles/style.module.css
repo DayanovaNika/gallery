@@ -252,6 +252,18 @@
 .name{
     color: #cb89b9;
 }
+.iconRating {
+    background-image: url(/star.svg);
+    width: 20px;
+    height: 20px;
+    background-position: center;
+    background-size: cover;
+}
+.ratingElement{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
 
 @media(max-width:1200px) {
     .button {

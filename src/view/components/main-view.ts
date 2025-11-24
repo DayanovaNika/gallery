@@ -68,6 +68,11 @@ const yearParams = {
     text: "",
     classList: [style.year],
 };
+const criticsNameParams = {
+    tagName: "div",
+    text: "",
+    classList: [style.criticsName],
+};
 
 export class MainView {
     element
@@ -108,7 +113,7 @@ export class MainView {
 
             const year = new Creator(yearParams).getElement()
             if (imageInfo.year) {
-                year.innerText = imageInfo.year
+                year.innerText = `год: ${imageInfo.year}`
             } else {
                 year.innerText= "no year"
             }
@@ -116,14 +121,21 @@ export class MainView {
             const ratingWrapper = new Creator(ratingWrapperParams).getElement()
             
             for (const key in imageInfo.rating) {
-                if () {
+                if ((key === "kp" || key === "imdb") && imageInfo.rating[key] > 0){
                     const ratingElement = new Creator(ratingElementParams).getElement()
                     const counterRating = new Creator(counterRatingParams).getElement()
                     const iconRating = new Creator(iconRatingParams).getElement()
-                    
-                    
+                    const criticsName = new Creator(criticsNameParams).getElement()
+                    criticsName.innerText = `${key}:`
+                    ratingWrapper.append(ratingElement)
+                    ratingElement.append(criticsName, counterRating, iconRating)
+                    counterRating.innerText = imageInfo.rating[key]
+                }
+                else {
+                    continue
                 }
             }
+            
             // 1 дописать проверку
             // 2 если ключ это кп или imdb тогда создать оболочки и наполнить данными,инчае пропустить итерацию
             // 3 доп проверка если рейтинг 0 тогда серая звезда
@@ -133,8 +145,6 @@ export class MainView {
 
             li.append(wrapperInfo)
             wrapperInfo.append(name, year, ratingWrapper)
-            // ratingWrapper.append(ratingElement)
-            // ratingElement.append(counterRating, iconRating)
             li.append(image)
             template.append(li)
         })
