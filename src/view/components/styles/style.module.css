@@ -1,6 +1,6 @@
 .button {
-    background-color: #8a9a5b;
-    color: #28301c;
+    background-color: #994d47;
+    color: #240f0e;
     border: none;
     min-width: 120px;
     padding: 8px ;
@@ -26,11 +26,11 @@
 }
 .btnContainer::before {
     left: 0;
-    background: linear-gradient(90deg,rgba(247, 202, 201, 1) 72%, rgba(169, 148, 233, 0) 100%);
+    background: linear-gradient(90deg,rgba(247, 216, 206, 1) 72%, rgba(169, 148, 233, 0) 100%);
 }
 .btnContainer::after {
     right: 0;
-    background: linear-gradient(270deg,rgba(247, 202, 201, 1) 72%, rgba(169, 148, 233, 0) 100%);
+    background: linear-gradient(270deg,rgba(247, 216, 206, 1) 72%, rgba(169, 148, 233, 0) 100%);
 }
 
 @media(hover:hover) {
@@ -74,7 +74,7 @@
     width: 100%;
     height: 40px;
     border-radius: 15px;
-    background-color: #8a9a5b;
+    background-color: #994d47;
     padding: 0;
     position: absolute;
     top: 0;
@@ -85,7 +85,7 @@
 }
 
 .formOpen .inputSearch {
-    background-color:#8a9a5b;
+    background-color:#994d47;
 }
 
 .inputSubmit {
@@ -107,7 +107,7 @@
 }
 
 .header {
-    background-color: rgb(247, 202, 201);
+    background-color: rgb(243, 216, 206);
     position: fixed;
     top: 0;
     left: 0;
@@ -240,17 +240,32 @@
 .wrapperInfo {
     padding: 7px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    min-height: 100px;
+    min-height: 140px;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.452);
-    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.35);
     position: absolute;
     left: 0;
     bottom: 0;
     backdrop-filter: blur(7px);
 }
 .name{
-    color: #cb89b9;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 17px;
+    min-height: 51px;
+    color: #fefcf4;
+}
+.detailsWrapper{
+    display: flex;
+    justify-content: space-between;
+}
+.ratingWrapper{
+    color: #240f0e;
+}
+.year {
+    font-weight: 600;
+    font-size: 17px;
+    color: #240f0e;
 }
 .iconRating {
     background-image: url(/star.svg);
@@ -263,6 +278,8 @@
     display: flex;
     gap: 5px;
     align-items: center;
+    font-weight: 600;
+    font-size: 17px;
 }
 
 @media(max-width:1200px) {

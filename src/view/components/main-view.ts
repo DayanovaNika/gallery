@@ -73,7 +73,11 @@ const criticsNameParams = {
     text: "",
     classList: [style.criticsName],
 };
-
+const detailsWrapperParams = {
+    tagName: "div",
+    classList: [style.detailsWrapper],
+};
+const colorThief = new ColorThief();
 export class MainView {
     element
     listElement
@@ -87,6 +91,17 @@ export class MainView {
         this.element.append(this.container)
         // this.loader = this.createLoader()
     }
+    getMainColor(img:HTMLImageElement) {
+        if (img.complete) {
+            colorThief.getColor(img);
+        } else {
+            img.addEventListener('load', function() {
+                colorThief.getColor(img);
+            });
+            }
+    }
+    
+
     createImageList(data: DataTypes) {
         const template = new DocumentFragment()
         this.clear()
@@ -96,6 +111,8 @@ export class MainView {
             const li = new Creator(liParams).getElement()
             li.style.backgroundColor = imageInfo.color;
 
+// const img = document.querySelector('img');
+
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             if (imageInfo.poster && imageInfo.poster.previewUrl) {
                 image.src = imageInfo.poster.previewUrl
@@ -103,6 +120,9 @@ export class MainView {
             else {
                 image.src = "/zaglushka.jpg"
             }
+
+            const bgColor = this.getMainColor(image)
+            console.log(bgColor);
 
             const name = new Creator(nameParams).getElement() 
             if (imageInfo.name) {
@@ -142,9 +162,11 @@ export class MainView {
 
 
             const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
+            const detailsWrapper = new Creator(detailsWrapperParams).getElement() as HTMLElement
 
             li.append(wrapperInfo)
-            wrapperInfo.append(name, year, ratingWrapper)
+            detailsWrapper.append(ratingWrapper, year)
+            wrapperInfo.append(name, detailsWrapper)
             li.append(image)
             template.append(li)
         })
