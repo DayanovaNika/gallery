@@ -266,6 +266,7 @@
     font-weight: 600;
     font-size: 17px;
     color: #240f0e;
+    color: #e2e0d8;
 }
 .iconRating {
     background-image: url(/star.svg);
@@ -280,6 +281,7 @@
     align-items: center;
     font-weight: 600;
     font-size: 17px;
+    color: #e2e0d8;
 }
 
 @media(max-width:1200px) {
@@ -310,17 +312,24 @@
         position: relative;
         padding: 0;
     }
-    .wrapperButtons {
+    .btnContainer {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        gap: 25px;
         transition: 0.4s;
         opacity: 0;
-        transition: opacity 0 0.3s;
+        height: 100vh;
+        padding: 80px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .wrapperButtons {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        
     }
     .wrapperButtonsOpen {
         opacity: 1;
@@ -331,6 +340,21 @@
         min-width: 120px;
         padding: 8px 0;
         font-size: 20px;
+    }
+    .btnContainer::before, .btnContainer::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 35px;
+    }
+    .btnContainer::before {
+        top: 60px;
+        background: linear-gradient(90deg,rgba(247, 216, 206, 1) 72%, rgba(169, 148, 233, 0) 100%);
+    }
+    .btnContainer::after {
+        bottom: 60px;
+        top: auto;
+        background: linear-gradient(270deg,rgba(247, 216, 206, 1) 72%, rgba(169, 148, 233, 0) 100%);
     }
 }
 

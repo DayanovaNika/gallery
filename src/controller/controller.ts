@@ -35,7 +35,6 @@ export class Controller {
                     },
                 })
 
-                console.log(responseData);
                 this.view.mainView.createImageList(responseData)
             this.view.headerView.toggleClasses();
         },

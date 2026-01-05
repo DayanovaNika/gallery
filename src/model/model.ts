@@ -32,7 +32,7 @@ export class Model {
             method: "GET",
             headers: {
                 accept: "application/json",
-                "X-API-KEY": "XH5K03S-6N74G06-JGW60VQ-CX7EBBC",
+                "X-API-KEY": "QT6FNHV-J4S4XPA-N6FHQS0-RW3GWBY",
             },
         };
 

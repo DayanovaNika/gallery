@@ -77,7 +77,6 @@ const detailsWrapperParams = {
     tagName: "div",
     classList: [style.detailsWrapper],
 };
-const colorThief = new ColorThief();
 export class MainView {
     element
     listElement
@@ -90,15 +89,6 @@ export class MainView {
         this.container.append(this.listElement)
         this.element.append(this.container)
         // this.loader = this.createLoader()
-    }
-    getMainColor(img:HTMLImageElement) {
-        if (img.complete) {
-            colorThief.getColor(img);
-        } else {
-            img.addEventListener('load', function() {
-                colorThief.getColor(img);
-            });
-            }
     }
     
 
@@ -120,9 +110,6 @@ export class MainView {
             else {
                 image.src = "/zaglushka.jpg"
             }
-
-            const bgColor = this.getMainColor(image)
-            console.log(bgColor);
 
             const name = new Creator(nameParams).getElement() 
             if (imageInfo.name) {
