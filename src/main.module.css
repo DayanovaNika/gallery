@@ -1,5 +1,8 @@
 body {
-    background-color: black;
+  background-color: black;
 }
 
-*, *>* {box-sizing: border-box;}
+*,
+* > * {
+  box-sizing: border-box;
+}
