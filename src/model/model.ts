@@ -10,14 +10,14 @@ export class Model {
         });
     }
 
-    async getData({
-        version = "", // версия
-        chapter = "", // например "movie"
+    async getData(
+        version = "1.4", // версия
+        chapter: String = "", // например "movie"
         path = "", // например "search" или "possible-values-by-field"
         params = {}, // страницы, количество items и д.р.
-    } = {}) {
+        ) {
         const baseURL = "https://api.poiskkino.dev";
-
+        // ПРОЧИТАТЬ ПРО URL
         const url = new URL(
         `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
         );

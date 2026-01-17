@@ -11,7 +11,10 @@ const listParams = {
 };
 const liParams = {
     tagName: "li",
-    classList: [style.li]
+    classList: [style.li],
+    attributes: {
+        "data-id": ""
+    }
 };
 const imageParams = {
     tagName: "img",
@@ -98,10 +101,8 @@ export class MainView {
         console.log(data);
         
         data.docs.forEach((imageInfo)=> {
+            liParams.attributes["data-id"] = imageInfo.id
             const li = new Creator(liParams).getElement()
-            li.style.backgroundColor = imageInfo.color;
-
-// const img = document.querySelector('img');
 
             const image = new Creator(imageParams).getElement() as HTMLImageElement
             if (imageInfo.poster && imageInfo.poster.previewUrl) {
@@ -142,12 +143,6 @@ export class MainView {
                     continue
                 }
             }
-            
-            // 1 дописать проверку
-            // 2 если ключ это кп или imdb тогда создать оболочки и наполнить данными,инчае пропустить итерацию
-            // 3 доп проверка если рейтинг 0 тогда серая звезда
-
-
             const wrapperInfo = new Creator(wrapperInfoParams).getElement() as HTMLElement
             const detailsWrapper = new Creator(detailsWrapperParams).getElement() as HTMLElement
 

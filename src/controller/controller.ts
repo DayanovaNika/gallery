@@ -12,6 +12,7 @@ export class Controller {
         this.setFormListener();
         this.setButtonsListener();
         this.setBurgerListener();
+        this.setListListener();
     } 
     setFormListener() {
         this.view.headerView.form.addEventListener("submit", (event) =>
@@ -51,5 +52,19 @@ export class Controller {
         this.view.headerView.burger.addEventListener("click", () => {
         this.view.headerView.toggleClasses();
         });
+    }
+    setListListener() {
+        this.view.mainView.listElement.addEventListener("click", 
+            async (event) => {
+                const isCard = event.target.closest("[data-id]")
+                const isId = isCard ? isCard.getAttribute("data-id") : null
+                const response = await this.model.getData(chapter = "movie", path = isId)
+                console.log(response);
+                
+                
+                // 1 вытянуть айди из карточки (target,closest)
+                // 2 с айди сделать запрос к серверу (параметры или вид запроса найти в документации-фильм по айди)
+                // 3 вывести в консоль данные
+            });
     }
     }
