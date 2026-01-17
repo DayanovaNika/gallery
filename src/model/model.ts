@@ -14,9 +14,9 @@ export class Model {
     chapter = "", // например "movie"
     path = "", // например "search" или "possible-values-by-field"
     params = {}, // страницы, количество items и д.р.
-  }) {
+  } = {}) {
     const baseURL = "https://api.poiskkino.dev";
-    // ПРОЧИТАТЬ ПРО URL
+
     const url = new URL(
       `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
     );
