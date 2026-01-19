@@ -84,20 +84,19 @@ export class MainView {
   element;
   listElement;
   container;
-  // loader
+  loader
   constructor() {
     this.element = new Creator(mainParams).getElement();
     this.listElement = new Creator(listParams).getElement();
     this.container = new Creator(containerParams).getElement();
     this.container.append(this.listElement);
     this.element.append(this.container);
-    // this.loader = this.createLoader()
+    this.loader = this.createLoader();
   }
 
   createImageList(data: DataTypes) {
     const template = new DocumentFragment();
     this.clear();
-    console.log(data);
 
     data.docs.forEach((imageInfo) => {
       liParams.attributes["data-id"] = imageInfo.id;
@@ -164,16 +163,18 @@ export class MainView {
     const fade = new Creator(fadeParams).getElement();
     loaderContainer.append(gif);
     fade.append(loaderContainer);
-    this.element.append(fade);
+    // this.element.append(fade);
 
     return fade;
   }
   removeLoader() {
     setTimeout(() => {
       // this.loader.classList.add(style.loaderHidden);
-    }, 1000);
+      this.loader.remove()
+    });
   }
   showLoader() {
     // this.loader.classList.remove(style.loaderHidden)
+    this.element.append(this.loader)
   }
 }

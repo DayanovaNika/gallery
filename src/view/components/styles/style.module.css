@@ -227,6 +227,9 @@
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 10px 4px black;
+  max-width: 414px;
+  width: 100%;
+  aspect-ratio: 2/1;
 }
 
 .loaderHidden {
@@ -237,10 +240,12 @@
 
 .gif {
   object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
 .mainFade {
-  background-color: #cb89b986;
+  background-color: rgba(243, 216, 206, 0.525);
   backdrop-filter: blur(10px);
   position: fixed;
   top: 50%;
