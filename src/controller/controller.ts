@@ -61,8 +61,9 @@ export class Controller {
                 query: formValue,
             }
         })
+        this.model.setData(response);
         console.log(response);
-        this.view.mainView.createImageList(response);
+        this.view.mainView.createImageList(this.model.dataFromServer);
         this.view.mainView.removeLoader();
     }
 

@@ -1,6 +1,8 @@
 export class Model {
     genresList;
+    dataFromServer;
     constructor() {
+        this.dataFromServer = null
         this.genresList = this.getData({
         version: "1",
         chapter: "movie",
@@ -48,4 +50,7 @@ export class Model {
         return null;
         }
     }
+    async setData(data){
+        this.dataFromServer = data;
     }
+}
