@@ -48,6 +48,15 @@ export class Controller {
     async formSubmit(event: SubmitEvent) {
         event.preventDefault();
         this.view.mainView.showLoader();
+        const formValue = new FormData(this.view.headerView.form);
+        console.log(formValue.get("search"));
+        // собрать запрос с formValue
+        const response = await this.model.getData({
+            version: "1.4",
+            chapter: "movie",
+            path: formValue,
+        })
+        console.log(response);
         const data = await this.model.getData(event);
         this.view.mainView.createImageList(data);
         this.view.mainView.removeLoader();

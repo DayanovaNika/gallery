@@ -315,6 +315,9 @@
   .wrapperButtons {
     gap: 8px;
   }
+  .list{
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
@@ -354,7 +357,7 @@
     transition: opacity 0.3s 0.3s;
   }
   .button {
-    color: #cb89b9;
+    color: #240f0e;
     min-width: 120px;
     padding: 8px 0;
     font-size: 20px;
@@ -384,9 +387,38 @@
       rgba(255, 255, 255, 0.359) 100%
     );
   }
+  .list {
+  gap: 17px;
+  grid-template-columns: repeat(2, 1fr);
+}
+  .name {
+  font-weight: 700;
+  font-size: 16px;
+}
+  .year{
+  font-size: 16px;
+}
+  .ratingElement {
+  font-size: 16px;
+}
 }
 
-@media (max-width: 425px) {
+
+@media (max-width: 550px) {
+  .list {
+  gap: 16px;
+  grid-template-columns:1fr;
+}
+  .name {
+  font-weight: 700;
+  font-size: 16px;
+}
+  .year{
+  font-size: 15px;
+}
+  .ratingElement {
+  font-size: 15px;
+}
 }
 
 /* .burgerLineFirst {

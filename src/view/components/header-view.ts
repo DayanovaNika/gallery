@@ -116,7 +116,6 @@ export class HeaderView {
     const inputSearch = new Creator(inputSearchParams).getElement();
     const inputSubmit = new Creator(inputSubmitParams).getElement();
     formElem.append(inputSearch, inputSubmit);
-    // this.container.append(formElem)
     return formElem;
   }
   burgerButton() {
