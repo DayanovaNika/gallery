@@ -38,7 +38,9 @@ export class Controller {
                 limit: 12,
             },
             });
-            this.view.mainView.createImageList(responseData);
+            this.model.setData(responseData);
+            this.model.sortRating(this.model.dataFromServer);
+            this.view.mainView.createImageList(this.model.dataFromServer);
             this.view.mainView.removeLoader();
             this.view.headerView.toggleClasses();
         },
@@ -62,7 +64,7 @@ export class Controller {
             }
         })
         this.model.setData(response);
-        console.log(response);
+        this.model.sortRating(this.model.dataFromServer);
         this.view.mainView.createImageList(this.model.dataFromServer);
         this.view.mainView.removeLoader();
     }

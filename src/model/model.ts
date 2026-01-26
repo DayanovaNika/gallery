@@ -50,7 +50,14 @@ export class Model {
         return null;
         }
     }
+
     async setData(data){
         this.dataFromServer = data;
+    }
+
+    sortRating(data){
+        data.docs.sort(function(a,b) {
+            return b.rating.imdb - a.rating.imdb;
+        });
     }
 }
