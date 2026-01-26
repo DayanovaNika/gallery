@@ -214,10 +214,26 @@
 }
 .burgerLineBase::before {
   top: -11px;
+  transition: transform 0.3s, top 0.3s 0.3s;
 }
 .burgerLineBase::after {
   bottom: -11px;
+  transition: transform 0.3s, bottom 0.3s 0.3s;
 }
+.active .burgerLineBase {
+  background-color: transparent;
+}
+.active .burgerLineBase::before {
+  top: 0;
+  transition: top 0.3s, transform 0.3s 0.3s;
+  transform: translateX(-50%) rotate(45deg);
+}
+.active .burgerLineBase::after {
+  bottom: 0;
+  transition:  bottom 0.3s, transform 0.3s 0.3s;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
 
 .loader {
   position: fixed;
@@ -402,7 +418,6 @@
   font-size: 16px;
 }
 }
-
 
 @media (max-width: 550px) {
   .list {

@@ -148,7 +148,7 @@ export class HeaderView {
   }
   toggleClasses() {
     this.fade.classList.toggle(style.fadeOpen);
-    // this.burger.classList.toggle("active")
+    this.burger.classList.toggle(style.active);
     this.buttonsContainer.classList.toggle(style.wrapperButtonsOpen);
     this.form.classList.toggle(style.formOpen);
   }
