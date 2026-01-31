@@ -1,84 +1,86 @@
 import Creator from "../../core/creator";
 import type { DataTypes } from "../../types/data-types";
-import style from "./styles/style.module.css";
+
+import styleList from "./styles/list-card.module.css";
+import styleMain from "./styles/main.module.css";
 
 const mainParams = {
   tagName: "main",
 };
 const listParams = {
   tagName: "ul",
-  classList: [style.list],
+  classList: [styleList.list],
 };
 const liParams = {
   tagName: "li",
-  classList: [style.li],
+  classList: [styleList.li],
   attributes: {
     "data-id": "",
   },
 };
 const imageParams = {
   tagName: "img",
-  classList: [style.image],
+  classList: [styleList.image],
 };
 const containerParams = {
   tagName: "div",
-  classList: [style.container],
+  classList: [styleList.container],
 };
 const loaderContainerParams = {
   tagName: "div",
-  classList: [style.loader],
+  classList: [styleMain.loader],
 };
 const gifParams = {
   tagName: "img",
-  classList: [style.gif],
+  classList: [styleMain.gif],
   attributes: {
     src: "/gif.gif",
   },
 };
 const fadeParams = {
   tagName: "div",
-  classList: [style.mainFade],
+  classList: [styleMain.mainFade],
 };
 const wrapperInfoParams = {
   tagName: "div",
-  classList: [style.wrapperInfo],
+  classList: [styleList.wrapperInfo],
 };
 const ratingWrapperParams = {
   tagName: "div",
-  classList: [style.ratingWrapper],
+  classList: [styleList.ratingWrapper],
 };
 const ratingElementParams = {
   tagName: "div",
-  classList: [style.ratingElement],
+  classList: [styleList.ratingElement],
 };
 const counterRatingParams = {
   tagName: "div",
   text: "",
-  classList: [style.counterrating],
+  classList: [styleList.counterrating],
 };
 const iconRatingParams = {
   tagName: "div",
   text: "",
-  classList: [style.iconRating],
+  classList: [styleList.iconRating],
 };
 const nameParams = {
   tagName: "div",
   text: "",
-  classList: [style.name],
+  classList: [styleList.name],
 };
 const yearParams = {
   tagName: "div",
   text: "",
-  classList: [style.year],
+  classList: [styleList.year],
 };
 const criticsNameParams = {
   tagName: "div",
   text: "",
-  classList: [style.criticsName],
+  classList: [styleList.criticsName],
 };
 const detailsWrapperParams = {
   tagName: "div",
-  classList: [style.detailsWrapper],
+  classList: [styleList.detailsWrapper],
 };
 export class MainView {
   element;

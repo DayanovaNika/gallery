@@ -1,5 +1,8 @@
 import Creator from "../../core/creator";
-import style from "./styles/style.module.css";
+
+import styleBurger from "./styles/burger.module.css";
+import styleHeader from "./styles/header-style.module.css";
+
 
 const headerParams = {
   tagName: "header",
@@ -7,15 +10,15 @@ const headerParams = {
     id: "header",
     "data-action": "header",
   },
-  classList: [style.header],
+  classList: [styleHeader.header],
 };
 const formParams = {
   tagName: "form",
-  classList: [style.form],
+  classList: [styleHeader.form],
 };
 const inputSearchParams = {
   tagName: "input",
-  classList: [style.inputSearch],
+  classList: [styleHeader.inputSearch],
   attributes: {
     type: "search",
     name: "search",
@@ -23,7 +26,7 @@ const inputSearchParams = {
 };
 const inputSubmitParams = {
   tagName: "input",
-  classList: [style.inputSubmit],
+  classList: [styleHeader.inputSubmit],
   attributes: {
     type: "submit",
     value: "",
@@ -31,28 +34,28 @@ const inputSubmitParams = {
 };
 const wrapperButtonParams = {
   tagName: "div",
-  classList: [style.wrapperButtons],
+  classList: [styleHeader.wrapperButtons],
 };
 const containerParams = {
   tagName: "div",
-  classList: [style.container],
+  classList: [styleHeader.container],
 };
 const burgerParams = {
   tagName: "button",
-  classList: [style.burger],
+  classList: [styleBurger.burger],
 };
 const fadeParams = {
   tagName: "div",
-  classList: [style.fade],
+  classList: [styleHeader.fade],
 };
 const btnContainerParams = {
   tagName: "div",
   text: "",
-  classList: [style.btnContainer],
+  classList: [styleHeader.btnContainer],
 };
 const burgerLineParams = {
   tagName: "span",
-  classList: [style.burgerLineBase],
+  classList: [styleBurger.burgerLineBase],
 };
 // const burgerLineSecParams = {
 //     tagName: "span",
@@ -83,7 +86,7 @@ export class HeaderView {
       attributes: {
         "data-value": "",
       },
-      classList: [style.button],
+      classList: [styleHeader.button],
     };
     const wrapperButtons = new Creator(wrapperButtonParams).getElement();
     const btnContainer = new Creator(btnContainerParams).getElement();
@@ -147,9 +150,9 @@ export class HeaderView {
     return fade;
   }
   toggleClasses() {
-    this.fade.classList.toggle(style.fadeOpen);
-    this.burger.classList.toggle(style.active);
-    this.buttonsContainer.classList.toggle(style.wrapperButtonsOpen);
-    this.form.classList.toggle(style.formOpen);
+    this.fade.classList.toggle(styleHeader.fadeOpen);
+    this.burger.classList.toggle(styleBurger.active);
+    this.buttonsContainer.classList.toggle(styleHeader.wrapperButtonsOpen);
+    this.form.classList.toggle(styleHeader.formOpen);
   }
 }
