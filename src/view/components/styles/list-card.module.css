@@ -35,6 +35,10 @@
     margin-bottom: 17px;
     min-height: 51px;
     color: #fefcf4;
+    max-width: 324px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     }
     .detailsWrapper {
     display: flex;
