@@ -3,6 +3,7 @@ import type { DataTypes } from "../../types/data-types";
 
 import styleList from "./styles/list-card.module.css";
 import styleMain from "./styles/main.module.css";
+import stylePrewiew from "./styles/prewiew.module.css";
 
 const mainParams = {
   tagName: "main",
@@ -24,7 +25,7 @@ const imageParams = {
 };
 const containerParams = {
   tagName: "div",
-  classList: [styleList.container],
+  classList: [styleMain.container],
 };
 const loaderContainerParams = {
   tagName: "div",
@@ -82,6 +83,10 @@ const detailsWrapperParams = {
   tagName: "div",
   classList: [styleList.detailsWrapper],
 };
+const prewiewElement = {
+  tagName: "div",
+  classList: [stylePrewiew.prewiew],
+}
 export class MainView {
   element;
   listElement;
@@ -178,5 +183,13 @@ export class MainView {
   showLoader() {
     // this.loader.classList.remove(style.loaderHidden)
     this.element.append(this.loader)
+  }
+  removeList(){
+    this.listElement.remove()
+  }
+  makePrewiew(){
+    const prewiew = new Creator(prewiewElement).getElement()
+    this.container.append(prewiew)
+
   }
 }

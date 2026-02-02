@@ -1,4 +1,5 @@
 import { Model } from "../model/model";
+import { MainView } from "../view/components/main-view";
 import { View } from "../view/view";
 
 export class Controller {
@@ -87,6 +88,8 @@ export class Controller {
         });
         this.view.mainView.removeLoader();
         console.log(response);
+        this.view.mainView.removeList();
+        this.view.mainView.makePrewiew();
     });
 }
 }
