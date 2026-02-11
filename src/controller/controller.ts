@@ -87,9 +87,9 @@ export class Controller {
         path: isId,
         });
         this.view.mainView.removeLoader();
-        console.log(response);
+        this.model.setData(response);
         this.view.mainView.removeList();
-        this.view.mainView.makePrewiew();
+        this.view.mainView.makePrewiew(this.model.dataFromServer);
     });
 }
 }

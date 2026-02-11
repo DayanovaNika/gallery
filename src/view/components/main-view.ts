@@ -1,5 +1,6 @@
 import Creator from "../../core/creator";
 import type { DataTypes } from "../../types/data-types";
+import { PrewiewView } from "./prewiew-view";
 
 import styleList from "./styles/list-card.module.css";
 import styleMain from "./styles/main.module.css";
@@ -100,7 +101,6 @@ export class MainView {
     this.element.append(this.container);
     this.loader = this.createLoader();
   }
-
   createImageList(data: DataTypes) {
     const template = new DocumentFragment();
     this.clear();
@@ -171,7 +171,6 @@ export class MainView {
     loaderContainer.append(gif);
     fade.append(loaderContainer);
     // this.element.append(fade);
-
     return fade;
   }
   removeLoader() {
@@ -187,9 +186,8 @@ export class MainView {
   removeList(){
     this.listElement.remove()
   }
-  makePrewiew(){
-    const prewiew = new Creator(prewiewElement).getElement()
+  makePrewiew(dataCard){
+    const prewiew = new PrewiewView(dataCard).getPrewiew()
     this.container.append(prewiew)
-
   }
 }
