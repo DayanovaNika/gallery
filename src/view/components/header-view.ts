@@ -3,60 +3,8 @@ import Creator from "../../core/creator";
 import styleBurger from "./styles/burger.module.css";
 import styleHeader from "./styles/header-style.module.css";
 
+import {headerParams,wrapperButtonParams,btnContainerParams,fadeParams,formParams,inputSearchParams,inputSubmitParams,burgerLineParams,burgerParams,containerParams} from "./params/header-params";
 
-const headerParams = {
-  tagName: "header",
-  attributes: {
-    id: "header",
-    "data-action": "header",
-  },
-  classList: [styleHeader.header],
-};
-const formParams = {
-  tagName: "form",
-  classList: [styleHeader.form],
-};
-const inputSearchParams = {
-  tagName: "input",
-  classList: [styleHeader.inputSearch],
-  attributes: {
-    type: "search",
-    name: "search",
-  },
-};
-const inputSubmitParams = {
-  tagName: "input",
-  classList: [styleHeader.inputSubmit],
-  attributes: {
-    type: "submit",
-    value: "",
-  },
-};
-const wrapperButtonParams = {
-  tagName: "div",
-  classList: [styleHeader.wrapperButtons],
-};
-const containerParams = {
-  tagName: "div",
-  classList: [styleHeader.container],
-};
-const burgerParams = {
-  tagName: "button",
-  classList: [styleBurger.burger],
-};
-const fadeParams = {
-  tagName: "div",
-  classList: [styleHeader.fade],
-};
-const btnContainerParams = {
-  tagName: "div",
-  text: "",
-  classList: [styleHeader.btnContainer],
-};
-const burgerLineParams = {
-  tagName: "span",
-  classList: [styleBurger.burgerLineBase],
-};
 // const burgerLineSecParams = {
 //     tagName: "span",
 //     classList: [style.burgerLineBase]

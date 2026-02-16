@@ -1,4 +1,5 @@
 import styleHeader from "../styles/prewiew.module.css"
+
 export const cardElementParams = {
     tagName: "div",
     classList: [],
