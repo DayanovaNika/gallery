@@ -1,14 +1,32 @@
 import Creator from "../../core/creator";
 import type { DataTypes } from "../../types/data-types";
-import { PrewiewView } from "./prewiew-view";
+import { PreviewView } from "./prewiew-view";
 
-import {mainParams, listParams,containerParams,loaderContainerParams,gifParams,fadeParams,liParams,imageParams,nameParams,yearParams,ratingElementParams,ratingWrapperParams,counterRatingParams,iconRatingParams,criticsNameParams,wrapperInfoParams,detailsWrapperParams} from "./params/main-params";
+import {
+  mainParams,
+  listParams,
+  containerParams,
+  loaderContainerParams,
+  gifParams,
+  fadeParams,
+  liParams,
+  imageParams,
+  nameParams,
+  yearParams,
+  ratingElementParams,
+  ratingWrapperParams,
+  counterRatingParams,
+  iconRatingParams,
+  criticsNameParams,
+  wrapperInfoParams,
+  detailsWrapperParams,
+} from "./params/main-params";
 
 export class MainView {
   element;
   listElement;
   container;
-  loader
+  loader;
   constructor() {
     this.element = new Creator(mainParams).getElement();
     this.listElement = new Creator(listParams).getElement();
@@ -92,18 +110,18 @@ export class MainView {
   removeLoader() {
     setTimeout(() => {
       // this.loader.classList.add(style.loaderHidden);
-      this.loader.remove()
+      this.loader.remove();
     });
   }
   showLoader() {
     // this.loader.classList.remove(style.loaderHidden)
-    this.element.append(this.loader)
+    this.element.append(this.loader);
   }
-  removeList(){
-    this.listElement.remove()
+  removeList() {
+    this.listElement.remove();
   }
-  makePrewiew(dataCard){
-    const prewiew = new PrewiewView(dataCard).getPrewiew()
-    this.container.append(prewiew)
+  makePrewiew(dataCard) {
+    const prewiew = new PreviewView(dataCard).getPrewiew();
+    this.container.append(prewiew);
   }
 }
