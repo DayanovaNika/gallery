@@ -3,21 +3,13 @@ import { cardElementParams, prewiewheaderElParams } from "./params/prewiew-param
 
 class HeaderPrewiew {
     prewiewHeaderElement
+    constructor() {
+        console.log(prewiewheaderElParams);
 
-    constructor({
-        // backdrop,
-    }){
-        console.log(prewiewheaderElParams);
-        // if(backdrop) {
-            
-        // }
-        const headerStyle = {
-            backgroundColor:"green",
-            height:"100px",
-        }
-        prewiewheaderElParams.attributes.style = "dkddcls";
-        console.log(prewiewheaderElParams);
         this.prewiewHeaderElement = new Creator(prewiewheaderElParams).getElement()
+        this.prewiewHeaderElement.setAttribute("style", `backgroundColor: green`)
+        console.log(this.prewiewHeaderElement);
+        
     }
     getHeader(){
         return this.prewiewHeaderElement
@@ -30,7 +22,9 @@ export class PrewiewView {
 
     constructor(dataPrewiew){
         this.cardElement = new Creator(cardElementParams).getElement()
-        this.headerElement = new HeaderPrewiew({}).getHeader()
+        this.headerElement = new HeaderPrewiew().getHeader()
+        console.log(this.headerElement);
+        this.build()
     }
 
     getPrewiew(){
@@ -39,5 +33,7 @@ export class PrewiewView {
 
     build(){
         this.cardElement.append(this.headerElement)
+        console.log(this.headerElement);
+        
     }
 }

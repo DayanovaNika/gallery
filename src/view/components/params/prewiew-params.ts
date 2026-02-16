@@ -7,5 +7,5 @@ export const cardElementParams = {
 export const prewiewheaderElParams = {
     tagName: "div",
     // classList: [styleHeader.headerPrewiew],
-    attributes: {style: {}},
+    attributes: {id: "jfjfjfjf"},
 };
