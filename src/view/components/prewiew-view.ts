@@ -11,6 +11,12 @@ class HeaderPrewiew {
         // if(backdrop) {
             
         // }
+        const headerStyle = {
+            backgroundColor:"green",
+            height:"100px",
+        }
+        prewiewheaderElParams.attributes.style = "dkddcls";
+        console.log(prewiewheaderElParams);
         this.prewiewHeaderElement = new Creator(prewiewheaderElParams).getElement()
     }
     getHeader(){

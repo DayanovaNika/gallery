@@ -6,5 +6,6 @@ export const cardElementParams = {
 };
 export const prewiewheaderElParams = {
     tagName: "div",
-    classList: [styleHeader.headerPrewiew],
+    // classList: [styleHeader.headerPrewiew],
+    attributes: {style: {}},
 };
