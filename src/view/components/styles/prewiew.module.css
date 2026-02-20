@@ -1,7 +1,7 @@
-.prewiew{
-    
+.prewiew {
 }
-.headerPrewiew{
-    background-color: brown;
-    height: 100px;
+.headerPrewiew {
+  background-color: brown;
+  height: 100vh;
+  padding: 10px;
 }
