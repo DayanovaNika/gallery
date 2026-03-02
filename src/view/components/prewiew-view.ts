@@ -67,17 +67,27 @@ constructor(dataPreview) {
     this.prewiewHeaderElement.append(filmNameElement)
 
     const infoWrapper = new Creator(infoWrapperParams).getElement()
-    for (const key in dataInfo) {
+
+    Object.entries(dataInfo).forEach((element, i)=> {
         const cellInfo = new Creator(cellInfoParams).getElement()
-        titleInfoParams.text = key
+        titleInfoParams.text = element[0]
+        let titleInfo = {} as Node
 
-        const titleInfo = new Creator(titleInfoParams).getElement()
-        valueInfoParams.text = dataInfo[key]
-
+        if (i<2) {
+            const copyParams = structuredClone(titleInfoParams)
+            copyParams.attributes.style = "font-weight: 600"
+            titleInfo = new Creator(copyParams).getElement()
+        }
+        else {
+            titleInfo = new Creator(titleInfoParams).getElement()
+        }
+        
+        valueInfoParams.text = element[1]
         const valueInfo = new Creator(valueInfoParams).getElement()
         cellInfo.append(titleInfo,valueInfo)
         infoWrapper.append(cellInfo)
-    }
+        
+    }) 
     this.prewiewHeaderElement.append(infoWrapper)
 }
 

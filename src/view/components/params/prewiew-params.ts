@@ -52,6 +52,9 @@ export const titleInfoParams = {
     tagName: "div",
     text: "",
     classList: [stylePrewiew.titleInfo],
+    attributes: {
+      style: "",
+    },
 };
 export const valueInfoParams = {
     tagName: "div",
