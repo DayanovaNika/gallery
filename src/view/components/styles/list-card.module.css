@@ -6,7 +6,7 @@
     grid-auto-rows: 450px;
     width: 100%;
     grid-auto-flow: dense;
-    padding: 0;
+    padding: 110px 20px 20px 20px;
     }
     .li {
     transition: box-shadow 0.5s;

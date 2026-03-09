@@ -10,6 +10,9 @@ import {
     cellInfoParams,
     titleInfoParams,
     valueInfoParams,
+    starParams,
+    wrapperParams,
+    ratingParams,
 } from "./params/prewiew-params";
 
 class HeaderPrewiew {
@@ -19,7 +22,10 @@ constructor(dataPreview) {
 
     
     const imgUrl = dataPreview.backdrop.url;
-    prewiewheaderElParams.attributes.style = `background-image: url(${imgUrl});`;
+    prewiewheaderElParams.attributes.style = `
+    background: 
+    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
+    url(${imgUrl}) no-repeat center/cover;`;
 
     const filmName = dataPreview.alternativeName
     const ratingKp = dataPreview.rating.kp 
@@ -76,17 +82,23 @@ constructor(dataPreview) {
         if (i<2) {
             const copyParams = structuredClone(titleInfoParams)
             copyParams.attributes.style = "font-weight: 600"
+
             titleInfo = new Creator(copyParams).getElement()
+            const wrapper = new Creator(wrapperParams).getElement()
+            const star = new Creator(starParams).getElement()
+
+            ratingParams.text = element[1]
+            const rating = new Creator(ratingParams).getElement()
+            wrapper.append(star, rating)
+            cellInfo.append(titleInfo, wrapper)
         }
         else {
             titleInfo = new Creator(titleInfoParams).getElement()
+            valueInfoParams.text = element[1]
+            const valueInfo = new Creator(valueInfoParams).getElement()
+            cellInfo.append(titleInfo,valueInfo)
         }
-        
-        valueInfoParams.text = element[1]
-        const valueInfo = new Creator(valueInfoParams).getElement()
-        cellInfo.append(titleInfo,valueInfo)
         infoWrapper.append(cellInfo)
-        
     }) 
     this.prewiewHeaderElement.append(infoWrapper)
 }

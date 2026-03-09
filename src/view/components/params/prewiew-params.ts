@@ -11,7 +11,7 @@ export const prewiewheaderElParams = {
 };
 export const cardElementParams = {
   tagName: "div",
-  classList: [],
+  classList: [stylePrewiew.cardElement],
 };
 export const descFilmPrewiewParams = {
     tagName: "div",
@@ -60,5 +60,26 @@ export const valueInfoParams = {
     tagName: "div",
     classList: [stylePrewiew.valueInfo],
     text: "",
+};
+export const starParams = {
+    tagName: "div",
+    text: "",
+    classList: [stylePrewiew.star],
+    attributes: {
+    },
+};
+export const wrapperParams = {
+    tagName: "div",
+    classList: [stylePrewiew.wrapper],
+    attributes: {
+    },
+};
+export const ratingParams = {
+    tagName: "div",
+    text: "",
+    classList: [stylePrewiew.rating],
+    attributes: {
+    },
+
 };
 
