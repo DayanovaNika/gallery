@@ -18,7 +18,7 @@
   height: 20px;
 }
 .cardElement {
-  
+  padding-top: 80px;
 }
 .descFilmPrewiew{
   display: flex;
@@ -78,3 +78,42 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
+@media (max-width: 768px) {
+  .headerPrewiew{
+    justify-content: center;
+    padding-top: 100px;
+  }
+  .genresType {
+    font-size: 17px;
+  }
+  .genres {
+    font-size: 15px;
+  }
+  .descFilmPrewiew {
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+    row-gap: 20px;
+  }
+  .filmName{
+    font-size: 60px;
+  }
+  .infoWrapper {
+    gap: 11px;
+    flex-wrap: wrap;
+    row-gap: 22px;
+    gap: 20px;
+  }
+  .titleInfo {
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .valueInfo{
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .rating{
+    font-weight: 500;
+    font-size: 15px;
+  }
+}
+

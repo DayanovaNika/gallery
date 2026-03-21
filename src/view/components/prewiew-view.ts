@@ -18,10 +18,17 @@ import {
 class HeaderPrewiew {
 prewiewHeaderElement;
 constructor(dataPreview) {
-    console.log(dataPreview);
+    console.log(dataPreview.poster.url);
 
-    
-    const imgUrl = dataPreview.backdrop.url;
+    const bgTemplate = "/prewiewBg.png"
+    let imgUrl = bgTemplate
+    if (dataPreview.backdrop && dataPreview.backdrop.url) {
+        imgUrl = dataPreview.backdrop.url
+    }
+    else if (dataPreview.poster && dataPreview.poster.url){
+        imgUrl = dataPreview.poster.url
+    }
+
     prewiewheaderElParams.attributes.style = `
     background: 
     linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
