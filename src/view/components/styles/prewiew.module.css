@@ -22,7 +22,7 @@
 }
 .descFilmPrewiew{
   display: flex;
-  gap: 12px;
+  gap: 16px;
   align-items: center;
   margin-bottom: 60px;
 }
@@ -48,6 +48,9 @@
   font-size: 70px;
   color: #fff;
   margin-bottom: 40px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .infoWrapper{
   display: flex;
@@ -95,7 +98,7 @@
     row-gap: 20px;
   }
   .filmName{
-    font-size: 60px;
+    font-size: 55px;
   }
   .infoWrapper {
     gap: 11px;

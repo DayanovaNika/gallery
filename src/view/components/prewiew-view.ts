@@ -18,7 +18,6 @@ import {
 class HeaderPrewiew {
 prewiewHeaderElement;
 constructor(dataPreview) {
-    console.log(dataPreview.poster.url);
 
     const bgTemplate = "/prewiewBg.png"
     let imgUrl = bgTemplate
@@ -35,9 +34,9 @@ constructor(dataPreview) {
     url(${imgUrl}) no-repeat center/cover;`;
 
     const filmName = dataPreview.alternativeName
-    const ratingKp = dataPreview.rating.kp 
-    const ratingImdb = dataPreview.rating.imdb
-    const movieLength = dataPreview.movieLength
+    const ratingKp = dataPreview.rating.kp || "none"
+    const ratingImdb = dataPreview.rating.imdb || "none"
+    const movieLength = dataPreview.movieLength 
     const ratingMpaa = dataPreview.ratingMpaa
     const yearFilm = dataPreview.year
     const filmType = dataPreview.type
@@ -75,7 +74,7 @@ constructor(dataPreview) {
     });
 
     this.prewiewHeaderElement.append(descFilmPrewiew)
-    filmNameParams.text = filmName
+    filmNameParams.text = filmName 
     const filmNameElement = new Creator(filmNameParams).getElement()
     this.prewiewHeaderElement.append(filmNameElement)
 
@@ -94,7 +93,7 @@ constructor(dataPreview) {
             const wrapper = new Creator(wrapperParams).getElement()
             const star = new Creator(starParams).getElement()
 
-            ratingParams.text = element[1]
+            ratingParams.text = element[1] 
             const rating = new Creator(ratingParams).getElement()
             wrapper.append(star, rating)
             cellInfo.append(titleInfo, wrapper)
@@ -108,6 +107,7 @@ constructor(dataPreview) {
         infoWrapper.append(cellInfo)
     }) 
     this.prewiewHeaderElement.append(infoWrapper)
+
 }
 
 getHeader() {
