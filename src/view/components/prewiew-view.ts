@@ -13,12 +13,24 @@ import {
     starParams,
     wrapperParams,
     ratingParams,
+    descriptionTitleParams,
+    descriptionParams,
+    descWrapperParams,
+    factsTitleParams,
+    factsListParams,
+    factsWrapperParams,
 } from "./params/prewiew-params";
+
 
 class HeaderPrewiew {
 prewiewHeaderElement;
-constructor(dataPreview) {
 
+constructor(dataPreview) {
+    this.prewiewHeaderElement = null
+    this.build(dataPreview)
+}
+
+build(dataPreview) {
     const bgTemplate = "/prewiewBg.png"
     let imgUrl = bgTemplate
     if (dataPreview.backdrop && dataPreview.backdrop.url) {
@@ -49,9 +61,7 @@ constructor(dataPreview) {
         ["продолжительность"]: movieLength ?? "none",
         ["возрастной рейтинг"]: ratingMpaa ?? "none",
     }
-    // const description = dataPreview.description
-    // const budget = dataPreview.budget
-    // const facts = dataPreview.facts
+    
     // const persons = dataPreview.persons
     // const premiereWorld = dataPreview.premiere.world
     // const premiereRussia = dataPreview.premiere.russia 
@@ -107,12 +117,34 @@ constructor(dataPreview) {
         infoWrapper.append(cellInfo)
     }) 
     this.prewiewHeaderElement.append(infoWrapper)
-
 }
-
 getHeader() {
     return this.prewiewHeaderElement;
 }
+}
+class HeroPrewiew {
+prewiewHeroElement; 
+    constructor (dataPreview) {
+        this.prewiewHeroElement = null
+    }
+
+    build(dataPreview) {
+    const description = dataPreview.description
+    const budget = dataPreview.budget
+    const facts = dataPreview.facts
+    }
+    createInfo() {
+        const descriptionTitle = new Creator(descriptionTitleParams).getElement()
+        const description = new Creator(descriptionParams).getElement()
+        const descWrapper = new Creator(descWrapperParams).getElement()
+        descWrapper.append(descriptionTitle, description)
+
+        const factsTitle = new Creator(factsTitleParams).getElement()
+        const factsList = new Creator(factsListParams).getElement()
+        const facts = new Creator(factsListParams).getElement() // каждый факт создавать через фориеач
+        const factsWrapper = new Creator(factsWrapperParams).getElement()
+        factsWrapper.append(factsTitle, factsList)
+    }
 }
 
 export class PreviewView {

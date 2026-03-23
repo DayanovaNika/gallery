@@ -1,17 +1,17 @@
 import styleHeader from "../styles/prewiew.module.css";
 import stylePrewiew from '../styles/prewiew.module.css';
-
+import styleHeroPrewiew from "../styles/hero-prewiew.module.css";
 export const prewiewheaderElParams = {
-  tagName: "div",
-  classList: [styleHeader.headerPrewiew],
-  attributes: {
-    id: "jfjfjfjf",
-    style: "",
-  },
+    tagName: "div",
+    classList: [styleHeader.headerPrewiew],
+    attributes: {
+        id: "jfjfjfjf",
+        style: "",
+    },
 };
 export const cardElementParams = {
-  tagName: "div",
-  classList: [stylePrewiew.cardElement],
+    tagName: "div",
+    classList: [stylePrewiew.cardElement],
 };
 export const descFilmPrewiewParams = {
     tagName: "div",
@@ -53,7 +53,7 @@ export const titleInfoParams = {
     text: "",
     classList: [stylePrewiew.titleInfo],
     attributes: {
-      style: "",
+    style: "",
     },
 };
 export const valueInfoParams = {
@@ -80,6 +80,54 @@ export const ratingParams = {
     classList: [stylePrewiew.rating],
     attributes: {
     },
-
+};
+export const descriptionTitleParams = {
+    tagName: "h2",
+    text: "",
+    classList: [styleHeroPrewiew.descriptionTitle],
+    attributes: {
+    },
+};
+export const descriptionParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleHeroPrewiew.description],
+    attributes: {
+    },
+};
+export const descWrapperParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleHeroPrewiew.descWrapper],
+    attributes: {
+    },
+};
+export const factsTitleParams = {
+    tagName: "h2",
+    text: "",
+    classList: [styleHeroPrewiew.factsTitle],
+    attributes: {
+    },
+};
+export const factsListParams = {
+    tagName: "li",
+    text: "",
+    classList: [styleHeroPrewiew.factsList],
+    attributes: {
+    },
+};
+export const Params = {
+    tagName: "facts",
+    text: "",
+    classList: [styleHeroPrewiew.facts],
+    attributes: {
+    },
+};
+export const factsWrapperParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleHeroPrewiew.factsWrapper],
+    attributes: {
+    },
 };
 
