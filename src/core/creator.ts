@@ -32,7 +32,7 @@ class Creator {
       throw new Error("text is not definded");
     }
     if (this.#params.text) {
-      this.#element.innerText = String(this.#params.text);
+      this.#element.innerHTML = String(this.#params.text);
     }
   }
 

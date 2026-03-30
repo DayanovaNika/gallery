@@ -19,6 +19,9 @@ import {
     factsTitleParams,
     factsListParams,
     factsWrapperParams,
+    factsParams,
+    heroInfoWrapperParams,
+    prewiewHeroElementParams,
 } from "./params/prewiew-params";
 
 
@@ -123,37 +126,57 @@ getHeader() {
 }
 }
 class HeroPrewiew {
-prewiewHeroElement; 
+    prewiewHeroElement; 
     constructor (dataPreview) {
-        this.prewiewHeroElement = null
+        this.prewiewHeroElement = new Creator(prewiewHeroElementParams).getElement()
+        this.build(dataPreview);
     }
 
     build(dataPreview) {
-    const description = dataPreview.description
-    const budget = dataPreview.budget
-    const facts = dataPreview.facts
+        const description = dataPreview.description
+        const budget = dataPreview.budget
+        const facts = dataPreview.facts
+        const hero = this.createInfo(description,facts)
+        this.prewiewHeroElement.append(hero)
     }
-    createInfo() {
+    createInfo(desc,facts) {
+        console.log(desc);
+        
         const descriptionTitle = new Creator(descriptionTitleParams).getElement()
+        descriptionParams.text = desc
         const description = new Creator(descriptionParams).getElement()
         const descWrapper = new Creator(descWrapperParams).getElement()
         descWrapper.append(descriptionTitle, description)
 
         const factsTitle = new Creator(factsTitleParams).getElement()
         const factsList = new Creator(factsListParams).getElement()
-        const facts = new Creator(factsListParams).getElement() // каждый факт создавать через фориеач
+
+        facts.forEach(element => {
+            factsParams.text = element.value 
+            const facts = new Creator(factsParams).getElement()
+            factsList.append(facts)
+        });
+
         const factsWrapper = new Creator(factsWrapperParams).getElement()
         factsWrapper.append(factsTitle, factsList)
+        const heroInfoWrapper = new Creator(heroInfoWrapperParams).getElement()
+        heroInfoWrapper.append(descWrapper,factsWrapper)
+        return heroInfoWrapper;
+    }
+    getHero(){
+        return this.prewiewHeroElement;
     }
 }
 
 export class PreviewView {
     cardElement;
     headerElement;
+    heroElement;
 
     constructor(dataPreview) {
     this.cardElement = new Creator(cardElementParams).getElement();
     this.headerElement = new HeaderPrewiew(dataPreview).getHeader();
+    this.heroElement = new HeroPrewiew(dataPreview).getHero();
     this.build();
 }
 
@@ -162,6 +185,6 @@ getPrewiew() {
 }
 
 build() {
-    this.cardElement.append(this.headerElement);
+    this.cardElement.append(this.headerElement, this.heroElement);
 }
 }

@@ -116,7 +116,7 @@ export const factsListParams = {
     attributes: {
     },
 };
-export const Params = {
+export const factsParams = {
     tagName: "facts",
     text: "",
     classList: [styleHeroPrewiew.facts],
@@ -127,6 +127,20 @@ export const factsWrapperParams = {
     tagName: "div",
     text: "",
     classList: [styleHeroPrewiew.factsWrapper],
+    attributes: {
+    },
+};
+export const heroInfoWrapperParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleHeroPrewiew.heroInfoWrapper],
+    attributes: {
+    },
+};
+export const prewiewHeroElementParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleHeroPrewiew.prewiewHeroElement],
     attributes: {
     },
 };

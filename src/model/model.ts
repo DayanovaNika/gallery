@@ -33,8 +33,8 @@ export class Model {
       method: "GET",
       headers: {
         accept: "application/json",
-        "X-API-KEY": "2YDRCN4-GJJ4VXC-HX99D0W-HDBNKW8",  
-        // XH5K03S-6N74G06-JGW60VQ-CX7EBBC
+        "X-API-KEY": "XH5K03S-6N74G06-JGW60VQ-CX7EBBC",  
+        // 2YDRCN4-GJJ4VXC-HX99D0W-HDBNKW8
       },
     };
 
