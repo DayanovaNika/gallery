@@ -22,6 +22,18 @@ import {
     factsParams,
     heroInfoWrapperParams,
     prewiewHeroElementParams,
+    boxParams,
+    budgetParams,
+    budgetTitleParams,
+    datesParams,
+    worldParams,
+    russiaParams,
+    worldTitleParams,
+    russiaTitleParams,
+    budgetWrapperParams,
+    datesWrapperParams,
+    russiaWrapperParams,
+    worldWrapperParams,
 } from "./params/prewiew-params";
 
 
@@ -135,9 +147,12 @@ class HeroPrewiew {
     build(dataPreview) {
         const description = dataPreview.description
         const budget = dataPreview.budget
+        console.log(budget);
         const facts = dataPreview.facts
         const hero = this.createInfo(description,facts)
-        this.prewiewHeroElement.append(hero)
+        const filmBudget = this.createCard(budget, dataPreview.premiere)
+
+        this.prewiewHeroElement.append(hero, filmBudget)
     }
     createInfo(desc,facts) {
         console.log(desc);
@@ -151,17 +166,59 @@ class HeroPrewiew {
         const factsTitle = new Creator(factsTitleParams).getElement()
         const factsList = new Creator(factsListParams).getElement()
 
-        facts.forEach(element => {
-            factsParams.text = element.value 
-            const facts = new Creator(factsParams).getElement()
-            factsList.append(facts)
-        });
+        // facts.forEach(element => {
+        //     factsParams.text = element.value 
+        //     const facts = new Creator(factsParams).getElement()
+        //     factsList.append(facts)
+        // });
+        facts.slice(0, 3).forEach(element => {
+            factsParams.text = element.value;
+            const facts = new Creator(factsParams).getElement();
+            factsList.append(facts);
+})
 
         const factsWrapper = new Creator(factsWrapperParams).getElement()
         factsWrapper.append(factsTitle, factsList)
         const heroInfoWrapper = new Creator(heroInfoWrapperParams).getElement()
         heroInfoWrapper.append(descWrapper,factsWrapper)
         return heroInfoWrapper;
+    }
+    createCard(filmBudget, premiere) {
+        const box = new Creator(boxParams).getElement()
+
+        const budgetWrapper = new Creator(budgetWrapperParams).getElement()
+        const budgetTitle = new Creator(budgetTitleParams).getElement()
+        if (filmBudget && filmBudget.value) {
+            budgetParams.text = filmBudget.value
+        }
+        const budget = new Creator(budgetParams).getElement()
+        budgetWrapper.append(budgetTitle,budget)
+
+        const datesWrapper = new Creator(datesWrapperParams).getElement()
+        const dates = new Creator(datesParams).getElement()
+
+        if(premiere && premiere.world) {
+            worldParams.text = premiere.world
+        }   
+
+        if(premiere && premiere.russia) {
+            russiaParams.text = premiere.russia
+        }
+
+        const worldWrapper = new Creator(worldWrapperParams).getElement()
+        const worldTitle = new Creator(worldTitleParams).getElement()
+        const world = new Creator(worldParams).getElement()
+        worldWrapper.append(worldTitle, world)
+
+        const russiaWrapper = new Creator(russiaWrapperParams).getElement()
+        const russiaTitle = new Creator(russiaTitleParams).getElement()
+        const russia = new Creator(russiaParams).getElement()
+        russiaWrapper.append(russiaTitle,russia)
+
+        datesWrapper.append(dates, worldWrapper, russiaWrapper)
+
+        box.append(budgetWrapper, datesWrapper)
+        return box;
     }
     getHero(){
         return this.prewiewHeroElement;

@@ -8,11 +8,13 @@
     font-size: 20px;
     font-family: "Open Sans", sans-serif;
     color: #dddddd;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 .descWrapper {
-
+    padding-bottom: 10px;
 }
-    
 .factsTitle  {
     font-size: 24px;
     font-family: "Open Sans", sans-serif;
@@ -20,12 +22,25 @@
     color: #ddddddb8;
 }
 .factsList  {
-    
+    font-family: "Open Sans", sans-serif;
+}
+
+.factsList ::before {
+    content: "•";           
+    font-weight: bold;      
+    margin-right: 1em;    
 }
 .facts {
-    
+    color: #dddddd;
+    font-size: 20px;
+    display: block;
+    padding-bottom: 10px;
 }
 .factsWrapper  {
     
+}
+.heroInfoWrapper {
+    width: 600px;
+    padding-left: 15px;
 }
 
