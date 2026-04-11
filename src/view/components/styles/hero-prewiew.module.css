@@ -30,6 +30,9 @@
     font-weight: bold;      
     margin-right: 1em;    
 }
+.facts a::before {
+    display: none;
+}
 .facts {
     color: #dddddd;
     font-size: 20px;
@@ -40,7 +43,59 @@
     
 }
 .heroInfoWrapper {
-    width: 600px;
+    max-width: 600px;
     padding-left: 15px;
+}
+.box{
+    background-color:rgb(16, 16, 16);
+    max-width: 600px;
+    width: 100%;
+    max-height: 250px;
+    font-family: "Open Sans", sans-serif;
+}
+.prewiewHeroElement{
+    display: flex;
+    padding-top: 10px;
+}
+.budgetTitle{
+    color: #ddddddb8;
+    font-size: 16px;
+}
+.budget{
+    color: #dddddd;
+    font-size: 24px;
+    font-weight: 700;
+}
+.budgetWrapper {
+    margin-bottom: 20px;
+}
+.dates {
+    color: #ddddddb8;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.worldTitle{
+    color: #ddddddb8;
+    font-size: 16px;
+}
+.world {
+    color: #dddddd;
+}
+.russiaTitle {
+    color: #ddddddb8;
+    font-size: 16px;
+}
+.russia {
+    color: #dddddd;
+}
+.worldWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.russiaWrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 

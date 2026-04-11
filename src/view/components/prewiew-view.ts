@@ -156,6 +156,7 @@ class HeroPrewiew {
     }
     createInfo(desc,facts) {
         console.log(desc);
+        console.log(facts);
         
         const descriptionTitle = new Creator(descriptionTitleParams).getElement()
         descriptionParams.text = desc
@@ -175,7 +176,7 @@ class HeroPrewiew {
             factsParams.text = element.value;
             const facts = new Creator(factsParams).getElement();
             factsList.append(facts);
-})
+        })
 
         const factsWrapper = new Creator(factsWrapperParams).getElement()
         factsWrapper.append(factsTitle, factsList)
@@ -189,7 +190,7 @@ class HeroPrewiew {
         const budgetWrapper = new Creator(budgetWrapperParams).getElement()
         const budgetTitle = new Creator(budgetTitleParams).getElement()
         if (filmBudget && filmBudget.value) {
-            budgetParams.text = filmBudget.value
+            budgetParams.text = `$${filmBudget.value}`
         }
         const budget = new Creator(budgetParams).getElement()
         budgetWrapper.append(budgetTitle,budget)

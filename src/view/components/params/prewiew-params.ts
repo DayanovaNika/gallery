@@ -153,7 +153,7 @@ export const boxParams = {
 };
 export const budgetTitleParams = {
     tagName: "h2",
-    text: "",
+    text: "BUDGET",
     classList: [styleHeroPrewiew.budgetTitle],
     attributes: {
     },
@@ -167,7 +167,7 @@ export const budgetParams = {
 };
 export const datesParams = {
     tagName: "h2",
-    text: "",
+    text: "RELEASE DATES",
     classList: [styleHeroPrewiew.dates],
     attributes: {
     },
@@ -195,14 +195,14 @@ export const budgetWrapperParams = {
 };
 export const worldTitleParams = {
     tagName: "h2",
-    text: "",
+    text: "World",
     classList: [styleHeroPrewiew.worldTitle],
     attributes: {
     },
 };
 export const russiaTitleParams = {
     tagName: "h2",
-    text: "",
+    text: "Russia",
     classList: [styleHeroPrewiew.russiaTitle],
     attributes: {
     },
