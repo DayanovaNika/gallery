@@ -199,11 +199,19 @@ class HeroPrewiew {
         const dates = new Creator(datesParams).getElement()
 
         if(premiere && premiere.world) {
-            worldParams.text = premiere.world
+            worldParams.text = new Date(premiere.world).toLocaleDateString("en-EN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+            });
         }   
 
         if(premiere && premiere.russia) {
-            russiaParams.text = premiere.russia
+            russiaParams.text = new Date(premiere.world).toLocaleDateString("en-EN", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+            });
         }
 
         const worldWrapper = new Creator(worldWrapperParams).getElement()
