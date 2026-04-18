@@ -38,104 +38,104 @@ import {
 
 
 class HeaderPrewiew {
-prewiewHeaderElement;
+    prewiewHeaderElement;
 
-constructor(dataPreview) {
-    this.prewiewHeaderElement = null
-    this.build(dataPreview)
-}
-
-build(dataPreview) {
-    const bgTemplate = "/prewiewBg.png"
-    let imgUrl = bgTemplate
-    if (dataPreview.backdrop && dataPreview.backdrop.url) {
-        imgUrl = dataPreview.backdrop.url
-    }
-    else if (dataPreview.poster && dataPreview.poster.url){
-        imgUrl = dataPreview.poster.url
+    constructor(dataPreview) {
+        this.prewiewHeaderElement = null
+        this.build(dataPreview)
     }
 
-    prewiewheaderElParams.attributes.style = `
-    background: 
-    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
-    url(${imgUrl}) no-repeat center/cover;`;
-
-    const filmName = dataPreview.alternativeName
-    const ratingKp = dataPreview.rating.kp || "none"
-    const ratingImdb = dataPreview.rating.imdb || "none"
-    const movieLength = dataPreview.movieLength 
-    const ratingMpaa = dataPreview.ratingMpaa
-    const yearFilm = dataPreview.year
-    const filmType = dataPreview.type
-    const genres = dataPreview.genres
-
-    const dataInfo = {
-        ["кинопоиск"]: ratingKp ?? "none",
-        ["IMDB"]: ratingImdb ?? "none",
-        ["год"]: yearFilm ?? "none",
-        ["продолжительность"]: movieLength ?? "none",
-        ["возрастной рейтинг"]: ratingMpaa ?? "none",
-    }
-    
-    // const persons = dataPreview.persons
-    // const premiereWorld = dataPreview.premiere.world
-    // const premiereRussia = dataPreview.premiere.russia 
-    // const sequels = dataPreview.sequelsAndPrequels
-    // const similarMovies = dataPreview.similarMovies
-    
-    // 1 создать переменные в которые нужно вытащить данные
-
-    const descFilmPrewiew = new Creator(descFilmPrewiewParams).getElement();
-    genresTypeParams.text = filmType
-    const typeElement = new Creator(genresTypeParams).getElement()
-    this.prewiewHeaderElement = new Creator(prewiewheaderElParams).getElement();
-
-    descFilmPrewiew.append(typeElement)
-
-    genres.forEach(element => {
-        genresParams.text = element.name 
-        const genre = new Creator(genresParams).getElement()
-        descFilmPrewiew.append(genre)
-    });
-
-    this.prewiewHeaderElement.append(descFilmPrewiew)
-    filmNameParams.text = filmName 
-    const filmNameElement = new Creator(filmNameParams).getElement()
-    this.prewiewHeaderElement.append(filmNameElement)
-
-    const infoWrapper = new Creator(infoWrapperParams).getElement()
-
-    Object.entries(dataInfo).forEach((element, i)=> {
-        const cellInfo = new Creator(cellInfoParams).getElement()
-        titleInfoParams.text = element[0]
-        let titleInfo = {} as Node
-
-        if (i<2) {
-            const copyParams = structuredClone(titleInfoParams)
-            copyParams.attributes.style = "font-weight: 600"
-
-            titleInfo = new Creator(copyParams).getElement()
-            const wrapper = new Creator(wrapperParams).getElement()
-            const star = new Creator(starParams).getElement()
-
-            ratingParams.text = element[1] 
-            const rating = new Creator(ratingParams).getElement()
-            wrapper.append(star, rating)
-            cellInfo.append(titleInfo, wrapper)
+    build(dataPreview) {
+        const bgTemplate = "/prewiewBg.png"
+        let imgUrl = bgTemplate
+        if (dataPreview.backdrop && dataPreview.backdrop.url) {
+            imgUrl = dataPreview.backdrop.url
         }
-        else {
-            titleInfo = new Creator(titleInfoParams).getElement()
-            valueInfoParams.text = element[1]
-            const valueInfo = new Creator(valueInfoParams).getElement()
-            cellInfo.append(titleInfo,valueInfo)
+        else if (dataPreview.poster && dataPreview.poster.url){
+            imgUrl = dataPreview.poster.url
         }
-        infoWrapper.append(cellInfo)
-    }) 
-    this.prewiewHeaderElement.append(infoWrapper)
-}
-getHeader() {
-    return this.prewiewHeaderElement;
-}
+
+        prewiewheaderElParams.attributes.style = `
+        background: 
+        linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
+        url(${imgUrl}) no-repeat center/cover;`;
+
+        const filmName = dataPreview.alternativeName
+        const ratingKp = dataPreview.rating.kp || "none"
+        const ratingImdb = dataPreview.rating.imdb || "none"
+        const movieLength = dataPreview.movieLength 
+        const ratingMpaa = dataPreview.ratingMpaa
+        const yearFilm = dataPreview.year
+        const filmType = dataPreview.type
+        const genres = dataPreview.genres
+
+        const dataInfo = {
+            ["кинопоиск"]: ratingKp ?? "none",
+            ["IMDB"]: ratingImdb ?? "none",
+            ["год"]: yearFilm ?? "none",
+            ["продолжительность"]: movieLength ?? "none",
+            ["возрастной рейтинг"]: ratingMpaa ?? "none",
+        }
+        
+        // const persons = dataPreview.persons
+        // const premiereWorld = dataPreview.premiere.world
+        // const premiereRussia = dataPreview.premiere.russia 
+        // const sequels = dataPreview.sequelsAndPrequels
+        // const similarMovies = dataPreview.similarMovies
+        
+        // 1 создать переменные в которые нужно вытащить данные
+
+        const descFilmPrewiew = new Creator(descFilmPrewiewParams).getElement();
+        genresTypeParams.text = filmType
+        const typeElement = new Creator(genresTypeParams).getElement()
+        this.prewiewHeaderElement = new Creator(prewiewheaderElParams).getElement();
+
+        descFilmPrewiew.append(typeElement)
+
+        genres.forEach(element => {
+            genresParams.text = element.name 
+            const genre = new Creator(genresParams).getElement()
+            descFilmPrewiew.append(genre)
+        });
+
+        this.prewiewHeaderElement.append(descFilmPrewiew)
+        filmNameParams.text = filmName 
+        const filmNameElement = new Creator(filmNameParams).getElement()
+        this.prewiewHeaderElement.append(filmNameElement)
+
+        const infoWrapper = new Creator(infoWrapperParams).getElement()
+
+        Object.entries(dataInfo).forEach((element, i)=> {
+            const cellInfo = new Creator(cellInfoParams).getElement()
+            titleInfoParams.text = element[0]
+            let titleInfo = {} as Node
+
+            if (i<2) {
+                const copyParams = structuredClone(titleInfoParams)
+                copyParams.attributes.style = "font-weight: 600"
+
+                titleInfo = new Creator(copyParams).getElement()
+                const wrapper = new Creator(wrapperParams).getElement()
+                const star = new Creator(starParams).getElement()
+
+                ratingParams.text = element[1] 
+                const rating = new Creator(ratingParams).getElement()
+                wrapper.append(star, rating)
+                cellInfo.append(titleInfo, wrapper)
+            }
+            else {
+                titleInfo = new Creator(titleInfoParams).getElement()
+                valueInfoParams.text = element[1]
+                const valueInfo = new Creator(valueInfoParams).getElement()
+                cellInfo.append(titleInfo,valueInfo)
+            }
+            infoWrapper.append(cellInfo)
+        }) 
+        this.prewiewHeaderElement.append(infoWrapper)
+    }
+    getHeader() {
+        return this.prewiewHeaderElement;
+    }
 }
 class HeroPrewiew {
     prewiewHeroElement; 
@@ -147,7 +147,6 @@ class HeroPrewiew {
     build(dataPreview) {
         const description = dataPreview.description
         const budget = dataPreview.budget
-        console.log(budget);
         const facts = dataPreview.facts
         const hero = this.createInfo(description,facts)
         const filmBudget = this.createCard(budget, dataPreview.premiere)
@@ -155,9 +154,6 @@ class HeroPrewiew {
         this.prewiewHeroElement.append(hero, filmBudget)
     }
     createInfo(desc,facts) {
-        console.log(desc);
-        console.log(facts);
-        
         const descriptionTitle = new Creator(descriptionTitleParams).getElement()
         descriptionParams.text = desc
         const description = new Creator(descriptionParams).getElement()
@@ -167,11 +163,6 @@ class HeroPrewiew {
         const factsTitle = new Creator(factsTitleParams).getElement()
         const factsList = new Creator(factsListParams).getElement()
 
-        // facts.forEach(element => {
-        //     factsParams.text = element.value 
-        //     const facts = new Creator(factsParams).getElement()
-        //     factsList.append(facts)
-        // });
         facts.slice(0, 3).forEach(element => {
             factsParams.text = element.value;
             const facts = new Creator(factsParams).getElement();
@@ -229,28 +220,49 @@ class HeroPrewiew {
         box.append(budgetWrapper, datesWrapper)
         return box;
     }
+    
     getHero(){
         return this.prewiewHeroElement;
     }
 }
+class SliderPrewiew {
+    constructor (data){
+        this.persons = data.persons
+        // this.prequels = data.sequelsAndPrequels
+        // this.similarMovies = data.similarMovies
+        console.log(data);
+        this.sliderCrew(this.persons)
+    }
 
+    sliderCrew(personsArray){
+        console.log(personsArray);
+        
+        
+    }
+}
+
+// const slidercrew = SliderPrewiew().sliderCrew(dataPrewiew.persons)
+// const slidercrew = SliderPrewiew(dataPrewiew).sliderCrew()
 export class PreviewView {
     cardElement;
     headerElement;
     heroElement;
+    sliderElement;
 
     constructor(dataPreview) {
-    this.cardElement = new Creator(cardElementParams).getElement();
-    this.headerElement = new HeaderPrewiew(dataPreview).getHeader();
-    this.heroElement = new HeroPrewiew(dataPreview).getHero();
-    this.build();
-}
+        console.log(dataPreview);
+        this.cardElement = new Creator(cardElementParams).getElement();
+        this.headerElement = new HeaderPrewiew(dataPreview).getHeader();
+        this.heroElement = new HeroPrewiew(dataPreview).getHero();
+        this.sliderElement = new SliderPrewiew(dataPreview)
+        this.build();
+    }
 
-getPrewiew() {
-    return this.cardElement;
-}
+    getPrewiew() {
+        return this.cardElement;
+    }
 
-build() {
-    this.cardElement.append(this.headerElement, this.heroElement);
-}
+    build() {
+        this.cardElement.append(this.headerElement, this.heroElement);
+    }
 }
