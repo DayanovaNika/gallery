@@ -35,6 +35,12 @@ import {
     russiaWrapperParams,
     worldWrapperParams,
 } from "./params/prewiew-params";
+import {
+    personCrewParams,
+    listCrewParams,
+    actorNameParams,
+    actorProffParams
+} from "./params/slider-params";
 
 
 class HeaderPrewiew {
@@ -231,13 +237,26 @@ class SliderPrewiew {
         // this.prequels = data.sequelsAndPrequels
         // this.similarMovies = data.similarMovies
         console.log(data);
-        this.sliderCrew(this.persons)
+        // this.sliderCrew(this.persons)
     }
 
-    sliderCrew(personsArray){
-        console.log(personsArray);
-        
-        
+    sliderCrew(){
+        const listCrew = new Creator(listCrewParams).getElement()
+
+        this.persons.forEach(element => {
+            // personCrewParams.classList.push(element.photo)
+            const personCrew = new Creator(personCrewParams).getElement()
+            personCrew.style.backgroundImage = `url(${element.photo})`
+            listCrew.append(personCrew)
+            actorNameParams.text = element.name || element.enName || "нет имени"
+            const actorName = new Creator(actorNameParams).getElement()
+            personCrew.append(actorName)
+
+            actorProffParams.text = `Рабочая группа: ${element.profession}` || `Рабочая группа: ${element.enProfession}` || "Рабочая группа: неизвестно"
+            const actorProff = new Creator(actorProffParams).getElement()
+            personCrew.append(actorProff)
+        });
+        return listCrew
     }
 }
 
@@ -263,6 +282,6 @@ export class PreviewView {
     }
 
     build() {
-        this.cardElement.append(this.headerElement, this.heroElement);
+        this.cardElement.append(this.headerElement, this.heroElement, this.sliderElement.sliderCrew());
     }
 }
