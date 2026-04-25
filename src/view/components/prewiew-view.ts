@@ -236,38 +236,45 @@ class HeroPrewiew {
     }
 }
 class SliderPrewiew {
-    constructor (data){
-        this.persons = data.persons
-        this.similarMovies = data.similarMovies
-        // this.prequels = data.sequelsAndPrequels
-        console.log(data);
-        // this.sliderCrew(this.persons)
+    constructor (){
+
     }
 
-    sliderCrew(){
-        const listCrew = new Creator(listCrewParams).getElement()
-
-        this.persons.forEach(element => {
-            // personCrewParams.classList.push(element.photo)
-            const personCrew = new Creator(personCrewParams).getElement()
-            personCrew.style.backgroundImage = `url(${element.photo})`
-            listCrew.append(personCrew)
-            actorNameParams.text = element.name || element.enName || "нет имени"
-            const actorName = new Creator(actorNameParams).getElement()
-            personCrew.append(actorName)
-
-            actorProffParams.text = `Рабочая группа: ${element.profession}` || `Рабочая группа: ${element.enProfession}` || "Рабочая группа: неизвестно"
-            const actorProff = new Creator(actorProffParams).getElement()
-            personCrew.append(actorProff)
-        });
-        return listCrew
+    sliderCrew(data){
+        if (data && data.persons) {
+            const listCrew = new Creator(listCrewParams).getElement()
+            data.persons.forEach(element => {
+                // personCrewParams.classList.push(element.photo)
+                const personCrew = new Creator(personCrewParams).getElement()
+                personCrew.style.backgroundImage = `url(${element.photo})`
+                listCrew.append(personCrew)
+                actorNameParams.text = element.name || element.enName || "нет имени"
+                const actorName = new Creator(actorNameParams).getElement()
+                personCrew.append(actorName)
+    
+                actorProffParams.text = `Рабочая группа: ${element.profession}` || `Рабочая группа: ${element.enProfession}` || "Рабочая группа: неизвестно"
+                const actorProff = new Creator(actorProffParams).getElement()
+                personCrew.append(actorProff)
+            });
+            return listCrew
+        }
     }
-    sliderSimilarMovies(){
+    sliderFilms(dataArray){
+        if (dataArray) {
         const listMovies = new Creator(listMoviesParams).getElement()
 
-        this.similarMovies.forEach(element => {
+        dataArray.forEach(element => {
             const movie = new Creator(movieParams).getElement()
-            movie.style.backgroundImage = `url(${element.poster.url})`
+            let pathToImg = `url(${"/zaglushka.jpg"})`
+
+            if (element.poster && element.poster.url) {
+                pathToImg = `url(${element.poster.url})`
+            }
+            else if (element.poster && element.poster.previewUrl) {
+                pathToImg = `url(${element.poster.previewUrl})`
+            }
+            
+            movie.style.backgroundImage = pathToImg
             listMovies.append(movie)
             movieNameParams.text = element.name || element.alternativeName || "нет имени"
             const movieName = new Creator(movieNameParams).getElement()
@@ -279,22 +286,23 @@ class SliderPrewiew {
         });
         return listMovies
     }
-}
+}}
 
-// const slidercrew = SliderPrewiew().sliderCrew(dataPrewiew.persons)
-// const slidercrew = SliderPrewiew(dataPrewiew).sliderCrew()
 export class PreviewView {
     cardElement;
     headerElement;
     heroElement;
     sliderElement;
+    data;
 
     constructor(dataPreview) {
         console.log(dataPreview);
+        this.data = dataPreview
         this.cardElement = new Creator(cardElementParams).getElement();
         this.headerElement = new HeaderPrewiew(dataPreview).getHeader();
         this.heroElement = new HeroPrewiew(dataPreview).getHero();
-        this.sliderElement = new SliderPrewiew(dataPreview)
+        this.sliderElement = new SliderPrewiew()
+        
         this.build();
     }
 
@@ -303,6 +311,10 @@ export class PreviewView {
     }
 
     build() {
-        this.cardElement.append(this.headerElement, this.heroElement, this.sliderElement.sliderCrew(), this.sliderElement.sliderSimilarMovies());
+        const sliderCrew = this.sliderElement.sliderCrew(this.data)
+        const similarMovies = this.sliderElement.sliderFilms(this.data.similarMovies)
+        const prequelsMovies = this.sliderElement.sliderFilms(this.data.sequelsAndPrequels)
+        
+        this.cardElement.append(this.headerElement, this.heroElement,sliderCrew,similarMovies,prequelsMovies );
     }
 }
