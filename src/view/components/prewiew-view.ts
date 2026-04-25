@@ -39,7 +39,11 @@ import {
     personCrewParams,
     listCrewParams,
     actorNameParams,
-    actorProffParams
+    actorProffParams,
+    listMoviesParams,
+    movieParams,
+    movieNameParams,
+    yearMovieParams,
 } from "./params/slider-params";
 
 
@@ -234,8 +238,8 @@ class HeroPrewiew {
 class SliderPrewiew {
     constructor (data){
         this.persons = data.persons
+        this.similarMovies = data.similarMovies
         // this.prequels = data.sequelsAndPrequels
-        // this.similarMovies = data.similarMovies
         console.log(data);
         // this.sliderCrew(this.persons)
     }
@@ -257,6 +261,23 @@ class SliderPrewiew {
             personCrew.append(actorProff)
         });
         return listCrew
+    }
+    sliderSimilarMovies(){
+        const listMovies = new Creator(listMoviesParams).getElement()
+
+        this.similarMovies.forEach(element => {
+            const movie = new Creator(movieParams).getElement()
+            movie.style.backgroundImage = `url(${element.poster.url})`
+            listMovies.append(movie)
+            movieNameParams.text = element.name || element.alternativeName || "нет имени"
+            const movieName = new Creator(movieNameParams).getElement()
+            movie.append(movieName)
+
+            yearMovieParams.text = element.year || "года нет"
+            const yearMovie = new Creator(yearMovieParams).getElement()
+            movie.append(yearMovie)
+        });
+        return listMovies
     }
 }
 
@@ -282,6 +303,6 @@ export class PreviewView {
     }
 
     build() {
-        this.cardElement.append(this.headerElement, this.heroElement, this.sliderElement.sliderCrew());
+        this.cardElement.append(this.headerElement, this.heroElement, this.sliderElement.sliderCrew(), this.sliderElement.sliderSimilarMovies());
     }
 }
