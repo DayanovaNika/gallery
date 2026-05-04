@@ -1,4 +1,4 @@
-import { SlowMo } from "gsap/all";
+
 import styleSlider from "../styles/slider.module.css"
 
 export const listCrewParams = {
@@ -13,6 +13,7 @@ export const personCrewParams = {
     text: "",
     classList: [styleSlider.personCrew],
     attributes: {
+        style: ""
     },
 };
 export const actorNameParams = {
@@ -23,7 +24,7 @@ export const actorNameParams = {
     },
 };
 export const actorProffParams = {
-    tagName: "h6",
+    tagName: "p",
     text: "",
     classList: [styleSlider.actorProff],
     attributes: {
@@ -41,6 +42,7 @@ export const movieParams = {
     text: "",
     classList: [styleSlider.movie],
     attributes: {
+        style: "",
     },
 };
 export const movieNameParams = {
@@ -51,9 +53,37 @@ export const movieNameParams = {
     },
 };
 export const yearMovieParams = {
-    tagName: "h6",
+    tagName: "p",
     text: "",
     classList: [styleSlider.yearMovie],
+    attributes: {
+    },
+};
+export const movieTitleParams = {
+    tagName: "h2",
+    text: "",
+    classList: [styleSlider.movieTitle],
+    attributes: {
+    },
+};
+export const titleParams = {
+    tagName: "h2",
+    text: "cast & crew",
+    classList: [styleSlider.crewTitle],
+    attributes: {
+    },
+};
+export const createBoxParams = {
+    tagName: "div",
+    text: "",
+    classList: [styleSlider.crewBox],
+    attributes: {
+    },
+};
+export const sectionParams = {
+    tagName: "section",
+    text: "",
+    classList: [styleSlider.section],
     attributes: {
     },
 };

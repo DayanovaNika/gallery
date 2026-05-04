@@ -1,72 +1,190 @@
-export interface UserLinks {
-  self: string;
-  html: string;
-  photos: string;
-  likes: string;
-  portfolio: string;
-}
-export interface ProfileImage {
-  small: string;
-  medium: string;
-  large: string;
-}
-export interface Social {
-  instagram_username: string | null;
-  portfolio_url: string | null;
-  twitter_username: string | null;
-  paypal_email: string | null;
-}
-export interface User {
-  accepted_tos: boolean;
-  bio: string | null;
-  first_name: string;
-  for_hire: boolean;
-  id: string;
-  instagram_username: string | null;
-  last_name: string | null;
-  links: UserLinks;
-  location: string | null;
-  name: string;
-  portfolio_url: string | null;
-  profile_image: ProfileImage;
-  social: Social;
-  total_collections: number;
-  total_illustrations: number;
-  total_likes: number;
-  total_photos: number;
-  total_promoted_illustrations: number;
-  total_promoted_photos: number;
-  twitter_username: string | null;
-  updated_at: string;
-  username: string;
-}
-export interface ImageInfo {
-  alternative_slugs: Record<string, string>;
-  links: Record<string, string>;
-  user: User;
-  alt_description: string;
-  asset_type: string;
-  blur_hash: string;
-  breadcrumbs: string[];
-  color: string;
-  created_at: string;
-  current_user_collections: string[];
-  description: string;
-  height: number;
-  id: string;
-  liked_by_user: boolean;
-  likes: number;
-  promoted_at: string;
-  slug: string;
-  sponsorship: null;
-  topic_submissions: Record<string, string>;
-  updated_at: string;
-  urls: Record<string, string>;
-  width: number;
+
+// COMMON / SHARED TYPES
+export interface ImageResource {
+  url: string;
+  previewUrl: string;
 }
 
-export interface DataTypes {
+export interface MoneyValue {
+  value: number;
+  currency: string;
+}
+
+export interface NamedEntity {
+  name: string;
+}
+
+export interface ExternalId {
+  imdb?: string;
+  kpHD?: string;
+  tmdb?: number;
+}
+
+// AUDIENCE
+export interface Audience {
+  count: number;
+  country: string;
+}
+
+// AWARDS
+export interface AwardMeta {
+  title?: string;
+  year?: number;
+}
+
+export interface AwardInfo {
+  award?: AwardMeta;
+  title: string;
+}
+
+export interface Award {
+  nomination: AwardInfo;
+  winning: boolean;
+}
+
+// FACTS
+export interface MovieFact {
+  value: string;
+  type: string;
+  spoiler: boolean;
+}
+
+// PERSONS
+export interface MoviePerson {
+  id: number;
+  name?: string;
+  enName?: string;
+  photo?: string;
+  profession: string;
+  enProfession?: string;
+}
+
+// MOVIE NAMES
+export interface MovieName {
+  name: string;
+  language?: string | null;
+  type: string;
+}
+
+// RELEASE DATES
+export interface Premiere {
+  world?: string;
+  russia?: string;
+  dvd?: string;
+  bluray?: string;
+}
+
+// RATINGS
+export interface Rating {
+  kp?: number;
+  imdb?: number;
+  filmCritics?: number;
+  russianFilmCritics?: number;
+}
+
+export interface Votes {
+  kp?: number;
+  imdb?: number;
+  filmCritics?: number;
+  russianFilmCritics?: number;
+}
+
+// FEES
+export interface Fees {
+  world?: MoneyValue;
+  usa?: MoneyValue;
+  russia?: MoneyValue;
+}
+
+// TECHNOLOGY
+export interface Technology {
+  has3D?: boolean;
+  hasImax?: boolean;
+}
+
+// DISTRIBUTORS
+export interface Distributors {
+  distributor?: string;
+}
+
+// RELATED / SIMILAR MOVIES
+export interface RelatedMovie {
+  id: number;
+  name: string;
+  alternativeName?: string | null;
+  type: string;
+  year?: number;
+  relationType?: string;
+  poster?: ImageResource;
+  rating?: {
+    kp?: number;
+  };
+}
+
+// MAIN MOVIE RESPONSE
+export interface MovieApiResponse {
+  id: number;
+  name: string;
+  alternativeName?: string | null;
+  description?: string;
+  shortDescription?: string;
+  slogan?: string | null;
+
+  year?: number;
+  movieLength?: number;
+  ageRating?: number;
+
+  type: string;
+  typeNumber?: number;
+  isSeries?: boolean;
+
+  ratingMpaa?: string | null;
+  top250?: number;
+
+  createdAt?: string;
+  updatedAt?: string;
+
+  poster?: ImageResource;
+  backdrop?: ImageResource;
+  logo?: ImageResource;
+
+  budget?: MoneyValue;
+  fees?: Fees;
+
+  rating?: Rating;
+  votes?: Votes;
+
+  externalId?: ExternalId;
+
+  premiere?: Premiere;
+  distributors?: Distributors;
+
+  countries?: NamedEntity[];
+  genres?: NamedEntity[];
+  names?: MovieName[];
+
+  audience?: Audience[];
+  awards?: Award[];
+  facts?: MovieFact[];
+  persons?: MoviePerson[];
+
+  similarMovies?: RelatedMovie[];
+  sequelsAndPrequels?: RelatedMovie[];
+
+  lists?: string[];
+
+  hasOttFeatures?: boolean;
+  hasSkippableFragments?: boolean;
+  ticketsOnSale?: boolean;
+
+  technology?: Technology;
+}
+
+// API LIST RESPONSE
+export interface MovieApiListResponse {
+  docs: MovieApiResponse[];
   total: number;
-  total_pages: number;
-  results: ImageInfo[];
+  limit: number;
+  page: number;
+  pages: number;
 }

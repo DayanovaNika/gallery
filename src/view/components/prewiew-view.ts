@@ -44,6 +44,10 @@ import {
     movieParams,
     movieNameParams,
     yearMovieParams,
+    movieTitleParams,
+    titleParams,
+    createBoxParams,
+    sectionParams,
 } from "./params/slider-params";
 
 
@@ -237,16 +241,26 @@ class HeroPrewiew {
 }
 class SliderPrewiew {
     constructor (){
-
+    }
+    createSection(textTitle, sliderElement) {
+        titleParams.text = textTitle
+        const title = new Creator(titleParams).getElement()
+        const createBox = new Creator(createBoxParams).getElement()
+        const section = new Creator(sectionParams).getElement()
+        createBox.append(title, sliderElement)
+        section.append(createBox)
+        return section
     }
 
     sliderCrew(data){
         if (data && data.persons) {
             const listCrew = new Creator(listCrewParams).getElement()
             data.persons.forEach(element => {
-                // personCrewParams.classList.push(element.photo)
+                personCrewParams.attributes.style = `
+                background: 
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
+                url(${element.photo}) no-repeat center/cover;`;
                 const personCrew = new Creator(personCrewParams).getElement()
-                personCrew.style.backgroundImage = `url(${element.photo})`
                 listCrew.append(personCrew)
                 actorNameParams.text = element.name || element.enName || "нет имени"
                 const actorName = new Creator(actorNameParams).getElement()
@@ -264,7 +278,6 @@ class SliderPrewiew {
         const listMovies = new Creator(listMoviesParams).getElement()
 
         dataArray.forEach(element => {
-            const movie = new Creator(movieParams).getElement()
             let pathToImg = `url(${"/zaglushka.jpg"})`
 
             if (element.poster && element.poster.url) {
@@ -273,8 +286,11 @@ class SliderPrewiew {
             else if (element.poster && element.poster.previewUrl) {
                 pathToImg = `url(${element.poster.previewUrl})`
             }
-            
-            movie.style.backgroundImage = pathToImg
+            movieParams.attributes.style = `
+                background: 
+                linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
+                ${pathToImg} no-repeat center/cover;`;
+            const movie = new Creator(movieParams).getElement()
             listMovies.append(movie)
             movieNameParams.text = element.name || element.alternativeName || "нет имени"
             const movieName = new Creator(movieNameParams).getElement()
@@ -314,7 +330,10 @@ export class PreviewView {
         const sliderCrew = this.sliderElement.sliderCrew(this.data)
         const similarMovies = this.sliderElement.sliderFilms(this.data.similarMovies)
         const prequelsMovies = this.sliderElement.sliderFilms(this.data.sequelsAndPrequels)
-        
-        this.cardElement.append(this.headerElement, this.heroElement,sliderCrew,similarMovies,prequelsMovies );
+        const sectionCrew = this.sliderElement.createSection("crew & cast", sliderCrew)
+        const sectionSimillar = this.sliderElement.createSection("simillar movies", similarMovies)
+        const sectionPrequels = this.sliderElement.createSection("sequels & prequels", prequelsMovies)
+
+        this.cardElement.append(this.headerElement, this.heroElement, sectionCrew,sectionSimillar, sectionPrequels);
     }
 }
