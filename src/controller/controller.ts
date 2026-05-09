@@ -29,6 +29,7 @@ export class Controller {
       async (event) => {
         const btnValue = this.view.headerView.getBtnValue(event) as string;
         this.view.mainView.showLoader();
+
         const responseData = await this.model.getData({
           version: "1.4",
           chapter: "movie",
@@ -38,6 +39,7 @@ export class Controller {
             limit: 12,
           },
         });
+        
         this.model.setData(responseData);
         this.model.sortRating(this.model.dataFromServer);
         this.view.mainView.createImageList(this.model.dataFromServer);
@@ -80,11 +82,13 @@ export class Controller {
       const isCard = event.target.closest("[data-id]");
       const isId = isCard ? isCard.getAttribute("data-id") : null;
       this.view.mainView.showLoader();
+
       const response = await this.model.getData({
         version: "1.4",
         chapter: "movie",
         path: isId,
       });
+
       this.view.mainView.removeLoader();
       this.model.setData(response);
       this.view.mainView.removeList();
