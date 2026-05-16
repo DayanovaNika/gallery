@@ -43,6 +43,7 @@ export const movieParams = {
     classList: [styleSlider.movie],
     attributes: {
         style: "",
+        "data-id": "",
     },
 };
 export const movieNameParams = {

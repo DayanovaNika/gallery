@@ -27,6 +27,8 @@ export class MainView {
   listElement;
   container;
   loader;
+  prewiew;
+  
   constructor() {
     this.element = new Creator(mainParams).getElement();
     this.listElement = new Creator(listParams).getElement();
@@ -34,6 +36,7 @@ export class MainView {
     this.container.append(this.listElement);
     this.element.append(this.container);
     this.loader = this.createLoader();
+    this.prewiew = null
   }
   createImageList(data: DataTypes) {
     const template = new DocumentFragment();
@@ -121,7 +124,7 @@ export class MainView {
     this.listElement.remove();
   }
   makePrewiew(dataCard) {
-    const prewiew = new PreviewView(dataCard).getPrewiew();
-    this.container.append(prewiew);
+    this.prewiew = new PreviewView(dataCard).getPrewiew();
+    this.container.append(this.prewiew);
   }
 }

@@ -39,7 +39,7 @@ export class Controller {
             limit: 12,
           },
         });
-        
+
         this.model.setData(responseData);
         this.model.sortRating(this.model.dataFromServer);
         this.view.mainView.createImageList(this.model.dataFromServer);
@@ -77,22 +77,32 @@ export class Controller {
     });
   }
 
+  async showPrewiew(event) {
+    const isCard = event.target.closest("[data-id]");
+    const isId = isCard ? isCard.getAttribute("data-id") : null;
+    this.view.mainView.showLoader();
+
+    const response = await this.model.getData({
+      version: "1.4",
+      chapter: "movie",
+      path: isId,
+    });
+
+    this.view.mainView.removeLoader();
+    this.model.setData(response);
+    this.view.mainView.makePrewiew(this.model.dataFromServer);
+  }
+  
   setListListener() {
     this.view.mainView.listElement.addEventListener("click", async (event) => {
-      const isCard = event.target.closest("[data-id]");
-      const isId = isCard ? isCard.getAttribute("data-id") : null;
-      this.view.mainView.showLoader();
-
-      const response = await this.model.getData({
-        version: "1.4",
-        chapter: "movie",
-        path: isId,
-      });
-
-      this.view.mainView.removeLoader();
-      this.model.setData(response);
+      await this.showPrewiew(event)
       this.view.mainView.removeList();
-      this.view.mainView.makePrewiew(this.model.dataFromServer);
+      console.log(this.view);
+      
+      this.view.mainView.prewiew.similarMoviesElement.addEventListener("click", async (event) => {
+        await this.showPrewiew(event)
+      });
     });
+    
   }
 }

@@ -276,7 +276,7 @@ class SliderPrewiew {
     sliderFilms(dataArray){
         if (dataArray) {
         const listMovies = new Creator(listMoviesParams).getElement()
-
+            
         dataArray.forEach(element => {
             let pathToImg = `url(${"/zaglushka.jpg"})`
 
@@ -290,6 +290,8 @@ class SliderPrewiew {
                 background: 
                 linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
                 ${pathToImg} no-repeat center/cover;`;
+
+            movieParams.attributes["data-id"] = element.id
             const movie = new Creator(movieParams).getElement()
             listMovies.append(movie)
             movieNameParams.text = element.name || element.alternativeName || "нет имени"
@@ -300,6 +302,7 @@ class SliderPrewiew {
             const yearMovie = new Creator(yearMovieParams).getElement()
             movie.append(yearMovie)
         });
+
         return listMovies
     }
 }}
@@ -308,8 +311,11 @@ export class PreviewView {
     cardElement;
     headerElement;
     heroElement;
-    sliderElement;
+    sliderConstructor;
     data;
+    sliderCrewElement;
+    similarMoviesElement;
+    prequelsElement;
 
     constructor(dataPreview) {
         console.log(dataPreview);
@@ -317,8 +323,10 @@ export class PreviewView {
         this.cardElement = new Creator(cardElementParams).getElement();
         this.headerElement = new HeaderPrewiew(dataPreview).getHeader();
         this.heroElement = new HeroPrewiew(dataPreview).getHero();
-        this.sliderElement = new SliderPrewiew()
-        
+        this.sliderConstructor = new SliderPrewiew()
+        this.sliderCrewElement = null
+        this.similarMoviesElement = null
+        this.prequelsElement = null
         this.build();
     }
 
@@ -327,12 +335,15 @@ export class PreviewView {
     }
 
     build() {
-        const sliderCrew = this.sliderElement.sliderCrew(this.data)
-        const similarMovies = this.sliderElement.sliderFilms(this.data.similarMovies)
-        const prequelsMovies = this.sliderElement.sliderFilms(this.data.sequelsAndPrequels)
-        const sectionCrew = this.sliderElement.createSection("crew & cast", sliderCrew)
-        const sectionSimillar = this.sliderElement.createSection("simillar movies", similarMovies)
-        const sectionPrequels = this.sliderElement.createSection("sequels & prequels", prequelsMovies)
+        this.sliderCrewElement = this.sliderConstructor.sliderCrew(this.data)
+        this.similarMoviesElement = this.sliderConstructor.sliderFilms(this.data.similarMovies)
+        console.log(this.similarMoviesElement);
+        
+        this.prequelsElement = this.sliderConstructor.sliderFilms(this.data.sequelsAndPrequels)
+
+        const sectionCrew = this.sliderConstructor.createSection("crew & cast", this.sliderCrewElement)
+        const sectionSimillar = this.sliderConstructor.createSection("simillar movies", this.similarMoviesElement)
+        const sectionPrequels = this.sliderConstructor.createSection("sequels & prequels", this.prequelsElement)
 
         this.cardElement.append(this.headerElement, this.heroElement, sectionCrew,sectionSimillar, sectionPrequels);
     }
