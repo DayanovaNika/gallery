@@ -12,40 +12,12 @@ export class Controller {
   async init() {
     this.view = new View(await this.model.genresList);
     this.setFormListener();
-    this.setButtonsListener();
-    this.setBurgerListener();
     this.setListListener();
   }
 
   setFormListener() {
     this.view.headerView.form.addEventListener("submit", (event) =>
       this.formSubmit(event),
-    );
-  }
-
-  setButtonsListener() {
-    this.view.headerView.buttonsContainer.addEventListener(
-      "click",
-      async (event) => {
-        const btnValue = this.view.headerView.getBtnValue(event) as string;
-        this.view.mainView.showLoader();
-
-        const responseData = await this.model.getData({
-          version: "1.4",
-          chapter: "movie",
-          path: "",
-          params: {
-            "genres.name": `${btnValue}`,
-            limit: 12,
-          },
-        });
-
-        this.model.setData(responseData);
-        this.model.sortRating(this.model.dataFromServer);
-        this.view.mainView.createImageList(this.model.dataFromServer);
-        this.view.mainView.removeLoader();
-        this.view.headerView.toggleClasses();
-      },
     );
   }
 
@@ -71,12 +43,6 @@ export class Controller {
     this.view.mainView.removeLoader();
   }
 
-  setBurgerListener() {
-    this.view.headerView.burger.addEventListener("click", () => {
-      this.view.headerView.toggleClasses();
-    });
-  }
-
   async showPrewiew(event) {
     const isCard = event.target.closest("[data-id]");
     const isId = isCard ? isCard.getAttribute("data-id") : null;
@@ -94,15 +60,42 @@ export class Controller {
   }
   
   setListListener() {
-    this.view.mainView.listElement.addEventListener("click", async (event) => {
-      await this.showPrewiew(event)
-      this.view.mainView.removeList();
-      console.log(this.view);
-      
-      this.view.mainView.prewiew.similarMoviesElement.addEventListener("click", async (event) => {
+    this.view.appContainer.addEventListener("click", async (event) => {
+
+      if (event.target.closest("[data-value]")) {
+          const btnValue = this.view.headerView.getBtnValue(event) as string;
+          this.view.mainView.showLoader();
+
+          const responseData = await this.model.getData({
+            version: "1.4",
+            chapter: "movie",
+            path: "",
+            params: {
+              "genres.name": `${btnValue}`,
+              limit: 12,
+            },
+          });
+
+          this.model.setData(responseData);
+          this.model.sortRating(this.model.dataFromServer);
+          this.view.mainView.createImageList(this.model.dataFromServer);
+          this.view.mainView.removeLoader();
+          this.view.headerView.toggleClasses();
+      }
+
+      if (event.target.closest("#burger")) {
+        this.view.headerView.toggleClasses();
+      }
+
+      if (event.target.closest("[data-slider-films]")) {
         await this.showPrewiew(event)
-      });
-    });
+      }
+
+      if (event.target.closest("[data-id]")) {
+        this.view.mainView.removeList()
+        await this.showPrewiew(event)
+      }
+    })
     
   }
 }

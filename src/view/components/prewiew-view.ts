@@ -335,10 +335,9 @@ export class PreviewView {
     }
 
     build() {
+        this.clearPrewiew()
         this.sliderCrewElement = this.sliderConstructor.sliderCrew(this.data)
         this.similarMoviesElement = this.sliderConstructor.sliderFilms(this.data.similarMovies)
-        console.log(this.similarMoviesElement);
-        
         this.prequelsElement = this.sliderConstructor.sliderFilms(this.data.sequelsAndPrequels)
 
         const sectionCrew = this.sliderConstructor.createSection("crew & cast", this.sliderCrewElement)
@@ -346,5 +345,10 @@ export class PreviewView {
         const sectionPrequels = this.sliderConstructor.createSection("sequels & prequels", this.prequelsElement)
 
         this.cardElement.append(this.headerElement, this.heroElement, sectionCrew,sectionSimillar, sectionPrequels);
+    }
+    // проверить отображение превью
+
+    clearPrewiew(){
+        this.cardElement.innerHTML = ""
     }
 }

@@ -39,6 +39,9 @@
     };
     export const burgerParams = {
     tagName: "button",
+    attributes: {
+        id: "burger",
+    },
     classList: [styleBurger.burger],
     };
     export const fadeParams = {
@@ -53,4 +56,12 @@
     export const burgerLineParams = {
     tagName: "span",
     classList: [styleBurger.burgerLineBase],
+    };
+    export const btnParams = {
+        tagName: "button",
+        text: "",
+        attributes: {
+            "data-value": "",
+        },
+        classList: [styleHeader.button],
     };

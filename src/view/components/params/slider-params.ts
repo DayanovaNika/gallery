@@ -35,6 +35,7 @@ export const listMoviesParams = {
     text: "",
     classList: [styleSlider.listMovies],
     attributes: {
+        "data-slider-films": "",
     },
 };
 export const movieParams = {
