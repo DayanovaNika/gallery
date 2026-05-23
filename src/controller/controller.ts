@@ -58,44 +58,43 @@ export class Controller {
     this.model.setData(response);
     this.view.mainView.makePrewiew(this.model.dataFromServer);
   }
-  
+
   setListListener() {
     this.view.appContainer.addEventListener("click", async (event) => {
-
       if (event.target.closest("[data-value]")) {
-          const btnValue = this.view.headerView.getBtnValue(event) as string;
-          this.view.mainView.showLoader();
+        const btnValue = this.view.headerView.getBtnValue(event) as string;
+        this.view.mainView.showLoader();
 
-          const responseData = await this.model.getData({
-            version: "1.4",
-            chapter: "movie",
-            path: "",
-            params: {
-              "genres.name": `${btnValue}`,
-              limit: 12,
-            },
-          });
+        const responseData = await this.model.getData({
+          version: "1.4",
+          chapter: "movie",
+          path: "",
+          params: {
+            "genres.name": `${btnValue}`,
+            limit: 12,
+          },
+        });
 
-          this.model.setData(responseData);
-          this.model.sortRating(this.model.dataFromServer);
-          this.view.mainView.createImageList(this.model.dataFromServer);
-          this.view.mainView.removeLoader();
-          this.view.headerView.toggleClasses();
+        this.model.setData(responseData);
+        this.model.sortRating(this.model.dataFromServer);
+        this.view.mainView.createImageList(this.model.dataFromServer);
+        this.view.mainView.removeLoader();
+        this.view.headerView.toggleClasses();
       }
 
       if (event.target.closest("#burger")) {
         this.view.headerView.toggleClasses();
       }
 
-      if (event.target.closest("[data-slider-films]")) {
-        await this.showPrewiew(event)
-      }
-
       if (event.target.closest("[data-id]")) {
-        this.view.mainView.removeList()
-        await this.showPrewiew(event)
+        const isFromSlider = event.target.closest("[data-slider-films]");
+
+        if (!isFromSlider) {
+          this.view.mainView.removeList();
+        }
+
+        await this.showPrewiew(event);
       }
-    })
-    
+    });
   }
 }
