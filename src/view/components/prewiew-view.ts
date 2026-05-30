@@ -366,12 +366,14 @@ export class PreviewView {
       this.prequelsElement,
     );
 
+
     this.cardElement.append(
-      this.headerElement,
-      this.heroElement,
-      sectionCrew,
-      sectionSimillar,
-      sectionPrequels,
-    );
-  }
+        this.headerElement,
+        this.heroElement,
+        sectionCrew,
+        sectionSimillar,
+        sectionPrequels,
+        );
+    }
 }
+
