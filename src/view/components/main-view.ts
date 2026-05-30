@@ -28,7 +28,7 @@ export class MainView {
   container;
   loader;
   prewiew;
-  
+
   constructor() {
     this.element = new Creator(mainParams).getElement();
     this.listElement = new Creator(listParams).getElement();
@@ -36,8 +36,9 @@ export class MainView {
     this.container.append(this.listElement);
     this.element.append(this.container);
     this.loader = this.createLoader();
-    this.prewiew = null
+    this.prewiew = null;
   }
+
   createImageList(data: DataTypes) {
     const template = new DocumentFragment();
     this.clear();
@@ -98,9 +99,11 @@ export class MainView {
     });
     this.listElement.append(template);
   }
+
   clear() {
     this.listElement.innerHTML = "";
   }
+
   createLoader() {
     const loaderContainer = new Creator(loaderContainerParams).getElement();
     const gif = new Creator(gifParams).getElement();
@@ -110,20 +113,27 @@ export class MainView {
     // this.element.append(fade);
     return fade;
   }
+
   removeLoader() {
     setTimeout(() => {
       // this.loader.classList.add(style.loaderHidden);
       this.loader.remove();
     });
   }
+
   showLoader() {
     // this.loader.classList.remove(style.loaderHidden)
     this.element.append(this.loader);
   }
+
   removeList() {
     this.listElement.remove();
   }
+
   makePrewiew(dataCard) {
+    if (this.prewiew) {
+      this.prewiew.remove(); // убираем старый из DOM
+    }
     this.prewiew = new PreviewView(dataCard).getPrewiew();
     this.container.append(this.prewiew);
   }
