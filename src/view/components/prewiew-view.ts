@@ -255,14 +255,16 @@ class SliderPrewiew {
     return section;
   }
 
-  sliderCrew(data) {
+sliderCrew(data) {
     if (data && data.persons) {
-      const listCrew = new Creator(listCrewParams).getElement();
-      data.persons.forEach((element) => {
+        const listCrew = new Creator(listCrewParams).getElement();
+        data.persons.forEach((element) => {
         personCrewParams.attributes.style = `
                 background: 
                 linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
                 url(${element.photo}) no-repeat center/cover;`;
+        
+        personCrewParams.attributes["data-actor-id"] = element.id;
         const personCrew = new Creator(personCrewParams).getElement();
         listCrew.append(personCrew);
         /* eslint-disable */
@@ -271,18 +273,18 @@ class SliderPrewiew {
         personCrew.append(actorName);
 
         actorProffParams.text =
-          `Рабочая группа: ${element.profession}` ||
-          `Рабочая группа: ${element.enProfession}` ||
-          "Рабочая группа: неизвестно";
+            `Рабочая группа: ${element.profession}` ||
+            `Рабочая группа: ${element.enProfession}` ||
+            "Рабочая группа: неизвестно";
         /* eslint-enable */
         const actorProff = new Creator(actorProffParams).getElement();
         personCrew.append(actorProff);
-      });
-      return listCrew;
+        });
+        return listCrew;
     }
-  }
+}
 
-  sliderFilms(dataArray) {
+sliderFilms(dataArray) {
     if (dataArray) {
       const listMovies = new Creator(listMoviesParams).getElement();
 
@@ -290,9 +292,9 @@ class SliderPrewiew {
         let pathToImg = `url(${"/zaglushka.jpg"})`;
 
         if (element.poster && element.poster.url) {
-          pathToImg = `url(${element.poster.url})`;
+            pathToImg = `url(${element.poster.url})`;
         } else if (element.poster && element.poster.previewUrl) {
-          pathToImg = `url(${element.poster.previewUrl})`;
+            pathToImg = `url(${element.poster.previewUrl})`;
         }
         movieParams.attributes.style = `
                 background: 
@@ -303,14 +305,14 @@ class SliderPrewiew {
         const movie = new Creator(movieParams).getElement();
         listMovies.append(movie);
         movieNameParams.text =
-          element.name || element.alternativeName || "нет имени";
+        element.name || element.alternativeName || "нет имени";
         const movieName = new Creator(movieNameParams).getElement();
         movie.append(movieName);
 
         yearMovieParams.text = element.year || "года нет";
         const yearMovie = new Creator(yearMovieParams).getElement();
         movie.append(yearMovie);
-      });
+    });
 
       return listMovies;
     }

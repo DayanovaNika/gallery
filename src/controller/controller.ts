@@ -56,6 +56,8 @@ export class Controller {
 
     this.view.mainView.removeLoader();
     this.model.setData(response);
+    console.log(this.model.dataFromServer);
+    
     this.view.mainView.makePrewiew(this.model.dataFromServer);
   }
 
@@ -95,6 +97,29 @@ export class Controller {
 
         await this.showPrewiew(event);
       }
+
+      if (event.target.closest("[data-actor-id]")) {
+        await this.showPersonPreview(event);
+      }
     });
   }
+  
+  async showPersonPreview(event) {
+    const card = event.target.closest("[data-actor-id]");
+    const id = card?.getAttribute("data-actor-id");
+
+    this.view.mainView.showLoader();
+
+    const response = await this.model.getData({
+        version: "1.4",
+        chapter: "person",
+        path: id,
+    });
+
+    this.view.mainView.removeLoader();
+
+    console.log(response);
+
+    this.view.mainView.makePersonPreview(response);
+}
 }

@@ -1,6 +1,7 @@
 import Creator from "../../core/creator";
 import type { DataTypes } from "../../types/data-types";
 import { PreviewView } from "./prewiew-view";
+import { PersonPreviewView } from "./person-preview-view";
 
 import {
   mainParams,
@@ -137,4 +138,15 @@ export class MainView {
     this.prewiew = new PreviewView(dataCard).getPrewiew();
     this.container.append(this.prewiew);
   }
+
+  makePersonPreview(data) {
+    if (this.personPreview) {
+        this.personPreview.remove();
+    }
+
+    this.personPreview =
+        new PersonPreviewView(data).getPreview();
+
+    this.container.append(this.personPreview);
+}
 }
