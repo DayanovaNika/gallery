@@ -140,13 +140,13 @@ export class MainView {
   }
 
   makePersonPreview(data) {
-    if (this.personPreview) {
-        this.personPreview.remove();
+    if (this.prewiew) {
+        this.prewiew.remove();
     }
 
-    this.personPreview =
+    this.prewiew =
         new PersonPreviewView(data).getPreview();
 
-    this.container.append(this.personPreview);
+    this.container.append(this.prewiew);
 }
 }
