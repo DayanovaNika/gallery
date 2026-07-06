@@ -3,6 +3,7 @@ import type { DataTypes } from "../../types/data-types";
 import { PreviewView } from "./prewiew-view";
 import { PersonPreviewView } from "./person-preview-view";
 
+
 import {
   mainParams,
   listParams,
@@ -29,6 +30,7 @@ export class MainView {
   container;
   loader;
   prewiew;
+  personPreview;
 
   constructor() {
     this.element = new Creator(mainParams).getElement();
@@ -38,6 +40,7 @@ export class MainView {
     this.element.append(this.container);
     this.loader = this.createLoader();
     this.prewiew = null;
+    this.personPreview = null;
   }
 
   createImageList(data: DataTypes) {
@@ -141,12 +144,18 @@ export class MainView {
 
   makePersonPreview(data) {
     if (this.prewiew) {
-        this.prewiew.remove();
+      this.prewiew.remove();
     }
 
-    this.prewiew =
-        new PersonPreviewView(data).getPreview();
+    if (this.personPreview) {
+      this.personPreview.remove();
+    }
 
-    this.container.append(this.prewiew);
+    this.personPreview =
+      new PersonPreviewView(data).getPreview();
+
+    this.container.append(
+      this.personPreview,
+    );
 }
 }

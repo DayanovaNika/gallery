@@ -61,4 +61,18 @@ export class Model {
       return b.rating.imdb - a.rating.imdb;
     });
   }
+  
+  async getMoviesByIds(movieIds) {
+      const requests = movieIds.map((id) =>
+          this.getData({
+              version: "1.4",
+              chapter: "movie",
+              path: id,
+          }),
+      );
+  
+      const movies = await Promise.all(requests);
+  
+      return movies.filter(Boolean);
+  }
 }

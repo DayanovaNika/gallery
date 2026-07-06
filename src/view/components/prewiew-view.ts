@@ -59,6 +59,7 @@ class HeaderPrewiew {
   }
 
   build(dataPreview) {
+    
     const bgTemplate = "/prewiewBg.png";
     let imgUrl = bgTemplate;
     if (dataPreview.backdrop && dataPreview.backdrop.url) {
@@ -72,7 +73,7 @@ class HeaderPrewiew {
         linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
         url(${imgUrl}) no-repeat center/cover;`;
 
-    const filmName = dataPreview.alternativeName;
+    const filmName = dataPreview.name || dataPreview.alternativeName
     const ratingKp = dataPreview.rating.kp || "none";
     const ratingImdb = dataPreview.rating.imdb || "none";
     const movieLength = dataPreview.movieLength;

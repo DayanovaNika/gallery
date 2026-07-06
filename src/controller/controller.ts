@@ -81,37 +81,46 @@ export class Controller {
     );
   }
 
-  async showPersonPreview(event) {
-    const card = event.target.closest(
-      "[data-actor-id]",
-    );
+async showPersonPreview(event) {
+    const card = event.target.closest("[data-actor-id]");
 
-    const id =
-      card?.getAttribute("data-actor-id");
+    const id = card?.getAttribute("data-actor-id");
 
     if (!id) {
-      return;
+        return;
     }
 
     this.view.mainView.showLoader();
 
     const response = await this.model.getData({
-      version: "1.4",
-      chapter: "person",
-      path: id,
+        version: "1.4",
+        chapter: "person",
+        path: id,
     });
+
+    if (!response) {
+        this.view.mainView.removeLoader();
+        return;
+    }
+
+    const person =
+        response.docs?.length
+            ? response.docs[0]
+            : response;
+
+    const movieIds = person.movies
+        .slice(0, 30)
+        .map((movie) => movie.id);
+
+    const movies =
+        await this.model.getMoviesByIds(movieIds);
+
+    person.movies = movies;
 
     this.view.mainView.removeLoader();
 
-    this.model.setData(response);
-
-    console.log("PERSON:");
-    console.log(this.model.dataFromServer);
-
-    this.view.mainView.makePersonPreview(
-      this.model.dataFromServer,
-    );
-  }
+    this.view.mainView.makePersonPreview(person);
+}
 
   setListListener() {
     this.view.appContainer.addEventListener(
