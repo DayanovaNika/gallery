@@ -297,7 +297,7 @@ STATISTICS
 
 .movieCard {
     min-width: 280px;
-
+    min-height: 275px;
     padding: 24px;
 
     border-radius: 20px;
