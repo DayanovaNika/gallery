@@ -9,12 +9,79 @@ export class Controller {
     this.init();
   }
 
+  // async init() {
+  //   this.view = new View(await this.model.genresList);
+
+  //   this.setFormListener();
+  //   this.setListListener();
+  // }
+  
   async init() {
-    this.view = new View(await this.model.genresList);
+    this.view = new View(
+        await this.model.genresList,
+    );
+
+    await this.loadHomePage();
 
     this.setFormListener();
     this.setListListener();
-  }
+}
+
+  async loadHomePage() {
+    // Показываем loader
+    this.view.mainView.showLoader();
+    console.log(1);
+    
+    // Получаем случайную страницу
+    // (от 1 до 10)
+    const randomPage =
+        Math.floor(Math.random() * 10) + 1;
+
+    // Запрашиваем фильмы
+    const response = await this.model.getData({
+        version: "1.4",
+        chapter: "movie",
+        params: {
+            page: randomPage,
+            limit: 12,
+
+            // фильмы с высоким рейтингом
+            "rating.kp": "7.5-10",
+
+            // сортировка по количеству голосов
+            sortField: "votes.kp",
+
+            // по убыванию
+            sortType: "-1",
+
+            // только фильмы
+            type: "movie",
+        },
+    });
+
+    // если сервер ничего не вернул
+    if (!response) {
+        this.view.mainView.removeLoader();
+        return;
+    }
+    console.log(response);
+    
+    // сохраняем ответ в Model
+    this.model.setData(response);
+
+    // сортируем фильмы по рейтингу
+    this.model.sortRating(
+        this.model.dataFromServer,
+    );
+
+    // рисуем карточки
+    this.view.mainView.createImageList(
+        this.model.dataFromServer,
+    );
+
+    // убираем loader
+    this.view.mainView.removeLoader();
+}
 
   setFormListener() {
     this.view.headerView.form.addEventListener(

@@ -78,4 +78,30 @@ export class Model {
   
       return movies.filter(Boolean);
   }
+
+//   async getRandomMovies(count = 12) {
+//     const requests = Array.from(
+//         { length: count },
+//         () =>
+//             this.getData({
+//                 version: "1.4",
+//                 chapter: "movie",
+//                 path: "random",
+//                 params: {
+//                     "rating.kp": "7.5-10",
+//                     notNullFields: [
+//                         "poster.url",
+//                         "rating.kp",
+//                         "name",
+//                     ].join(","),
+//                 },
+//             }),
+//     );
+
+//     const movies = await Promise.all(requests);
+
+//     return {
+//         docs: movies.filter(Boolean),
+//     };
+// }
 }
