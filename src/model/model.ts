@@ -57,11 +57,14 @@ export class Model {
   }
 
   sortRating(data) {
-    data.docs.sort(function (a, b) {
-      return b.rating.imdb - a.rating.imdb;
+    data.docs.sort((a, b) => {
+        const ratingA = a.rating?.imdb ?? 0;
+        const ratingB = b.rating?.imdb ?? 0;
+
+        return ratingB - ratingA;
     });
-  }
-  
+}
+
   async getMoviesByIds(movieIds) {
       const requests = movieIds.map((id) =>
           this.getData({
