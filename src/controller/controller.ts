@@ -27,62 +27,21 @@ export class Controller {
     this.setListListener();
 }
 
-  async loadHomePage() {
-    // Показываем loader
+async loadHomePage() {
+
     this.view.mainView.showLoader();
-    console.log(1);
-    
-    // Получаем случайную страницу
-    // (от 1 до 10)
-    const randomPage =
-        Math.floor(Math.random() * 10) + 1;
 
-    // Запрашиваем фильмы
-    const response = await this.model.getData({
-        version: "1.4",
-        chapter: "movie",
-        params: {
-            page: randomPage,
-            limit: 12,
+    const data = await this.model.loadHomeMovies();
 
-            // фильмы с высоким рейтингом
-            "rating.kp": "7.5-10",
+    this.model.setData(data);
 
-            // сортировка по количеству голосов
-            sortField: "votes.kp",
+    this.model.sortRating(this.model.dataFromServer);
 
-            // по убыванию
-            sortType: "-1",
-
-            // только фильмы
-            type: "movie",
-        },
-    });
-
-    // если сервер ничего не вернул
-    if (!response) {
-        this.view.mainView.removeLoader();
-        return;
-    }
-    console.log(response);
-    
-    // сохраняем ответ в Model
-    this.model.setData(response);
-
-    // сортируем фильмы по рейтингу
-    this.model.sortRating(
-        this.model.dataFromServer,
-    );
-
-    // рисуем карточки
     this.view.mainView.createImageList(
         this.model.dataFromServer,
     );
-    
-    this.view.mainView.scrollToTop();
-    // убираем loader
-    this.view.mainView.removeLoader();
 
+    this.view.mainView.removeLoader();
 }
 
   setFormListener() {
@@ -132,11 +91,8 @@ export class Controller {
 
     this.view.mainView.showLoader();
 
-    const response = await this.model.getData({
-      version: "1.4",
-      chapter: "movie",
-      path: id,
-    });
+    const response =
+    await this.model.getMovie(Number(id));
 
     this.view.mainView.removeLoader();
 
@@ -163,11 +119,7 @@ async showPersonPreview(event) {
 
     this.view.mainView.showLoader();
 
-    const response = await this.model.getData({
-        version: "1.4",
-        chapter: "person",
-        path: id,
-    });
+    const response = await this.model.getPerson(Number(id));
 
     if (!response) {
         this.view.mainView.removeLoader();

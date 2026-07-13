@@ -74,7 +74,11 @@ class HeaderPrewiew {
         url(${imgUrl}) no-repeat center/cover;`;
 
     const filmName = dataPreview.name || dataPreview.alternativeName
-    const ratingKp = dataPreview.rating.kp || "none";
+    
+    let ratingKp = null
+    if(dataPreview.rating && dataPreview.rating.kp) {
+        ratingKp = dataPreview.rating.kp || "none";
+    }
     const ratingImdb = dataPreview.rating.imdb || "none";
     const movieLength = dataPreview.movieLength;
     const ratingMpaa = dataPreview.ratingMpaa;
