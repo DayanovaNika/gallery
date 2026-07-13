@@ -130,6 +130,13 @@ export class MainView {
     this.element.append(this.loader);
   }
 
+  scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+}
+
   removeList() {
     this.listElement.remove();
   }

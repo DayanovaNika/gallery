@@ -78,9 +78,11 @@ export class Controller {
     this.view.mainView.createImageList(
         this.model.dataFromServer,
     );
-
+    
+    this.view.mainView.scrollToTop();
     // убираем loader
     this.view.mainView.removeLoader();
+
 }
 
   setFormListener() {
@@ -146,6 +148,8 @@ export class Controller {
     this.view.mainView.makePrewiew(
       this.model.dataFromServer,
     );
+
+    this.view.mainView.scrollToTop();
   }
 
 async showPersonPreview(event) {
@@ -187,6 +191,8 @@ async showPersonPreview(event) {
     this.view.mainView.removeLoader();
 
     this.view.mainView.makePersonPreview(person);
+
+    this.view.mainView.scrollToTop();
 }
 
   setListListener() {
