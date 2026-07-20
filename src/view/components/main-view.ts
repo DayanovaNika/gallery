@@ -142,27 +142,38 @@ export class MainView {
   }
 
   makePrewiew(dataCard) {
-    if (this.prewiew) {
-      this.prewiew.remove(); // убираем старый из DOM
-    }
-    this.prewiew = new PreviewView(dataCard).getPrewiew();
-    this.container.append(this.prewiew);
-  }
 
-  makePersonPreview(data) {
     if (this.prewiew) {
-      this.prewiew.remove();
+        this.prewiew.remove();
+        this.prewiew = null;
     }
 
     if (this.personPreview) {
-      this.personPreview.remove();
+        this.personPreview.remove();
+        this.personPreview = null;
+    }
+
+    this.prewiew =
+        new PreviewView(dataCard).getPrewiew();
+
+    this.container.append(this.prewiew);
+}
+
+  makePersonPreview(data) {
+
+    if (this.prewiew) {
+        this.prewiew.remove();
+        this.prewiew = null;
+    }
+
+    if (this.personPreview) {
+        this.personPreview.remove();
+        this.personPreview = null;
     }
 
     this.personPreview =
-      new PersonPreviewView(data).getPreview();
+        new PersonPreviewView(data).getPreview();
 
-    this.container.append(
-      this.personPreview,
-    );
+    this.container.append(this.personPreview);
 }
 }
