@@ -25,10 +25,11 @@ export class Controller {
 
     this.setFormListener();
     this.setListListener();
-}
+  }
 
-async loadHomePage() {
+// async loadHomePage() {
 
+  async loadHomePage() {
     this.view.mainView.showLoader();
 
     const data = await this.model.loadHomeMovies();
@@ -42,7 +43,7 @@ async loadHomePage() {
     );
 
     this.view.mainView.removeLoader();
-}
+  }
 
   setFormListener() {
     this.view.headerView.form.addEventListener(
@@ -145,7 +146,7 @@ async showPersonPreview(event) {
     this.view.mainView.makePersonPreview(person);
 
     this.view.mainView.scrollToTop();
-}
+  }
 
   setListListener() {
     this.view.appContainer.addEventListener(

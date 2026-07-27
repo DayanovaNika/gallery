@@ -1,4 +1,6 @@
 import Creator from "../../core/creator";
+import { SliderPagination }
+from "./slider-pagination";
 
 import {
     cardElementParams,
@@ -40,6 +42,7 @@ export class PersonPreviewView {
     cardElement;
     headerElement;
     data;
+    
 
     constructor(dataPreview) {
         this.data = dataPreview.docs
@@ -453,65 +456,111 @@ export class SliderPersonPreview {
     }
 
 sliderMovies(movies) {
+    console.log(movies);
+    
+    const wrapper =
+        document.createElement("div");
+    wrapper.className = "moviesWrapper";
+
     const list =
-        new Creator(listMoviesParams).getElement();
+        new Creator(
+            listMoviesParams,
+        ).getElement();
+    list.classList.add("moviesList");
 
-    movies.forEach((movie) => {
+    const pagination =
+    new SliderPagination(
+        movies || [],
+        8,
+        (pageMovies) => {
 
-        const config =
-            structuredClone(movieCardParams);
+                list.innerHTML = "";
 
-        let img = "/zaglushka.jpg";
+                pageMovies.forEach(
+                    (movie) => {
 
-        if (
-            movie.poster &&
-            movie.poster.previewUrl
-        ) {
-            img = movie.poster.previewUrl;
-        }
+                        list.append(
+                            this.createMovieCard(
+                                movie,
+                            ),
+                        );
 
-        config.attributes.style = `
-            background:
-            linear-gradient(
-                rgba(0,0,0,.2),
-                rgba(0,0,0,.55)
-            ),
-            url(${img})
-            center/cover;
-        `;
+                    },
+                );
 
-        config.attributes["data-id"] =
-            movie.id;
-
-        const card =
-            new Creator(config).getElement();
-
-        const movieName =
-            new Creator(movieNameParams).getElement();
-
-        movieName.innerText =
-            movie.name ||
-            movie.alternativeName ||
-            "Unknown";
-
-        const profession =
-            new Creator(
-                movieProfessionParams,
-            ).getElement();
-
-        profession.innerText =
-            movie.year ??
-            "";
-
-        card.append(
-            movieName,
-            profession,
+            },
         );
 
-        list.append(card);
-    });
+    wrapper.append(
+    list,
+    pagination.getElement(),
+);
 
-    return list;
+    return wrapper;
+
+}
+
+createMovieCard(movie) {
+
+    const config =
+        structuredClone(
+            movieCardParams,
+        );
+
+    let image =
+        "/zaglushka.jpg";
+
+    if (
+        movie.poster &&
+        movie.poster.previewUrl
+    ) {
+
+        image =
+            movie.poster.previewUrl;
+
+    }
+
+    config.attributes.style = `
+        background:
+        linear-gradient(
+            rgba(0,0,0,.2),
+            rgba(0,0,0,.55)
+        ),
+        url(${image})
+        center/cover;
+    `;
+
+    config.attributes["data-id"] =
+        movie.id;
+
+    const card =
+        new Creator(config).getElement();
+
+    const name =
+        new Creator(
+            movieNameParams,
+        ).getElement();
+
+    name.innerText =
+        movie.name ||
+        movie.alternativeName ||
+        "Unknown";
+
+    const year =
+        new Creator(
+            movieProfessionParams,
+        ).getElement();
+
+    year.innerText =
+        String(movie.year || "");
+
+    card.append(
+        name,
+        year,
+    );
+
+    return card;
+
 }
 
     sliderFamily(spouses) {

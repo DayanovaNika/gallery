@@ -33,7 +33,7 @@ export class Model {
     const url = new URL(
       `${baseURL}/v${version}/${chapter}${path ? `/${path}` : ""}`,
     );
-
+    console.log(url.toString());
     const cacheKey = url.toString();
 
     if (this.cache.has(cacheKey)) {

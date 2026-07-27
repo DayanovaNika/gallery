@@ -283,33 +283,42 @@ STATISTICS
 ========================= */
 
 .listMovies {
-    display: flex;
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
     gap: 24px;
-
-    overflow-x: auto;
-
-    padding-bottom: 12px;
 
     list-style: none;
 
     margin: 0;
+    padding: 0;
 }
 
 .movieCard {
-    min-width: 280px;
-    min-height: 275px;
-    padding: 24px;
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
 
     border-radius: 20px;
-    background: #111111;
-    color: #ffffff;
-    transition: 0.3s;
+
+    padding: 24px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    transition: .3s;
 }
 
 .movieCard:hover {
-    transform: translateY(-8px);
-}
+    transform: translateY(-6px);
 
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.45);
+}
 .movieName {
     font-size: 22px;
     font-weight: 700;
@@ -393,7 +402,7 @@ STATISTICS
    SCROLLBAR
 ========================= */
 
-.listMovies::-webkit-scrollbar,
+/* .listMovies::-webkit-scrollbar,
 .listFamily::-webkit-scrollbar {
     height: 8px;
 }
@@ -403,7 +412,7 @@ STATISTICS
     background: rgba(255, 255, 255, 0.2);
 
     border-radius: 999px;
-}
+} */
 .sectionTitle,
 .blockTitle,
 .name,
@@ -416,7 +425,62 @@ STATISTICS
 }
 
 /* =========================
-   RESPONSIVE
+   PAGINATION
+========================= */
+
+.sliderPagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 24px;
+
+    margin-bottom: 28px;
+}
+.moviesWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sliderPagination button {
+    width: 54px;
+    height: 54px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    background: #161616;
+
+    color: white;
+
+    transition: .25s;
+}
+
+.sliderPagination button:hover:not(:disabled) {
+    background: #f5a6c4;
+
+    color: black;
+
+    transform: translateY(-2px);
+}
+
+.sliderPagination button:disabled {
+    opacity: .3;
+    cursor: default;
+}
+
+.sliderPagination span {
+    min-width: 90px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: rgba(255,255,255,.85);
+}
+
+/* =========================
+RESPONSIVE
 ========================= */
 
 @media (max-width: 1024px) {
@@ -448,6 +512,10 @@ STATISTICS
     .section {
         padding: 0 40px 40px;
     }
+
+    .listMovies {
+    grid-template-columns: repeat(2, 1fr);
+}
 }
 
 @media (max-width: 768px) {
@@ -475,4 +543,16 @@ STATISTICS
     .sectionTitle {
         font-size: 32px;
     }
+    .listMovies {
+    grid-template-columns: 1fr;
+}
+
+.sliderPagination {
+    gap: 12px;
+}
+
+.sliderPagination button {
+    width: 44px;
+    height: 44px;
+}
 }
