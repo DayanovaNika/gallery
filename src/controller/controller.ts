@@ -75,6 +75,8 @@ export class Controller {
           },
         });
 
+        console.log("Ответ API по жанру:", responseData);
+
         this.model.setData(responseData);
         this.model.sortRating(this.model.dataFromServer);
         this.view.mainView.createImageList(this.model.dataFromServer);
