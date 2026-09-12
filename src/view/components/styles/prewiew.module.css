@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
 
 .prewiew {
 }
@@ -11,7 +11,7 @@
   padding: 0 20px 110px 20px;
 }
 /* padding у контейнера пересмотреть */
-.star{
+.star {
   background-image: url(/star.svg);
   background-repeat: no-repeat;
   width: 20px;
@@ -20,13 +20,13 @@
 .cardElement {
   padding-top: 80px;
 }
-.descFilmPrewiew{
+.descFilmPrewiew {
   display: flex;
   gap: 16px;
   align-items: center;
   margin-bottom: 60px;
 }
-.genresType{
+.genresType {
   color: #fff;
   font-size: 22px;
   font-weight: 600;
@@ -36,14 +36,14 @@
   text-transform: uppercase;
   font-family: "Archivo Black", sans-serif;
 }
-.genres{
+.genres {
   font-size: 20px;
   text-transform: capitalize;
   font-family: "Open Sans", sans-serif;
   color: #dddddd;
   font-weight: 500;
 }
-.filmName{
+.filmName {
   font-family: "Archivo Black", sans-serif;
   font-size: 70px;
   color: #fff;
@@ -52,37 +52,37 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.infoWrapper{
+.infoWrapper {
   display: flex;
   gap: 14px;
 }
-.cellInfo{
+.cellInfo {
   display: flex;
   flex-direction: column;
   gap: 7px;
   align-items: center;
   color: #dddddd;
 }
-.titleInfo{
+.titleInfo {
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #ddddddb8;
 }
-.valueInfo{
+.valueInfo {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
-.wrapper{
+.wrapper {
   display: flex;
   gap: 5px;
 }
-.rating{
+.rating {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
 @media (max-width: 768px) {
-  .headerPrewiew{
+  .headerPrewiew {
     justify-content: center;
     padding-top: 100px;
   }
@@ -97,7 +97,7 @@
     flex-wrap: wrap;
     row-gap: 20px;
   }
-  .filmName{
+  .filmName {
     font-size: 55px;
   }
   .infoWrapper {
@@ -110,13 +110,12 @@
     font-weight: 600;
     font-size: 16px;
   }
-  .valueInfo{
+  .valueInfo {
     font-weight: 500;
     font-size: 15px;
   }
-  .rating{
+  .rating {
     font-weight: 500;
     font-size: 15px;
   }
 }
-
