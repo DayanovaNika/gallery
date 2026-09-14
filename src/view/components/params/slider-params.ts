@@ -7,12 +7,13 @@ export const listCrewParams = {
   attributes: {},
 };
 export const personCrewParams = {
-  tagName: "li",
-  text: "",
-  classList: [styleSlider.personCrew],
-  attributes: {
-    style: "",
-  },
+    tagName: "li",
+    text: "",
+    classList: [styleSlider.personCrew],
+    attributes: {
+        style: "",
+        "data-actor-id": ""
+    },
 };
 export const actorNameParams = {
   tagName: "h6",

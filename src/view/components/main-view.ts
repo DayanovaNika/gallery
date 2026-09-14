@@ -1,6 +1,8 @@
 import Creator from "../../core/creator";
 import type { DataTypes } from "../../types/data-types";
 import { PreviewView } from "./prewiew-view";
+import { PersonPreviewView } from "./person-preview-view";
+
 
 import {
   mainParams,
@@ -28,6 +30,7 @@ export class MainView {
   container;
   loader;
   prewiew;
+  personPreview;
 
   constructor() {
     this.element = new Creator(mainParams).getElement();
@@ -37,6 +40,7 @@ export class MainView {
     this.element.append(this.container);
     this.loader = this.createLoader();
     this.prewiew = null;
+    this.personPreview = null;
   }
 
   createImageList(data: DataTypes) {
@@ -126,15 +130,50 @@ export class MainView {
     this.element.append(this.loader);
   }
 
+  scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+    });
+}
+
   removeList() {
     this.listElement.remove();
   }
 
   makePrewiew(dataCard) {
+
     if (this.prewiew) {
-      this.prewiew.remove(); // убираем старый из DOM
+        this.prewiew.remove();
+        this.prewiew = null;
     }
-    this.prewiew = new PreviewView(dataCard).getPrewiew();
+
+    if (this.personPreview) {
+        this.personPreview.remove();
+        this.personPreview = null;
+    }
+
+    this.prewiew =
+        new PreviewView(dataCard).getPrewiew();
+
     this.container.append(this.prewiew);
-  }
+}
+
+  makePersonPreview(data) {
+
+    if (this.prewiew) {
+        this.prewiew.remove();
+        this.prewiew = null;
+    }
+
+    if (this.personPreview) {
+        this.personPreview.remove();
+        this.personPreview = null;
+    }
+
+    this.personPreview =
+        new PersonPreviewView(data).getPreview();
+
+    this.container.append(this.personPreview);
+}
 }

@@ -59,6 +59,7 @@ class HeaderPrewiew {
   }
 
   build(dataPreview) {
+    
     const bgTemplate = "/prewiewBg.png";
     let imgUrl = bgTemplate;
     if (dataPreview.backdrop && dataPreview.backdrop.url) {
@@ -72,8 +73,12 @@ class HeaderPrewiew {
         linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), 
         url(${imgUrl}) no-repeat center/cover;`;
 
-    const filmName = dataPreview.alternativeName;
-    const ratingKp = dataPreview.rating.kp || "none";
+    const filmName = dataPreview.name || dataPreview.alternativeName
+
+    let ratingKp = null
+    if(dataPreview.rating && dataPreview.rating.kp) {
+        ratingKp = dataPreview.rating.kp || "none";
+    }
     const ratingImdb = dataPreview.rating.imdb || "none";
     const movieLength = dataPreview.movieLength;
     const ratingMpaa = dataPreview.ratingMpaa;
@@ -88,14 +93,6 @@ class HeaderPrewiew {
       ["продолжительность"]: movieLength ?? "none",
       ["возрастной рейтинг"]: ratingMpaa ?? "none",
     };
-
-    // const persons = dataPreview.persons
-    // const premiereWorld = dataPreview.premiere.world
-    // const premiereRussia = dataPreview.premiere.russia
-    // const sequels = dataPreview.sequelsAndPrequels
-    // const similarMovies = dataPreview.similarMovies
-
-    // 1 создать переменные в которые нужно вытащить данные
 
     const descFilmPrewiew = new Creator(descFilmPrewiewParams).getElement();
     genresTypeParams.text = filmType;
@@ -255,14 +252,16 @@ class SliderPrewiew {
     return section;
   }
 
-  sliderCrew(data) {
+sliderCrew(data) {
     if (data && data.persons) {
-      const listCrew = new Creator(listCrewParams).getElement();
-      data.persons.forEach((element) => {
+        const listCrew = new Creator(listCrewParams).getElement();
+        data.persons.forEach((element) => {
         personCrewParams.attributes.style = `
                 background: 
                 linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)), 
                 url(${element.photo}) no-repeat center/cover;`;
+        
+        personCrewParams.attributes["data-actor-id"] = element.id;
         const personCrew = new Creator(personCrewParams).getElement();
         listCrew.append(personCrew);
         /* eslint-disable */
@@ -271,18 +270,18 @@ class SliderPrewiew {
         personCrew.append(actorName);
 
         actorProffParams.text =
-          `Рабочая группа: ${element.profession}` ||
-          `Рабочая группа: ${element.enProfession}` ||
-          "Рабочая группа: неизвестно";
+            `Рабочая группа: ${element.profession}` ||
+            `Рабочая группа: ${element.enProfession}` ||
+            "Рабочая группа: неизвестно";
         /* eslint-enable */
         const actorProff = new Creator(actorProffParams).getElement();
         personCrew.append(actorProff);
-      });
-      return listCrew;
+        });
+        return listCrew;
     }
-  }
+}
 
-  sliderFilms(dataArray) {
+sliderFilms(dataArray) {
     if (dataArray) {
       const listMovies = new Creator(listMoviesParams).getElement();
 
@@ -290,9 +289,9 @@ class SliderPrewiew {
         let pathToImg = `url(${"/zaglushka.jpg"})`;
 
         if (element.poster && element.poster.url) {
-          pathToImg = `url(${element.poster.url})`;
+            pathToImg = `url(${element.poster.url})`;
         } else if (element.poster && element.poster.previewUrl) {
-          pathToImg = `url(${element.poster.previewUrl})`;
+            pathToImg = `url(${element.poster.previewUrl})`;
         }
         movieParams.attributes.style = `
                 background: 
@@ -303,14 +302,14 @@ class SliderPrewiew {
         const movie = new Creator(movieParams).getElement();
         listMovies.append(movie);
         movieNameParams.text =
-          element.name || element.alternativeName || "нет имени";
+        element.name || element.alternativeName || "нет имени";
         const movieName = new Creator(movieNameParams).getElement();
         movie.append(movieName);
 
         yearMovieParams.text = element.year || "года нет";
         const yearMovie = new Creator(yearMovieParams).getElement();
         movie.append(yearMovie);
-      });
+    });
 
       return listMovies;
     }
@@ -366,12 +365,14 @@ export class PreviewView {
       this.prequelsElement,
     );
 
+
     this.cardElement.append(
-      this.headerElement,
-      this.heroElement,
-      sectionCrew,
-      sectionSimillar,
-      sectionPrequels,
-    );
-  }
+        this.headerElement,
+        this.heroElement,
+        sectionCrew,
+        sectionSimillar,
+        sectionPrequels,
+        );
+    }
 }
+
