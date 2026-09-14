@@ -3,7 +3,19 @@ import Creator from "../../core/creator";
 import styleBurger from "./styles/burger.module.css";
 import styleHeader from "./styles/header-style.module.css";
 
-import {headerParams,wrapperButtonParams,btnContainerParams,fadeParams,formParams,inputSearchParams,inputSubmitParams,burgerLineParams,burgerParams,containerParams, btnParams} from "./params/header-params";
+import {
+  headerParams,
+  wrapperButtonParams,
+  btnContainerParams,
+  fadeParams,
+  formParams,
+  inputSearchParams,
+  inputSubmitParams,
+  burgerLineParams,
+  burgerParams,
+  containerParams,
+  btnParams,
+} from "./params/header-params";
 
 // const burgerLineSecParams = {
 //     tagName: "span",
@@ -28,7 +40,6 @@ export class HeaderView {
     this.header = this.createHeader();
   }
   creatorOfButtons(genresList) {
-    
     const wrapperButtons = new Creator(wrapperButtonParams).getElement();
     const btnContainer = new Creator(btnContainerParams).getElement();
     genresList.forEach((genres) => {

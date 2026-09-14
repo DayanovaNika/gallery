@@ -109,6 +109,27 @@ export class Controller {
     this.view.mainView.scrollToTop();
   }
 
+  setListListener() {
+    this.view.appContainer.addEventListener("click", async (event) => {
+      if (event.target.closest("[data-value]")) {
+        const btnValue = this.view.headerView.getBtnValue(event) as string;
+        this.view.mainView.showLoader();
+
+        const responseData = await this.model.getData({
+          version: "1.4",
+          chapter: "movie",
+          path: "",
+          params: {
+            "genres.name": `${btnValue}`,
+            limit: 12,
+          },
+        });
+
+        console.log("Ответ API по жанру:", responseData);
+
+        this.model.setData(responseData);
+        this.model.sortRating(this.model.dataFromServer);
+        this.view.mainView.createImageList(this.model.dataFromServer);
 async showPersonPreview(event) {
     const card = event.target.closest("[data-actor-id]");
 

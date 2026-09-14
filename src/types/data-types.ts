@@ -1,4 +1,3 @@
-
 // COMMON / SHARED TYPES
 export interface ImageResource {
   url: string;
